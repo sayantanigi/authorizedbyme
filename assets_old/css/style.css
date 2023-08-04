@@ -1,0 +1,706 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body{
+	font-family: 'Poppins', sans-serif;
+	font-size: 14px;
+	color: #000;
+}
+a{
+	color: #294ca6;
+	text-decoration: none;
+}
+p{
+	line-height: 1.7;
+}
+.text-primary{
+	color: #294CA6 !important;
+}
+.bg-primary{
+	background: #294CA6 !important;
+}
+.btn-primary{
+	background: #294CA6 !important;
+	border-color: #294CA6 !important;
+}
+.btn-primary:hover{
+	background: #203e89 !important;
+	border-color: #294CA6 !important;
+}
+.btn{
+	font-size: 15px;
+}
+img{
+	max-width: 100%;
+}
+header .navbar .navbar-brand img{
+	height: 68px;
+}
+header .navbar .nav-item{
+	margin: 0 4px;
+}
+header .navbar .nav-item .dropdown-item{
+    font-size: 14px;
+    letter-spacing: .5px;
+    color: #000;
+}
+header .navbar .nav-link{
+	font-weight: 500;
+    font-size: 15px;
+    color: #000;
+    padding: 8px 12px !important;
+    transition: all .3s;
+}
+header .navbar .nav-link:hover, header .navbar .nav-link.active{
+	color: #294ca6;
+}
+header .navbar .nav-link.btn{
+	background: #294CA6;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    border: 0;
+    padding: 8px 16px !important;
+}
+.topsearch .form-control{
+	height: 46px;
+    border: 2px solid #294CA6;
+    padding-right: 50px;
+    font-size: 14px;
+}
+.topsearch .btn{
+	position: absolute;
+    right: 0;
+    top: 0;
+    height: 46px;
+    font-size: 22px;
+    color: #294ca6;
+    width: 50px;
+    border: 0;
+}
+.topsearch .btn:hover{
+	background: #294ca6;
+	color: #fff;
+}
+.fortabselect .itemselect{
+	width: 33.33%;
+	text-align: center;
+	height: 50px;
+}
+.itemselect input[type="radio"]{
+	display: none;
+}
+.itemselect input[type="radio"]:checked+label{
+	background: #294ca6;
+    color: #fff;
+}
+.itemselect label{
+	width: 100%;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #294ca6;
+}
+.itemselect label small{
+	font-size: 11px;
+    font-weight: 500;
+}
+.fortabselect {
+	border: 2px solid #294CA6;
+    border-radius: 10px;
+}
+.banner-form .input-group{
+	border-bottom: 2px solid #294ca6;
+}
+.banner-form .input-group .input-group-text img{
+	height: 30px;
+    width: 30px;
+    object-fit: contain;
+}
+.banner-form .form-control{
+	font-size: 14px;
+	border: 0;
+}
+.banner-form .form-control:focus{
+	box-shadow: none;
+}
+.banner-form .input-group i{
+	color: #294ca6;
+}
+.port-imgbox-top{
+	position: relative;
+	padding: 20px 0;
+}
+.port-imgbox-top:after{
+	width: 150px;
+	height: 150px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: url(../images/dot-box.png);
+	background-size: cover;
+	content: '';
+	z-index: -1;
+}
+.port-imgbox-bottom{
+	position: relative;
+	padding: 20px 0;
+}
+.port-imgbox-bottom:before{
+	width: 150px;
+	height: 150px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	background: url(../images/dot-box.png);
+	background-size: cover;
+	content: '';
+	z-index: -1;
+}
+.discoverslide .item img{
+	height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid #294ca6;
+}
+.discoverslide .next-slide, .popular-players .next-slide, .teamboxslide .next-slide, .topteamslide .next-slide{
+	position: absolute;
+    right: -20px;
+    top: 40%;
+    font-size: 25px;
+    color: #294ca6;
+}
+.discoverslide .disabled .next-slide, .popular-players .disabled .next-slide, .teamboxslide .disabled .next-slide, .topteamslide .disabled .next-slide{
+	opacity: .6;
+}
+.discoverslide .prev-slide, .popular-players .prev-slide, .teamboxslide .prev-slide, .topteamslide .prev-slide{
+	position: absolute;
+    left: -20px;
+    top: 40%;
+    font-size: 25px;
+    color: #294ca6;
+}
+.discoverslide .disabled .prev-slide, .popular-players .disabled .prev-slide, .teamboxslide .disabled .prev-slide, .topteamslide .disabled .prev-slide{
+	opacity: .6;
+}
+.listplayerimg{
+	width: 100%;
+	height: 190px;
+	object-fit: cover;
+	border-radius: 8px;
+	margin-bottom: 10px;
+}
+.listplayer {
+    display: block;
+    padding: 1px;
+    background: #294ca6;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+}
+.listplayer h4{
+	font-size: 15px;
+	color: #fff;
+}
+.listplayer h6{
+	font-size: 12px;
+	color: #fff;
+	font-weight: normal;
+}
+/*******/
+.footertop{
+	background: #294CA6;
+}
+.footerlogo img{
+	height:75px;
+}
+.footernav{
+	padding: 0;
+	margin-bottom: 15px;
+	text-align: center;
+}
+.footernav li{
+	display: inline-block;
+}
+.footernav li a{
+	color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 6px 15px;
+    display: block;
+}
+.socialicons{
+	padding: 0;
+	text-align: center;
+	margin: 0;
+}
+.socialicons li{
+	display: inline-block;
+	margin: 0 4px;
+}
+.socialicons li a{
+	font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+    display: block;
+    width: 35px;
+    height: 35px;
+    background: #fff;
+    border-radius: 50%;
+    color: #294ca6;
+    line-height: 35px;
+    transition: all .3s;
+}
+.socialicons li a:hover{
+	background: #08287a;
+    color: #fff;
+}
+.termnav{
+	padding: 0;
+	margin: 0;
+}
+.termnav li{
+	display: inline-block;
+	margin-left: 18px;
+}
+.termnav li:first-child{
+	margin-left: 0;
+}
+.termnav li a{
+	color: #333;
+	text-decoration: none;
+}
+.teamboxslide .item{
+	padding: 6px;
+    border:1px solid #294ca6;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+}
+.teamboxslide .item img{
+	height: 90px;
+	object-fit: contain;
+	width: auto;
+	display: inline-block;
+}
+.topteamslide .item img{
+	border-radius: 8px;
+	border:1px solid #294ca6;
+	height: 203px;
+	object-fit: cover;
+}
+.innerbanner{
+	min-height: 400px;
+    object-fit: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+#spocerSlide.owl-carousel .owl-item .item{
+	padding: 15px;
+    background: #f5f5f5;
+    line-height: 80px;
+    border-radius: 6px;
+}
+#spocerSlide.owl-carousel .owl-item img{
+	height: 80px;
+    object-fit: contain;
+    
+}
+#spocerSlide .next-slide{
+	position: absolute;
+	right: -15px;
+	top: 36%;
+}
+#spocerSlide .prev-slide{
+	position: absolute;
+	left: -15px;
+	top: 36%;
+}
+@media(min-width:1200px){
+	.coachprofile .profileleft-panel{
+		margin-top: -150px;
+	}
+}
+.teamTab .nav-link{
+	border-radius: 0;
+    background: transparent;
+    border-bottom: 2px solid #CBCBCB;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #000;
+    padding: 10px;
+    letter-spacing: .2px;
+    font-size: 15px;
+}
+.teamTab .nav-link.active{
+	color: #294CA6;
+	border-color: #294CA6;
+	background: transparent;
+}
+.mathchImg img{
+	width:180px;
+	min-width: 180px;
+	height: 150px;
+	object-fit: cover;
+	border-radius: 6px;
+}
+.matlist a{
+	text-decoration: none;
+}
+.matlist h6{
+	font-size: 13px;
+	margin-bottom: 4px;
+}
+.matlist h2{
+	font-size: 18px;
+	font-weight: 600;
+}
+.matlist h2 a{
+	color: #294ca6;
+}
+.matlist p{
+	font-size: 13.5px;
+}
+.readmatch{
+	text-transform: uppercase;
+    font-size: 12px;
+    color: #294ca6;
+    font-weight: 600;
+    letter-spacing: .5px;
+}
+.matlist {
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 6px;
+    border: 1px solid #ededed;
+}
+.breadcrumbpnl{
+	background-size: cover;
+    background-attachment: fixed;
+    padding: 25px 0;
+    position: relative;
+    color: #fff;
+}
+.breadcrumbpnl:after{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	content: '';
+	z-index: 1;
+	background: #001a5c85;
+}
+.breadcrumbpnl .container{
+	position: relative;
+	z-index: 9;
+}
+.breadcrumb-item.active {
+	color: #fff;
+}
+.breadcrumb-item a{
+	color: #dbdbdb;
+    text-decoration: none;
+}
+.loginmodal .modal-content{
+	padding: 10px;
+}
+.navlist-profile {
+    padding: 0;
+    margin: 0 -8px;
+    font-size: 0;
+}
+.navlist-profile li {
+    display: inline-block;
+    font-size: 15px;
+    width: 33.33%;
+    text-align: center;
+    padding: 0 8px;
+    margin-bottom: 16px;
+}
+.navlist-profile li a {
+    display: block;
+    padding: 12px 24px;
+    width: 100%;
+    border-radius: 8px;
+    background: #294ca6;
+    background-position: 0% 0%, 100% 100%;
+    background-size: 200% 200%;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    color: #dddddd;
+    text-shadow: inherit;
+    box-shadow: 8px 8px 22px rgb(21 22 24 / 38%), -4px -2px 16px rgb(195 200 205 / 8%);
+    transition: all .3s;
+    text-decoration: none;
+}
+.navlist-profile li a:hover, .navlist-profile li a.active {
+    background: #092c85;
+    box-shadow: inset 3px 1px 6px #0d2768, inset -3px -3px 6px #0d2768;
+    color: #fff;
+}
+.divider {
+    height: 3px;
+    background: #294ca6;
+    box-shadow: 2px 3px 6px rgb(21 22 24 / 38%), -1px 0px 5px rgb(195 200 205 / 8%);
+    border-radius: 10px;
+}
+.form-box{
+	padding: 20px;
+    border: 2px solid #eee;
+}
+.formheading{
+	margin-bottom: 15px;
+}
+.formheading span{
+	font-size: 17px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    background: #294ca6;
+    color: #fff;
+    padding: 5px 10px;
+    display: inline-block;
+    position: relative;
+}
+.formheading span:after{
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 7.5px 0 7.5px 15px;
+	border-color: transparent transparent transparent #294ca6;
+	position: absolute;
+	top: 8px;
+	content: '';
+	right: -15px;
+}
+.profileform label{
+	font-weight: 500;
+    text-transform: capitalize;
+    letter-spacing: .5px;
+    margin-bottom: 5px;
+}
+.profileform .form-control, .profileform .form-select{
+	border-radius: 0;
+    border: 2px solid #ebebeb;
+    background-color: #f3f3f3;
+    min-height: 42px;
+    font-size: 14px;
+}
+
+
+/**********/
+#heading {
+    text-transform: uppercase;
+    color: #673AB7;
+    font-weight: normal
+}
+
+#msform {
+    text-align: center;
+    position: relative;
+    margin-top: 20px
+}
+
+#msform fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 20px;
+    position: relative
+}
+
+.form-card {
+    text-align: left
+}
+
+#msform fieldset:not(:first-of-type) {
+    display: none
+}
+
+#msform .action-button {
+    width: 100px;
+    background: #294ca6;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 0px 10px 5px;
+    float: right
+}
+
+#msform .action-button:hover,
+#msform .action-button:focus {
+    background-color: #311B92
+}
+
+#msform .action-button-previous {
+    width: 100px;
+    background: #616161;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px 10px 0px;
+    float: right
+}
+
+#msform .action-button-previous:hover,
+#msform .action-button-previous:focus {
+    background-color: #000000
+}
+
+.steps {
+    font-size: 25px;
+    color: gray;
+    margin-bottom: 10px;
+    font-weight: normal;
+    text-align: right
+}
+
+.fieldlabels {
+    color: gray;
+    text-align: left
+}
+
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey;
+    padding: 0;
+}
+
+#progressbar .active {
+    color: #294ca6
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 15px;
+    width: 20%;
+    float: left;
+    position: relative;
+    font-weight: 700;
+	letter-spacing: .5px;
+	text-transform: uppercase;
+	color: #525252;
+}
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: lightgray;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: #294ca6
+}
+
+.progressIcon {
+    width: 45px;
+    height: 45px;
+    margin: auto;
+    background: #e9ecef;
+    line-height: 45px;
+    border-radius: 50%;
+    color: #525252;
+    font-size: 18px;
+    position: relative;
+    z-index: 1;
+    margin-bottom:6px;
+}
+#progressbar .active .progressIcon {
+	background: #294ca6;
+	color: #fff;
+}
+.teamsBox{
+	width: 100%;
+    border: 1px solid #294ca6;
+    border-radius: 6px;
+    padding: 10px;
+    display: flex;
+}
+.teamboximg img{
+	width: 100px;
+	min-width: 100px;
+	height: 100px;
+	border-radius: 6px;
+}
+.teambadge{
+	position: absolute;
+    right: 0;
+    top: 0;
+    background: #294ca6;
+    color: #fff;
+    padding: 1px 10px;
+    font-size: 11px;
+    border-radius: 0 4px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+.teamboxcontent{
+	padding-top: 0px;
+}
+.teamboxcontent h2{
+	font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    width: calc(100% - 52px);
+}
+.teamboxcontent p{
+	margin-bottom: 2px;
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: #262626;
+}
+.teamboxcontent p i{
+	color: #294ca6;
+}
+.smlltemicon img{
+        width: 20px;
+    height: 20px;
+    object-fit: contain;
+    border-radius: 4px;
+}
+.teamBlockBox{
+    border: 1px solid #294ca6;
+    border-radius: 5px;
+}
+.teamBlockBoxBanner img{
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+.teamBlockBoxImg img{
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+.teamBlockBoxContent{
+    padding: 10px 0;
+}
+.teamBlockBoxContent h2{
+    font-size: 16px;
+    margin-bottom: 0;
+}
+.teamBlockBoxImg  {
+    margin-top: -42px;
+}
