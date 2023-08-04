@@ -44,9 +44,9 @@ function completeSub() {
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="<?= base_url()?>">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<?= base_url()?>page/agents">Agents</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<?= base_url()?>page/attorneys">Attorneys</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<?= base_url()?>page/representatives">Representatives</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?= base_url()?>page/agent_list">Agents</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?= base_url()?>page/attorney_lists">Attorneys</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?= base_url()?>page/representative_lists">Representatives</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?= base_url()?>page/about-us">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?= base_url()?>page/contact-us">Contact</a></li>
                         <?php if(!empty($_SESSION['authorized']['userId'])) { ?>

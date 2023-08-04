@@ -280,7 +280,23 @@ class Home extends MY_Controller {
 		$this->load->view('footer');
 	}
 
-	function workers_list() {
+	function agent_list() {
+		$data['get_specialist'] = $this->Crud_model->GetData('specialist');
+		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Freelancers'");
+		$this->load->view('header');
+		$this->load->view('frontend/workers_list', $data);
+		$this->load->view('footer');
+	}
+
+	function attorney_lists() {
+		$data['get_specialist'] = $this->Crud_model->GetData('specialist');
+		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Freelancers'");
+		$this->load->view('header');
+		$this->load->view('frontend/workers_list', $data);
+		$this->load->view('footer');
+	}
+
+	function representative_lists() {
 		$data['get_specialist'] = $this->Crud_model->GetData('specialist');
 		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Freelancers'");
 		$this->load->view('header');
