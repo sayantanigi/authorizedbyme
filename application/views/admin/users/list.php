@@ -72,7 +72,8 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Type</th>
+                                    <th>User Type</th>
+                                    <th>User Sub Type</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Created Date</th>
