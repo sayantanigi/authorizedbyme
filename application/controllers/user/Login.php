@@ -23,18 +23,19 @@ class Login extends CI_Controller {
 			$data=array(
 				'userType' => $_POST['userType'],
 				'userSubtype' => $_POST['userSubtype'],
-				'fullname' => $_POST['fullname'],
+				'firstname' => $_POST['firstname'],
+				'lastname' => $_POST['lastname'],
 				'email' => $_POST['email'],
 				'password' => md5($_POST['password']),
 				'created'=> date('Y-m-d H:i:s'),
 				'status'=> 0
 			);
-
+			$fullname = $_POST['firstname']." ".$_POST['lastname'];
 			$result = $this->Mymodel->insert('users',$data);
 			$insert_id = $this->db->insert_id();
 			$get_setting=$this->Crud_model->get_single('setting');
 			if(!empty($insert_id)) {
-				$message = "<body><div style='width:600px;margin: 0 auto;background: #fff;font-family: 'Poppins', sans-serif; border: 1px solid #e6e6e6;'><div style='padding: 30px 30px 15px 30px;box-sizing: border-box;'><img src='cid:Logo' style='width:100px;float: right;margin-top: 0 auto;'><h3 style='padding-top:0; line-height: 25px;'>Greetings from<span style='font-weight: 900;font-size: 20px;color: #33369b; display: block;'>Authorized By Me</span></h3><p style='font-size: 15px;margin: 0 0 8px;'>Hello '".$_POST['fullname']."',</p><p style='font-size: 15px;margin: 0 0 8px;'>Thank you for registration on Authorized By Me.</p><p style='font-size: 15px;margin: 0 0 8px;'>Please click the button below to verify your email address.</p><p style='text-align: center;'><a href='".base_url() . "email-verification/" . urlencode(base64_encode($insert_id))."' style='height: 50px;width: 180px;background: rgb(46 49 146);background: linear-gradient(0deg, rgb(86 91 225) 0%, rgb(46 49 146) 100%);text-align: center;font-size: 18px;color: #fff;border-radius: 12px;display: inline-block;line-height: 50px;text-decoration: none;text-transform: uppercase;font-weight: 600'>ACTIVATE</a></p><p style='font-size: 15px;margin: 0;'>Thank you!</p><p style='font-size: 15px;margin: 0;list-style: none;'>Sincerly</p><p style='list-style: none;margin: 0 0 15px;'><b>Authorized By Me</b></p><p style='list-style: none;margin: 0 0 15px;'><b>Visit us:</b> <span>$get_setting->address</span></p><p style='list-style: none;margin: 0 0 15px;'><b>Email us:</b> <span>$get_setting->email</span></p></div><table style='width: 100%;'><tr><td style='height:30px;width:100%; background: #33369b;padding: 10px 0px; font-size:13px; color: #fff; text-align: center;'>Copyright &copy; <?=date('Y')?> Authorized By Me. All rights reserved.</td></tr></table></div></body>";
+				$message = "<body><div style='width:600px;margin: 0 auto;background: #fff;font-family: 'Poppins', sans-serif; border: 1px solid #e6e6e6;'><div style='padding: 30px 30px 15px 30px;box-sizing: border-box;'><img src='cid:Logo' style='width:100px;float: right;margin-top: 0 auto;'><h3 style='padding-top:0; line-height: 25px;'>Greetings from<span style='font-weight: 900;font-size: 20px;color: #33369b; display: block;'>Authorized By Me</span></h3><p style='font-size: 15px;margin: 0 0 8px;'>Hello '".$fullname."',</p><p style='font-size: 15px;margin: 0 0 8px;'>Thank you for registration on Authorized By Me.</p><p style='font-size: 15px;margin: 0 0 8px;'>Please click the button below to verify your email address.</p><p style='text-align: center;'><a href='".base_url() . "email-verification/" . urlencode(base64_encode($insert_id))."' style='height: 50px;width: 180px;background: rgb(46 49 146);background: linear-gradient(0deg, rgb(86 91 225) 0%, rgb(46 49 146) 100%);text-align: center;font-size: 18px;color: #fff;border-radius: 12px;display: inline-block;line-height: 50px;text-decoration: none;text-transform: uppercase;font-weight: 600'>ACTIVATE</a></p><p style='font-size: 15px;margin: 0;'>Thank you!</p><p style='font-size: 15px;margin: 0;list-style: none;'>Sincerly</p><p style='list-style: none;margin: 0 0 15px;'><b>Authorized By Me</b></p><p style='list-style: none;margin: 0 0 15px;'><b>Visit us:</b> <span>$get_setting->address</span></p><p style='list-style: none;margin: 0 0 15px;'><b>Email us:</b> <span>$get_setting->email</span></p></div><table style='width: 100%;'><tr><td style='height:30px;width:100%; background: #33369b;padding: 10px 0px; font-size:13px; color: #fff; text-align: center;'>Copyright &copy; <?=date('Y')?> Authorized By Me. All rights reserved.</td></tr></table></div></body>";
 				require 'vendor/autoload.php';
 				$mail = new PHPMailer(true);
 				try {
@@ -96,7 +97,7 @@ class Login extends CI_Controller {
 
 	public function validate_user($pId = null) {
 		$email = $this->input->post("login_email");
-		$password = $this->input->post("login_pass");
+		$password = $this->input->post("login_password"); 
 		if($this->Mymodel->check_record($email, $password)) {
 			/*$this->session->set_flashdata('message', 'Logged in successfully !');
 			if($_SESSION['authorized']['userType'] == '1') {
@@ -126,16 +127,17 @@ class Login extends CI_Controller {
 			} else {
 					redirect('login');
 			}*/
+			//echo $_SESSION['authorized']['userId']; die();
 			if(!empty($_SESSION['authorized']['userId'])) {
 				$this->session->set_flashdata('message', 'Logged in successfully !');
-				echo "1";
+				redirect('profile/dashboard');
 			} else {
 				$this->session->set_flashdata('message', 'Something went wrong. Please try again later !');
-				echo "2";
+				redirect('/');
 			}
 		} else {
 			$this->session->set_flashdata('message', 'Invalid email address or password !');
-			echo "3";
+			redirect('/');
 		}
 	}
 

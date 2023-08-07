@@ -55,9 +55,14 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text border-0 bg-white"><img src="<?= base_url()?>assets/images/user.png"></span>
-                                <input type="text" class="form-control" placeholder="Name" name="fullname" id="fullname">
+                                <input type="text" class="form-control" placeholder="First Name" name="firstname" id="firstname">
                             </div>
-                            <div class="error text-left" id="err_fullname" style="color: red;text-align: center;"></div>
+                            <div class="error text-left" id="err_firstname" style="color: red;text-align: center;"></div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text border-0 bg-white"><img src="<?= base_url()?>assets/images/user.png"></span>
+                                <input type="text" class="form-control" placeholder="Last Name" name="lastname" id="lastname">
+                            </div>
+                            <div class="error text-left" id="err_lastname" style="color: red;text-align: center;"></div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text border-0 bg-white"><img src="<?= base_url()?>assets/images/envelope.png"></span>
                                 <input type="email" class="form-control" placeholder="Email" name="email" id="email">
@@ -309,7 +314,7 @@
                 </div>
                 <div class="modal-body">
                     <div>
-                        <form>
+                        <form action="<?=base_url(); ?>validate" method="post">
                             <div class="input-group mb-3">
                                 <span class="input-group-text border-0 bg-white"><img src="<?= base_url()?>assets/images/envelope.png"></span>
                                 <input type="email" class="form-control" placeholder="Email" name="login_email" id="login_email">
@@ -324,7 +329,7 @@
                                 <label><input type="checkbox"> Remember Me</label>
                             </div>
                             <div class="mb-3">
-                                <button type="button" class="btn btn-primary w-100 text-uppercase py-2 fw-semibold" id="rLogin" onclick="return onuserLogin();">Login</button>
+                                <button type="submit" class="btn btn-primary w-100 text-uppercase py-2 fw-semibold" id="rLogin" onclick="return onuserLogin();">Login</button>
                             </div>
                             <div class="mb-3 text-center">
                                 <a href="#">Forgot Password?</a>

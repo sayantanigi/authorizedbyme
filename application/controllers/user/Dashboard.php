@@ -7,25 +7,25 @@ class Dashboard extends CI_Controller {
 		parent::__construct();
 		$this->load->model('post_job_model');
 		$this->load->model('Users_model');
-		if (!$this->session->userdata('afrebay')) {
-			header("location" . base_url() . "login");
+		if (empty($_SESSION['authorized'])) {
+			redirect();
 		}
 	}
 
-	function index() {
-		$data['get_service'] = $this->Crud_model->GetData('employer_services', '', "employer_id='" . $_SESSION['afrebay']['userId'] . "'");
-		$data['get_job'] = $this->Crud_model->GetData('postjob', '', "user_id='".$_SESSION['afrebay']['userId']."'");
-		$data['bid_job'] = $this->db->query("SELECT `postjob`.*, `job_bid`.* FROM `job_bid` JOIN `postjob` ON `postjob`.`id` = `job_bid`.`postjob_id` where `postjob`.user_id = '".$_SESSION['afrebay']['userId']."' AND postjob.is_delete = '0'")->result_array();
-		$data['get_subscribe'] = $this->Crud_model->GetData('employer_subscription', '', "employer_id='" . $_SESSION['afrebay']['userId'] . "'");
-		$data['get_user'] = $this->Crud_model->get_single('users', "userId ='" . $_SESSION['afrebay']['userId'] . "' and userType='1'");
-		$data['get_product'] = $this->Crud_model->GetData('user_product', '', "user_id='".$_SESSION['afrebay']['userId']."' AND status = 1 AND is_delete= 1");
+	public function index() {
+		/*$data['get_service'] = $this->Crud_model->GetData('employer_services', '', "employer_id='" . $_SESSION['authorized']['userId'] . "'");
+		$data['get_job'] = $this->Crud_model->GetData('postjob', '', "user_id='".$_SESSION['authorized']['userId']."'");
+		$data['bid_job'] = $this->db->query("SELECT `postjob`.*, `job_bid`.* FROM `job_bid` JOIN `postjob` ON `postjob`.`id` = `job_bid`.`postjob_id` where `postjob`.user_id = '".$_SESSION['authorized']['userId']."' AND postjob.is_delete = '0'")->result_array();
+		$data['get_subscribe'] = $this->Crud_model->GetData('employer_subscription', '', "employer_id='" . $_SESSION['authorized']['userId'] . "'");*/
+		$data['get_user'] = $this->Crud_model->get_single('users', "userId = '".$_SESSION['authorized']['userId']."' AND userType = '".$_SESSION['authorized']['userType']."' AND usersubType = '".$_SESSION['authorized']['usersubType']."'");
+		$data['get_product'] = $this->Crud_model->GetData('user_product', '', "user_id='".$_SESSION['authorized']['userId']."' AND status = 1 AND is_delete= 1");
 		$this->load->view('header');
 		$this->load->view('user_dashboard/dashboard', $data);
 		$this->load->view('footer');
 	}
 
 	public function view_profile() {
-		$user_info = $this->Crud_model->get_single('users', "userId='" . $_SESSION['afrebay']['userId'] . "'");
+		$user_info = $this->Crud_model->get_single('users', "userId='" . $_SESSION['authorized']['userId'] . "'");
 		$data = array(
 			'userinfo' => $user_info,
 		);
@@ -35,8 +35,12 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function profile() {
+		$user_info = $this->Crud_model->get_single('users', "userId='" . $_SESSION['authorized']['userId'] . "'");
+		$data = array(
+			'userinfo' => $user_info,
+		);
 		$this->load->view('header');
-	 	$this->load->view('user_dashboard/dashboard');
+	 	$this->load->view('user_dashboard/dashboard', $data);
 		$this->load->view('footer');
 	}
 
@@ -59,6 +63,7 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function update_profile() {
+		//echo "<pre>"; print_r($this->input->post()); die();
 		if ($_FILES['profilePic']['name'] != '') {
 			$_POST['profilePic'] = rand(0000, 9999) . "_" . $_FILES['profilePic']['name'];
 			$config2['image_library'] = 'gd2';
@@ -80,121 +85,77 @@ class Dashboard extends CI_Controller {
 			$image  = $_POST['old_image'];
 		}
 
-		/*if ($_FILES['additional_image']['name'] != '') {
-			$_POST['additional_image'] = rand(0000, 9999) . "_" . $_FILES['additional_image']['name'];
-			$config2['image_library'] = 'gd2';
-			$config2['source_image'] =  $_FILES['additional_image']['tmp_name'];
-			$config2['new_image'] =   getcwd() . '/uploads/users/additional_image/' . $_POST['additional_image'];
-			$config2['upload_path'] =  getcwd() . '/uploads/users/additional_image/';
-			$config2['allowed_types'] = 'JPG|PNG|JPEG|jpg|png|jpeg';
-			$config2['maintain_ratio'] = FALSE;
-			$this->image_lib->initialize($config2);
-			if (!$this->image_lib->resize()) {
-				echo ('<pre>');
-				echo ($this->image_lib->display_errors());
-				exit;
-			} else {
-				$additional_image  = $_POST['additional_image'];
-				@unlink('uploads/users/additional_image/' . $_POST['old_additionalimage']);
-			}
-		} else {
-			if(!empty($_POST['old_additionalimage'])) {
-				$additional_image  = $_POST['old_additionalimage'];
-			} else {
-				$additional_image  = '';
-			}
-		}
-
-		if ($_FILES['video']['error'] == '') {
-			$file_element_name = 'video';
-			$config['upload_path'] = getcwd() . '/uploads/video/';
-			$config['allowed_types'] = '*';
-			$config['encrypt_name'] = TRUE;
-			$this->load->library('upload', $config);
-			$this->upload->initialize($config);
-			if (!$this->upload->do_upload($file_element_name)) {
-				$error = $this->upload->display_errors('<p style="color:#AF5655;">', '</p>');
-				$data = array('error' => $error);
-			}
-			$upload_quotation_file = $this->upload->data();
-			$video = $upload_quotation_file['file_name'];
-			@unlink('uploads/video/' . $_POST['old_video']);
-		} else {
-			if(!empty($_POST['old_video'])) {
-				$video = $_POST['old_video'];
-			} else {
-				$video  = '';
-			}
-		}
-
-		if ($_FILES['resume']['name'] != '') {
-			$src = $_FILES['resume']['tmp_name'];
-			$filEnc = time();
-			$avatar = rand(0000, 9999) . "_" . $_FILES['resume']['name'];
-			$avatar1 = str_replace(array('(', ')', ' '), '', $avatar);
-			$dest = getcwd() . '/uploads/users/resume/' . $avatar1;
-			if (move_uploaded_file($src, $dest)) {
-				$resume  = $avatar1;
-				@unlink('uploads/users/resume/' . $_POST['old_resume']);
-			}
-		} else {
-			if(!empty($_POST['old_resume'])) {
-				$resume  = $_POST['old_resume'];
-			} else {
-				$resume  = '';
-			}
-		}*/
-
-		if(!empty($this->input->post('key_skills'))) {
-			$key_skills = $this->input->post('key_skills');
-			for ($i=0; $i < count($key_skills); $i++) {
-				$get_specialist = $this->db->query("SELECT * FROM specialist WHERE specialist_name = '".$key_skills[$i]."'")->result();
-				if(empty($get_specialist)) {
-					$insrt = array(
-						'specialist_name'=>ucfirst($key_skills[$i]),
-						'created_date'=>date('Y-m-d H:i:s'),
-					);
-					$this->db->insert('specialist',$insrt);
-				}
-			}
-			$skills = implode(", ",$this->input->post('key_skills',TRUE));
-		} else {
-			$skills = '';
-		}
-
 		$data = array(
-			'companyname' => $_POST['companyname'],
 			'firstname' => $_POST['firstname'],
 			'lastname' => $_POST['lastname'],
+			'designation' => $_POST['designation'],
 			'email' => $_POST['email'],
 			'mobile' => $_POST['mobile'],
-			'gender' => $this->input->post('gender', TRUE),
-			//'experience' => $this->input->post('experience', TRUE),
-			//'qualification' => $this->input->post('qualification', TRUE),
-			'skills' => $skills,
-			'profilePic' => $image,
-			'additional_image' => $additional_image,
-			'zip' => $_POST['zip'],
 			'address' => $_POST['address'],
-			'foundedyear' => $_POST['foundedyear'],
-			'teamsize' => $_POST['teamsize'],
+			'location' => $_POST['location'],
+			'country' => $_POST['country-dropdown'],
+			'state' => $_POST['state-dropdown'],
+			'city' => $_POST['city-dropdown'],
+			'zipcode' => $_POST['zipcode'],
+			'short_bio' => $_POST['short_bio'],
+			'profilePic' => $image,
 			'latitude' => $_POST['latitude'],
 			'longitude' => $_POST['longitude'],
-			'short_bio' => $_POST['short_bio'],
-			//'video' => $video,
-			'resume' => $resume,
 		);
-		//print_r($data); exit;
-		$this->Crud_model->SaveData('users', $data, "userId='" . $_POST['id'] . "'");
+
+		$academicsitemCount = count($_POST["college_name"]);
+		for ($i = 0; $i < $academicsitemCount; $i ++) {
+			if (!empty($_POST["college_name"][$i]) || !empty($_POST["coursename"][$i]) || !empty($_POST["class_rank"][$i]) || !empty($_POST["passing_of_year"][$i]) || !empty($_POST["achievement"][$i])) {
+				$academicsinsrt = array(
+					'user_id'=>$_SESSION['authorized']['userId'],
+					'college_name'=>$_POST["college_name"][$i],
+					'coursename'=>$_POST["coursename"][$i],
+					'class_rank'=>$_POST["class_rank"][$i],
+					'passing_of_year'=>$_POST["passing_of_year"][$i],
+					'achievement'=>$_POST["achievement"][$i],
+					'created_date'=>date('Y-m-d H:i:s'),
+				);
+				$this->db->insert('user_education',$academicsinsrt);
+			}
+		}
+
+		$experienceitemCount = count($_POST["company_name"]);
+		for ($j = 0; $j < $experienceitemCount; $j ++) {
+			if (!empty($_POST["company_name"][$j]) || !empty($_POST["exp_designation"][$j]) || !empty($_POST["exp_start_date"][$j]) || !empty($_POST["exp_end_date"][$j]) || !empty($_POST["exp_information"][$j])) {
+				$experienceinsrt = array(
+					'user_id'=>$_SESSION['authorized']['userId'],
+					'company_name'=>$_POST["company_name"][$j],
+					'designation'=>$_POST["exp_designation"][$j],
+					'from_date'=>$_POST["exp_start_date"][$j],
+					'to_date'=>$_POST["exp_end_date"][$j],
+					'description'=>$_POST["exp_information"][$j],
+					'created_date'=>date('Y-m-d H:i:s'),
+				);
+				$this->db->insert('user_workexperience',$experienceinsrt);
+			}
+		}
+
+		$referreritemCount = count($_POST["referrer_name"]);
+		for ($j = 0; $j < $referreritemCount; $j ++) {
+			if (!empty($_POST["referrer_name"][$j]) || !empty($_POST["referrer_email"][$j])) {
+				$referrerinsrt = array(
+					'user_id'=>$_SESSION['authorized']['userId'],
+					'referrer_name'=>$_POST["referrer_name"][$j],
+					'referrer_email'=>$_POST["referrer_email"][$j],
+					'created_date'=>date('Y-m-d H:i:s'),
+				);
+				$this->db->insert('user_reference',$referrerinsrt);
+			}
+		}
+
+		$this->Crud_model->SaveData('users', $data, "userId='".$_SESSION['authorized']['userId']."'");
 		// echo $_POST['from_data_request'];die;
 		if($_POST['from_data_request']=='admin'){
-		$this->session->set_flashdata('message', 'Profile Updated Successfull !');
-		redirect(base_url('admin/users'));
-
-		}
-		else{
-		$this->session->set_flashdata('message', 'Profile Updated Successfull !');
-		redirect(base_url('profile'));
+			$this->session->set_flashdata('message', 'Profile Updated Successfull !');
+			redirect(base_url('admin/users'));
+		} else{
+			$this->session->set_flashdata('message', 'Profile Updated Successfull !');
+			redirect(base_url('profile/dashboard'));
 		}
 	}
 

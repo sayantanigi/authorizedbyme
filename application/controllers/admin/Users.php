@@ -80,7 +80,7 @@ class Users extends MY_Controller {
             $nestedData[] = $no;
             $nestedData[] = $userType;
             $nestedData[] = $usersubType;
-            $nestedData[] = $row->fullname;
+            $nestedData[] = $row->firstname." ".$row->lastname;
             $nestedData[] = $row->email;
             $nestedData[] = date('d-m-Y',strtotime($row->created));
             $nestedData[] = $email_verified."<input type='hidden' id='email_verified".$row->userId."' value='".$row->email_verified."' />";

@@ -74,7 +74,7 @@
                                     <th>#</th>
                                     <th>User Type</th>
                                     <th>User Sub Type</th>
-                                    <th>Name</th>
+                                    <th>Fullname</th>
                                     <th>Email</th>
                                     <th>Created Date</th>
                                     <th>Email Verified</th>

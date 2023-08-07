@@ -12,6 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="<?=base_url(); ?>assets/css/custom.css">
 	<link rel="stylesheet" type="text/css" href="<?=base_url(); ?>assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="<?=base_url(); ?>assets/css/responsive.css">
+    <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
     <style>
     .completeSub {display: none; text-align: center; margin-top: 20px; color: #fa5a1f; font-size: 20px;}
     #completeSub {position: relative;display: inline-block;}

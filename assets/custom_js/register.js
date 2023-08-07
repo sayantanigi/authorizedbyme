@@ -18,7 +18,8 @@ function onuserRegistration() {
 	} else {
 		var userSubtype='';
 	}
-	var fullname=$('#fullname').val();
+	var firstname=$('#firstname').val();
+	var lastname=$('#lastname').val();
 	var email=$('#email').val();
 	var password=$('#password').val();
 	var conf_password=$('#confirmpassword').val();
@@ -39,10 +40,17 @@ function onuserRegistration() {
 		}
 	}
 
-	if(fullname=='') {
-		$('#err_fullname').fadeIn().html('Please enter your name').css('color','red');
-		setTimeout(function(){$("#err_fullname").html("&nbsp;");},3000);
-		$("#fullname").focus();
+	if(firstname=='') {
+		$('#err_firstname').fadeIn().html('Please enter your first name').css('color','red');
+		setTimeout(function(){$("#err_firstname").html("&nbsp;");},3000);
+		$("#firstname").focus();
+		return false;
+	}
+
+	if(lastname=='') {
+		$('#err_lastname').fadeIn().html('Please enter your last name').css('color','red');
+		setTimeout(function(){$("#err_lastname").html("&nbsp;");},3000);
+		$("#lastname").focus();
 		return false;
 	}
 
@@ -96,7 +104,7 @@ function onuserRegistration() {
 	$.ajax({
 		url: base_url+'save',
 		type: 'POST',
-		data: {userType:userType, userSubtype:userSubtype, fullname:fullname, email:email, password:password},
+		data: {userType:userType, userSubtype:userSubtype, firstname:firstname, lastname:lastname, email:email, password:password},
 		dataType:'json',
 		beforeSend : function(){
 			$("#rSignUp").text("Please Wait...");
@@ -162,22 +170,22 @@ function onuserLogin() {
 		return false;
 	}
 
-	$.ajax({
-		url: base_url+'validate',
-		type: 'POST',
-		data: {login_email:login_email, login_pass:login_pass},
-		dataType:'json',
-		beforeSend : function(){
-			$("#rLogin").text("Please Wait...");
-			$("#rLogin").prop("disable", "true");
-		},
-		success:function(returndata) {
-			console.log(returndata);
-			if(returndata != 1) {
-				window.location.reload();
-			} else {
-				window.location.href = base_url+"profile/dashboard";
-			}
-		}
-	});
+	// $.ajax({
+	// 	url: base_url+'validate',
+	// 	type: 'POST',
+	// 	data: {login_email:login_email, login_pass:login_pass},
+	// 	dataType:'json',
+	// 	beforeSend : function(){
+	// 		$("#rLogin").text("Please Wait...");
+	// 		$("#rLogin").prop("disable", "true");
+	// 	},
+	// 	success:function(returndata) {
+	// 		console.log(returndata);
+	// 		if(returndata != 1) {
+	// 			window.location.reload();
+	// 		} else {
+	// 			window.location.href = base_url+"profile/dashboard";
+	// 		}
+	// 	}
+	// });
 }

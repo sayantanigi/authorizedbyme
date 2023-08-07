@@ -51,6 +51,9 @@ if(!empty($_SESSION['afrebay']['userId'])) {
 	<script src="<?=base_url(); ?>assets/js/bootstrap.bundle.min.js"></script>    
 	<script src="<?=base_url(); ?>assets/js/owl.carousel.min.js"></script>       
 	<script src="<?=base_url(); ?>assets/js/custom.js"></script>
+    <script src="<?= base_url('assets/js/maps2.js')?>" type="text/javascript"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtg6oeRPEkRL9_CE-us3QdvXjupbgG14A&libraries=places&callback=initMap" async defer></script>
+    <script type="text/javascript" src="<?= base_url('assets/custom_js/validation.js')?>"></script>
     <input type="hidden" name="base_url" id="base_url" value="<?= base_url()?>">     
 </body>
 </html>
