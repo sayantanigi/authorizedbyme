@@ -11,7 +11,7 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
             <div class="row">
                 <div class="col-lg-12">
                     <div class="inner-header">
-                        <h3>List of Freelancers</h3>
+                        <h3 style=" text-align: center; padding: 45px 0 0 0; ">List of Agents</h3>
                     </div>
                 </div>
             </div>
@@ -69,6 +69,7 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
     </div>
 </section>
 <link rel="stylesheet" href="https://unpkg.com/placeholder-loading/dist/css/placeholder-loading.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script>
 $(document).ready(function () {
     filter_data(1);
@@ -112,6 +113,7 @@ $(document).ready(function () {
                 specialist: specialist,
             },
             success: function (data) {
+                console.log(data);
                 $('#worker_list').html(data.product_list);
                 $('#pagination_link').html(data.pagination_link);
             }

@@ -35,9 +35,15 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function profile() {
-		$user_info = $this->Crud_model->get_single('users', "userId='" . $_SESSION['authorized']['userId'] . "'");
+		$user_info = $this->Crud_model->get_single('users', "userId='".$_SESSION['authorized']['userId']."'");
+		$user_academics = $this->Crud_model->GetData('user_education', '', "user_id='".$_SESSION['authorized']['userId']."'");
+		$user_experience = $this->Crud_model->GetData('user_workexperience', '', "user_id='".$_SESSION['authorized']['userId']."'");
+		$user_reference = $this->Crud_model->GetData('user_reference', '', "user_id='".$_SESSION['authorized']['userId']."'");
 		$data = array(
 			'userinfo' => $user_info,
+			'useracademics' => $user_academics,
+			'userexperience' => $user_experience,
+			'userreference' => $user_reference,
 		);
 		$this->load->view('header');
 	 	$this->load->view('user_dashboard/dashboard', $data);

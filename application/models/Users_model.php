@@ -132,11 +132,17 @@ class Users_model extends My_Model {
     }
 
     function getcount() {
-        $this->db->select('users.*,category.category_name');
+        /*$this->db->select('users.*,category.category_name');
         $this->db->from('users');
         $this->db->join('category','category.id=users.serviceType','left');
         $this->db->where('users.userType','1');
         $this->db->order_by('users.userId','desc');
+        $query = $this->db->get();
+        return $query->result();*/
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('userType','1');
+        $this->db->order_by('userId','desc');
         $query = $this->db->get();
         return $query->result();
     }
@@ -300,13 +306,8 @@ class Users_model extends My_Model {
         $output = '';
         if(!empty($data->result_array())) {
             foreach($data->result_array() as $row) {
-                $get_post=$this->Crud_model->GetData('postjob','',"user_id='".$row['userId']."'");
-                if(!empty($row['firstname'])){
-                    $name= $row['firstname'].' '.$row['lastname'];
-                } else{
-                    $name=$row['companyname'];
-                }
-
+                //$get_post=$this->Crud_model->GetData('postjob','',"user_id='".$row['userId']."'");
+                $name= $row['firstname'].' '.$row['lastname'];
                 if(strlen($row['short_bio'])>100){
                     $desc= substr(strip_tags($row['short_bio']), 0,100).'...';
                 } else {
@@ -320,7 +321,7 @@ class Users_model extends My_Model {
                 } else {
                     $profile_pic= '<img src="'.base_url('uploads/users/user.png').'" alt="" />';
                 }
-                $output .= '<div class="emply-resume-list"> <div class="emply-resume-thumb">'.$profile_pic.'</div> <div class="emply-resume-info"> <h3><a href="#" title="">'.$name.'</a></h3><p><i class="la la-map-marker"></i>'. $row['address'].'</p> <p>'.$desc.'</p> <p>Post Job '.count($get_post).'</p> </div> <div class="shortlists" style="width:50px;"> <a href="'.base_url('worker-detail/'.base64_encode($row['userId'])).'" title="">View Profile<i class="la la-plus"></i></a> </div> </div>';
+                $output .= '<div class="emply-resume-list"> <div class="emply-resume-thumb">'.$profile_pic.'</div> <div class="emply-resume-info"> <h3><a href="#" title="">'.$name.'</a></h3><p><i class="la la-map-marker"></i>'. $row['address'].'</p> <p>'.$desc.'</p></div> <div class="shortlists" style="width:50px;"> <a href="'.base_url('worker-detail/'.base64_encode($row['userId'])).'" title="">View Profile<i class="la la-plus"></i></a> </div> </div>';
             }
         } else {
             $output .= '<div class="emply-resume-list"><div class="emply-resume-thumb"><h2>No Data Found</h2></div></div>';

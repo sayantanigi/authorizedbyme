@@ -146,40 +146,95 @@
 	                    	<div class="form-box text-start">
 								<div class="field_wrapper">
 									<h4 class="formheading"><span>ACADEMICS INFORMATION</span></h4>
+									<?php if(!empty($useracademics)) { 
+									for($i=0; $i < count($useracademics); $i++) {
+									?>
 									<div class="row" id="row1">
 										<div class="col-lg-12 mb-3">
 											<label>School / College Name</label>
-											<input type="text" class="form-control" name="college_name[]" id="college_name" value="">
+											<input type="text" class="form-control" name="college_name[]" id="college_name" value="<?= $useracademics[$i]->college_name?>">
 										</div>
 										<div class="col-lg-4 mb-3">
 											<label>Course Name</label>
-											<input type="text" class="form-control" name="coursename[]" id="coursename" value="">
+											<input type="text" class="form-control" name="coursename[]" id="coursename" value="<?= $useracademics[$i]->coursename?>">
 										</div>
 										<div class="col-lg-4 mb-3">
 											<label>Class Rank</label>
-											<input type="text" class="form-control" name="class_rank[]" id="class_rank" value="">
+											<input type="text" class="form-control" name="class_rank[]" id="class_rank" value="<?= $useracademics[$i]->class_rank?>">
 										</div>
 										<div class="col-lg-4 mb-3">
 											<label>Year of Passing </label>
-											<input type="text" class="form-control" name="passing_of_year[]" id="passing_of_year" value="">
+											<input type="text" class="form-control" name="passing_of_year[]" id="passing_of_year" value="<?= $useracademics[$i]->passing_of_year?>">
 										</div>
 										<div class="col-lg-12 mb-3">
 											<label>Achievement </label>
-											<textarea class="form-control" name="achievement[]" id="achievement"></textarea>
+											<textarea class="form-control" name="achievement[]" id="achievement"><?= $useracademics[$i]->achievement?></textarea>
 										</div>
 									</div>
-									<div class="col-lg-12 mb-3 text-end">
-										<button type="button" class="btn btn-success rounded-0 add_button">Add More <i class="fa fa-plus"></i></button>
+									<hr>
+									<?php } } else { ?>
+									<div class="row" id="row1">
+										<div class="col-lg-12 mb-3">
+											<label>School / College Name</label>
+											<input type="text" class="form-control" name="college_name[]" id="college_name" value="<?= $useracademics[$i]->college_name?>">
+										</div>
+										<div class="col-lg-4 mb-3">
+											<label>Course Name</label>
+											<input type="text" class="form-control" name="coursename[]" id="coursename" value="<?= $useracademics[$i]->coursename?>">
+										</div>
+										<div class="col-lg-4 mb-3">
+											<label>Class Rank</label>
+											<input type="text" class="form-control" name="class_rank[]" id="class_rank" value="<?= $useracademics[$i]->class_rank?>">
+										</div>
+										<div class="col-lg-4 mb-3">
+											<label>Year of Passing </label>
+											<input type="text" class="form-control" name="passing_of_year[]" id="passing_of_year" value="<?= $useracademics[$i]->passing_of_year?>">
+										</div>
+										<div class="col-lg-12 mb-3">
+											<label>Achievement </label>
+											<textarea class="form-control" name="achievement[]" id="achievement"><?= $useracademics[$i]->achievement?></textarea>
+										</div>
 									</div>
+									<hr>
+									<?php } ?>
+								</div>
+								<div class="col-lg-12 mb-3 text-end">
+									<button type="button" class="btn btn-success rounded-0 add_button">Add More <i class="fa fa-plus"></i></button>
 								</div>
 	                    	</div>
                             <input type="button" name="next" class="next action-button" value="Next" /> 
                             <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
 	                    </fieldset>
 	                    <fieldset>
-	                    	<div  class="form-box text-start">
+	                    	<div class="form-box text-start">
 								<div class="field_wrapper_exp">
 									<h4 class="formheading"><span>EXPRIENCE INFORMATION</span></h4>
+									<?php if(!empty($userexperience)) { 
+									for($j=0; $j<count($userexperience); $j++) { ?>
+									<div class="row" id="exprow1">
+										<div class="col-lg-6 mb-3">
+											<label>Company Name</label>
+											<input type="text" class="form-control" name="company_name[]" id="company_name" value="<?= $userexperience[$j]->company_name?>">
+										</div>
+										<div class="col-lg-6 mb-3">
+											<label>Designation</label>
+											<input type="text" class="form-control" name="exp_designation[]" id="exp_designation" value="<?= $userexperience[$j]->designation?>">
+										</div>
+										<div class="col-lg-6 mb-3">
+											<label>Start Date</label>
+											<input type="date" class="form-control" name="exp_start_date[]" id="exp_start_date" value="<?= $userexperience[$j]->from_date?>">
+										</div>
+										<div class="col-lg-6 mb-3">
+											<label>End Date</label>
+											<input type="date" class="form-control" name="exp_end_date[]" id="exp_end_date" value="<?= $userexperience[$j]->to_date?>">
+										</div>
+										<div class="col-lg-12 mb-3">
+											<label>Information</label>
+											<textarea class="form-control" name="exp_information[]" id="exp_information"><?= $userexperience[$j]->description?></textarea>
+										</div>
+									</div>
+									<hr>
+									<?php } } else { ?>
 									<div class="row" id="exprow1">
 										<div class="col-lg-6 mb-3">
 											<label>Company Name</label>
@@ -202,18 +257,34 @@
 											<textarea class="form-control" name="exp_information[]" id="exp_information"></textarea>
 										</div>
 									</div>
-									<div class="col-lg-12 mb-3 text-end">
-										<button type="button" class="btn btn-success rounded-0 add_expbutton">Add More <i class="fa fa-plus"></i></button>
-									</div>
+									<hr>
+									<?php } ?>
+								</div>
+								<div class="col-lg-12 mb-3 text-end">
+									<button type="button" class="btn btn-success rounded-0 add_expbutton">Add More <i class="fa fa-plus"></i></button>
 								</div>
 	                    	</div>
 	                    	<input type="button" name="next" class="next action-button" value="Next" /> 
 	                    	<input type="button" name="previous" class="previous action-button-previous" value="Previous" />
 	                    </fieldset>
 	                    <fieldset>
-	                    	<div  class="form-box text-start">
+	                    	<div class="form-box text-start">
 								<div class="field_wrapper_ref">
 									<h4 class="formheading"><span>REFERENCE INFORMATION</span></h4>
+									<?php if(!empty($userreference)) { 
+									for ($k=0; $k< count($userreference); $k++) { ?>
+									<div class="row" id="refrow1">
+										<div class="col-lg-6 mb-3">
+											<label>Referrer Name</label>
+											<input type="text" class="form-control" name="referrer_name[]" id="referrer_name" value="<?= $userreference[$k]->referrer_name?>">
+										</div>
+										<div class="col-lg-6 mb-3">
+											<label>Referrer Email</label>
+											<input type="email" class="form-control" name="referrer_email[]" id="referrer_email" value="<?= $userreference[$k]->referrer_email?>">
+										</div>
+									</div>
+									<hr>
+									<?php } } else { ?>
 									<div class="row" id="refrow1">
 										<div class="col-lg-6 mb-3">
 											<label>Referrer Name</label>
@@ -224,6 +295,8 @@
 											<input type="email" class="form-control" name="referrer_email[]" id="referrer_email" value="">
 										</div>
 									</div>
+									<hr>
+									<?php } ?>
 								</div>
 	                    		<div class="col-lg-12 mb-3 text-end">
 									<button type="button" class="btn btn-success rounded-0 add_refbutton">Add More <i class="fa fa-plus"></i></button>
@@ -344,7 +417,7 @@
 		//var fieldHTML = ;
     	$(addButton).click(function(){
 			i++;
-			$(".field_wrapper #row1").append('<div class="row" id="row'+i+'"><hr><div class="col-lg-12 mb-3"> <label>School / College Name</label> <input type="text" class="form-control" name="college_name[]" id="college_name" value=""> </div> <div class="col-lg-4 mb-3"> <label>Course Name</label> <input type="text" class="form-control" name="coursename[]" id="coursename" value=""> </div> <div class="col-lg-4 mb-3"> <label>Class Rank</label> <input type="text" class="form-control" name="class_rank[]" id="class_rank" value=""> </div> <div class="col-lg-4 mb-3"> <label>Year of Passing </label> <input type="text" class="form-control" name="passing_of_year[]" id="passing_of_year" value=""> </div> <div class="col-lg-12 mb-3"> <label>Achievement </label> <textarea class="form-control" name="achievement[]" id="achievement"></textarea> </div> <div class="col-lg-12 mb-3 text-end"> <a class="remove-extend-field"><button type="button" name="remove" id="'+i+'" class="btn_remove"><i class="fa fa-times" aria-hidden="true"></i></button></a> </div> </div>'); //Add field html
+			$(".field_wrapper").append('<div class="row" id="row'+i+'"><div class="col-lg-12 mb-3"> <label>School / College Name</label> <input type="text" class="form-control" name="college_name[]" id="college_name" value=""> </div> <div class="col-lg-4 mb-3"> <label>Course Name</label> <input type="text" class="form-control" name="coursename[]" id="coursename" value=""> </div> <div class="col-lg-4 mb-3"> <label>Class Rank</label> <input type="text" class="form-control" name="class_rank[]" id="class_rank" value=""> </div> <div class="col-lg-4 mb-3"> <label>Year of Passing </label> <input type="text" class="form-control" name="passing_of_year[]" id="passing_of_year" value=""> </div> <div class="col-lg-12 mb-3"> <label>Achievement </label> <textarea class="form-control" name="achievement[]" id="achievement"></textarea> </div> <div class="col-lg-12 mb-3 text-end"> <a class="remove-extend-field"><button type="button" name="remove" id="'+i+'" class="btn_remove"><i class="fa fa-times" aria-hidden="true"></i></button></a></div><hr></div>'); //Add field html
 		});
 
 		$(document).on('click', '.btn_remove', function(){
@@ -358,7 +431,7 @@
 		//var fieldHTML = ;
     	$(addExpButton).click(function(){
 			j++;
-			$(".field_wrapper_exp #exprow1").append('<div class="row" id="row'+j+'"><hr><div class="col-lg-6 mb-3"> <label>Company Name</label> <input type="text" class="form-control" name="company_name[]" id="company_name" value=""> </div> <div class="col-lg-6 mb-3"> <label>Designation</label> <input type="text" class="form-control" name="exp_designation[]" id="exp_designation" value=""> </div> <div class="col-lg-6 mb-3"> <label>Start Date</label> <input type="date" class="form-control" name="exp_start_date[]" id="exp_start_date" value=""> </div> <div class="col-lg-6 mb-3"> <label>End Date</label> <input type="date" class="form-control" name="exp_end_date[]" id="exp_end_date" value=""> </div> <div class="col-lg-12 mb-3"> <label>Information</label> <textarea class="form-control" name="exp_information[]" id="exp_information"></textarea> </div><div class="col-lg-12 mb-3 text-end"> <a class="remove-extend-field"><button type="button" name="remove" id="'+j+'" class="btn_expremove"><i class="fa fa-times" aria-hidden="true"></i></button></a> </div> </div>'); //Add field html
+			$(".field_wrapper_exp").append('<div class="row" id="row'+j+'"><div class="col-lg-6 mb-3"> <label>Company Name</label> <input type="text" class="form-control" name="company_name[]" id="company_name" value=""> </div> <div class="col-lg-6 mb-3"> <label>Designation</label> <input type="text" class="form-control" name="exp_designation[]" id="exp_designation" value=""> </div> <div class="col-lg-6 mb-3"> <label>Start Date</label> <input type="date" class="form-control" name="exp_start_date[]" id="exp_start_date" value=""> </div> <div class="col-lg-6 mb-3"> <label>End Date</label> <input type="date" class="form-control" name="exp_end_date[]" id="exp_end_date" value=""> </div> <div class="col-lg-12 mb-3"> <label>Information</label> <textarea class="form-control" name="exp_information[]" id="exp_information"></textarea> </div><div class="col-lg-12 mb-3 text-end"> <a class="remove-extend-field"><button type="button" name="remove" id="'+j+'" class="btn_expremove"><i class="fa fa-times" aria-hidden="true"></i></button></a></div><hr></div>'); //Add field html
 		});
 
 		$(document).on('click', '.btn_expremove', function(){
@@ -372,7 +445,7 @@
 		//var fieldHTML = ;
     	$(addRefButton).click(function(){
 			k++;
-			$(".field_wrapper_ref #refrow1").append('<div class="row" id="row'+k+'"><hr><div class="col-lg-6 mb-3"> <label>Referrer Name</label> <input type="text" class="form-control" name="referrer_name[]" id="referrer_name" value=""> </div> <div class="col-lg-6 mb-3"> <label>Referrer Email</label> <input type="email" class="form-control" name="referrer_email[]" id="referrer_email" value=""> </div><div class="col-lg-12 mb-3 text-end"> <a class="remove-extend-field"><button type="button" name="remove" id="'+k+'" class="btn_refremove"><i class="fa fa-times" aria-hidden="true"></i></button></a> </div> </div>'); //Add field html
+			$(".field_wrapper_ref").append('<div class="row" id="row'+k+'"><div class="col-lg-6 mb-3"> <label>Referrer Name</label> <input type="text" class="form-control" name="referrer_name[]" id="referrer_name" value=""> </div> <div class="col-lg-6 mb-3"> <label>Referrer Email</label> <input type="email" class="form-control" name="referrer_email[]" id="referrer_email" value=""> </div><div class="col-lg-12 mb-3 text-end"> <a class="remove-extend-field"><button type="button" name="remove" id="'+k+'" class="btn_refremove"><i class="fa fa-times" aria-hidden="true"></i></button></a></div><hr></div>'); //Add field html
 		});
 
 		$(document).on('click', '.btn_refremove', function(){
