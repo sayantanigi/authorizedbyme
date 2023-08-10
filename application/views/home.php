@@ -21,7 +21,7 @@
                         } ?>
                         </span>
                         <h3 class="text-primary fw-bold mb-0">Create Your</h3>
-                        <h2 class="text-uppercase text-primary fw-bold h1">RESUME NOW</h2>
+                        <h2 class="text-uppercase text-primary fw-bold h1" style="letter-spacing: 0px; text-align: unset;">RESUME NOW</h2>
                         <form id="signUp_form">
                             <h5 class="fw-bold text-primary">Select your type</h5>
                             <div class="fortabselect d-flex align-items-center mb-3 select-user-type">
@@ -305,8 +305,8 @@
         </div>
     </section>
     <style>
-    #register-messages {text-align: center; margin-top: 25px; display: none;}
-    #err-messages {text-align: center; margin-top: 10px; display: none;}
+        #register-messages {text-align: center; margin-top: 25px; display: none;}
+        #err-messages {text-align: center; margin-top: 10px; display: none;}
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type="text/javascript" src="<?= base_url('assets/custom_js/register.js')?>"></script>

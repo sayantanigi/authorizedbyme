@@ -74,15 +74,14 @@ class Home extends MY_Controller {
 		$get_setting=$this->Crud_model->get_single('setting');
 		if(!empty($insert_id)) {
 			$subject = $_POST['subject'];
-			$message = "<div style='width:600px;margin: 0 auto;background: #fff;font-family: 'Poppins', sans-serif; border: 1px solid #e6e6e6;'><div style='padding: 30px 30px 15px 30px;box-sizing: border-box;'><img src='cid:Logo' style='width:100px;float: right;margin-top: 0 auto;'><h3 style='padding-top: 40px;line-height: 20px;font-weight: 100;font-size: 15px;'>Greetings from<span style='font-weight: 900;font-size: 23px;color: #F44C0D;display: block;'>Afrebay</span></h3><p style='font-size: 15px;'>Hello Admin,</p><p style='font-size: 15px;'>Please find the below contact form details.</p><p style='font-size: 15px; padding: 0; margin: 0;'>Name : ".$_POST['name']."</p><p style='font-size: 15px; padding: 0; margin: 0;'>Email : ".$_POST['email']."</p><p style='font-size: 15px; padding: 0; margin: 0;'>Message: ".$_POST['message']."</p><p style='font-size: 15px; padding: 0; margin: 18px 0 0 0;'>Thank you!</p><p style='font-size: 15px; padding: 0; margin: 0; list-style: none;'>Sincerly,</p><p style='font-size: 15px; list-style: none; padding: 0; margin: 0;'><b>".$_POST['name']."</b></p><p style='font-size: 15px; list-style: none; padding: 0; margin: 18px 0 0 0;'>Visit us: <span> $get_setting->address</span></p><p style='font-size: 15px; list-style: none; padding: 0; margin: 0;'>Email us: <span> $get_setting->email</span></p></div><table style='width: 100%;'><tr><td style='height:30px;width:100%; background: red;padding: 10px 0px; font-size:13px; color: #fff; text-align: center;'>Copyright &copy; <?=date('Y')?> Afrebay. All rights reserved.</td></tr></table></div>";
+			$message = "<div style='width:600px;margin: 0 auto;background: #fff;font-family: 'Poppins', sans-serif; border: 1px solid #e6e6e6;'><div style='padding: 30px 30px 15px 30px;box-sizing: border-box;'><img src='cid:Logo' style='width:100px;float: right;margin-top: 0 auto;'><h3 style='padding-top: 40px;line-height: 20px;font-weight: 100;font-size: 15px;'>Greetings from<span style='font-weight: 900;font-size: 23px;color: #F44C0D;display: block;'>Authorized By Me</span></h3><p style='font-size: 15px;'>Hello Admin,</p><p style='font-size: 15px;'>Please find the below contact form details.</p><p style='font-size: 15px; padding: 0; margin: 0;'>Name : ".$_POST['name']."</p><p style='font-size: 15px; padding: 0; margin: 0;'>Email : ".$_POST['email']."</p><p style='font-size: 15px; padding: 0; margin: 0;'>Message: ".$_POST['message']."</p><p style='font-size: 15px; padding: 0; margin: 18px 0 0 0;'>Thank you!</p><p style='font-size: 15px; padding: 0; margin: 0; list-style: none;'>Sincerly,</p><p style='font-size: 15px; list-style: none; padding: 0; margin: 0;'><b>".$_POST['name']."</b></p><p style='font-size: 15px; list-style: none; padding: 0; margin: 18px 0 0 0;'>Visit us: <span> $get_setting->address</span></p><p style='font-size: 15px; list-style: none; padding: 0; margin: 0;'>Email us: <span> $get_setting->email</span></p></div><table style='width: 100%;'><tr><td style='height:30px;width:100%; background: red;padding: 10px 0px; font-size:13px; color: #fff; text-align: center;'>Copyright &copy; <?=date('Y')?> Afrebay. All rights reserved.</td></tr></table></div>";
 			require 'vendor/autoload.php';
 			$mail = new PHPMailer(true);
 			try {
 				//Server settings
 				$mail->CharSet = 'UTF-8';
 				$mail->SetFrom($_POST['email']);
-				$mail->AddAddress('no-reply@goigi.com', 'Afrebay');
-				//$mail->AddAddress('sayantan@goigi.in', 'sayantan bhakta');
+				$mail->AddAddress('no-reply@goigi.com', 'Authorized By Me');
 				$mail->IsHTML(true);
 				$mail->Subject = $subject;
 				$mail->AddEmbeddedImage('uploads/logo/'.$get_setting->flogo, 'Logo');
@@ -98,15 +97,13 @@ class Home extends MY_Controller {
 				$mail->send();
 				// echo 'Message has been sent';
 			} catch (Exception $e) {
-				//$this->session->set_flashdata('message', "Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
 				$this->session->set_flashdata('message', "Your message could not be sent. Please, try again later.");
 			}
-			//$msg = "An email has been sent to your email address containing an activation link. Please click on the link to activate your account. If you do not click the link your account will remain inactive and you will not receive further emails. If you do not receive the email within a few minutes, please check your spam folder.";
 			$this->session->set_flashdata('message', 'Thank you for your message. Our team will connect you soon!');
-			redirect('contact-us');
+			redirect('page/contact-us');
 		} else {
 			$this->session->set_flashdata('message', 'Something went wrong. Please try again later!');
-			redirect('contact-us');
+			redirect('page/contact-us');
 		}
 	}
 

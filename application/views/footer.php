@@ -12,9 +12,9 @@ if(!empty($_SESSION['afrebay']['userId'])) {
                     <a href="<?=base_url(); ?>"><img src="<?=base_url(); ?>uploads/logo/<?= $get_setting->flogo?>" alt="" /></a>
                 </div>
                 <ul class="footernav">
-                    <li><a href="<?= base_url()?>page/agents">Agents</a></li>
-                    <li><a href="<?= base_url()?>page/attorneys">Attorneys</a></li>
-                    <li><a href="<?= base_url()?>page/representatives">Representatives</li>
+                    <li><a href="<?= base_url()?>page/agent_list">Agents</a></li>
+                    <li><a href="<?= base_url()?>page/attorney_lists">Attorneys</a></li>
+                    <li><a href="<?= base_url()?>page/representative_lists">Representatives</li>
                     <li><a href="<?= base_url()?>page/blogs">Blogs</a></li>
                     <li><a href="<?= base_url()?>page/faq">FAQ</a></li>
                     <li><a href="<?= base_url()?>page/feedback">Feedback</a></li>
