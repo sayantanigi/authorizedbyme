@@ -24,8 +24,6 @@ class Users_model extends My_Model {
                 $cond.=" OR  users.email LIKE '%".trim($show_string)."%' ";
                 $cond.=" OR  users.mobile LIKE '%".trim($show_string)."%' ";
                 $cond.=" OR  users.created LIKE '%".trim(date('Y-m-d',strtotime($show_string)))."%') ";
-
-
                 $this->db->where($cond);
             }
         }
@@ -229,11 +227,11 @@ class Users_model extends My_Model {
         }
     }
 
-    function make_workers_query($title, $search_location, $specialist, $userType) {
-        if(isset($title) || isset($search_location) || isset($specialist) || isset($userType)) {
-            $query = "SELECT * FROM users WHERE users.userType = $userType";
+    function make_workers_query($title, $search_location, $specialist, $userType, $usersubType) {
+        if(isset($title) || isset($search_location) || isset($specialist) || isset($userType) || isset($usersubType)) {
+            $query = "SELECT * FROM users WHERE users.userType = $userType and users.usersubType = $usersubType";
             if(isset($title) && !empty($title)) {
-                $query .= " AND users.companyname like '%".$title."%'";
+                $query .= " AND (users.firstname like '%".$title."%' OR users.lastname like '%".$title."%')";
             }
 
             if(isset($search_location) && !empty($search_location)) {
@@ -243,7 +241,6 @@ class Users_model extends My_Model {
             if(isset($specialist) && !empty($specialist)) {
                 $query .= " AND instr(concat(',', skills, ','), ',$specialist,')";
             }
-            //$query .= " AND users.userType = '2'";
             return $query;
         }
     }
@@ -291,9 +288,9 @@ class Users_model extends My_Model {
         return $output;
     }
 
-    function workers_fetchdata($limit, $start, $title, $search_location, $specialist, $userType) {
-        if(isset($title) || isset($search_location) || isset($specialist) || isset($userType)) {
-            $query = $this->make_workers_query($title, $search_location, $specialist, $userType);
+    function workers_fetchdata($limit, $start, $title, $search_location, $specialist, $userType, $usersubType) {
+        if(isset($title) || isset($search_location) || isset($specialist) || isset($userType) || isset($usersubType)) {
+            $query = $this->make_workers_query($title, $search_location, $specialist, $userType, $usersubType);
             $query .= ' AND users.status = 1 and users.email_verified = 1 ORDER BY userId DESC';
             $query .= ' LIMIT '.$start.', ' . $limit;
             $data = $this->db->query($query);

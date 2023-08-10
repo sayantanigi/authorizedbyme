@@ -284,27 +284,11 @@ class Home extends MY_Controller {
 		$data['get_specialist'] = $this->Crud_model->GetData('specialist');
 		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Freelancers'");
 		$this->load->view('header');
-		$this->load->view('frontend/workers_list', $data);
+		$this->load->view('frontend/agents_list', $data);
 		$this->load->view('footer');
 	}
 
-	function attorney_lists() {
-		$data['get_specialist'] = $this->Crud_model->GetData('specialist');
-		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Freelancers'");
-		$this->load->view('header');
-		$this->load->view('frontend/workers_list', $data);
-		$this->load->view('footer');
-	}
-
-	function representative_lists() {
-		$data['get_specialist'] = $this->Crud_model->GetData('specialist');
-		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Freelancers'");
-		$this->load->view('header');
-		$this->load->view('frontend/workers_list', $data);
-		$this->load->view('footer');
-	}
-
-	function workerlist_fetchdata() {
+	function agentlist_fetchdata() {
 		sleep(1);
 		$title = $this->input->post('title_keyword');
 		$search_location = $this->input->post('location');
@@ -312,7 +296,8 @@ class Home extends MY_Controller {
 		if($specialist) {
 			$specialist = implode(',', $specialist);
 		}
-		$userType = 1;
+		$userType = 2;
+		$usersubType = 1;
 		$this->load->library('pagination');
 		$config = array();
 		$config['base_url'] = '#';
@@ -341,10 +326,128 @@ class Home extends MY_Controller {
 		$page = $this->uri->segment(3);
 		$start = ($page - 1) * $config['per_page'];
 
-		if(isset($title) || isset($search_location) || isset($specialist) || isset($userType)) {
-			$getdata=$this->Users_model->workers_fetchdata($config["per_page"], $start, $title, $search_location, $specialist, $userType);
+		if(isset($title) || isset($search_location) || isset($specialist) || isset($userType) || isset($usersubType)) {
+			$getdata=$this->Users_model->workers_fetchdata($config["per_page"], $start, $title, $search_location, $specialist, $userType, $usersubType);
 		} else {
-			$getdata=$this->Users_model->workers_fetchdata($config["per_page"], $start, $title, $search_location, $specialist, $userType);
+			$getdata=$this->Users_model->workers_fetchdata($config["per_page"], $start, $title, $search_location, $specialist, $userType, $usersubType);
+		}
+
+		$output = array(
+			'pagination_link'  => $this->pagination->create_links(),
+			'product_list'   => $getdata
+		);
+		echo json_encode($output);
+	}
+
+	function attorney_lists() {
+		$data['get_specialist'] = $this->Crud_model->GetData('specialist');
+		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Freelancers'");
+		$this->load->view('header');
+		$this->load->view('frontend/attorney_list', $data);
+		$this->load->view('footer');
+	}
+
+	function attorneylist_fetchdata() {
+		sleep(1);
+		$title = $this->input->post('title_keyword');
+		$search_location = $this->input->post('location');
+		$specialist = $this->input->post('specialist');
+		if($specialist) {
+			$specialist = implode(',', $specialist);
+		}
+		$userType = 2;
+		$usersubType = 2;
+		$this->load->library('pagination');
+		$config = array();
+		$config['base_url'] = '#';
+		$config['total_rows'] = count($this->Users_model->getcount());
+		$config['per_page'] = 10;
+		$config['uri_segment'] = 3;
+		$config['use_page_numbers'] = TRUE;
+		$config['full_tag_open'] = '<ul class="pagination">';
+		$config['full_tag_close'] = '</ul>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['next_link'] = '&gt;';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['prev_link'] = '&lt;';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['cur_tag_open'] = "<li class='active'><a href='#'>";
+		$config['cur_tag_close'] = '</a></li>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['num_links'] = 3;
+		$this->pagination->initialize($config);
+		$page = $this->uri->segment(3);
+		$start = ($page - 1) * $config['per_page'];
+
+		if(isset($title) || isset($search_location) || isset($specialist) || isset($userType) || isset($usersubType)) {
+			$getdata=$this->Users_model->workers_fetchdata($config["per_page"], $start, $title, $search_location, $specialist, $userType, $usersubType);
+		} else {
+			$getdata=$this->Users_model->workers_fetchdata($config["per_page"], $start, $title, $search_location, $specialist, $userType, $usersubType);
+		}
+
+		$output = array(
+			'pagination_link'  => $this->pagination->create_links(),
+			'product_list'   => $getdata
+		);
+		echo json_encode($output);
+	}
+
+	function representative_lists() {
+		$data['get_specialist'] = $this->Crud_model->GetData('specialist');
+		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Freelancers'");
+		$this->load->view('header');
+		$this->load->view('frontend/representatives_list', $data);
+		$this->load->view('footer');
+	}
+
+	function representativelist_fetchdata() {
+		sleep(1);
+		$title = $this->input->post('title_keyword');
+		$search_location = $this->input->post('location');
+		$specialist = $this->input->post('specialist');
+		if($specialist) {
+			$specialist = implode(',', $specialist);
+		}
+		$userType = 2;
+		$usersubType = 3;
+		$this->load->library('pagination');
+		$config = array();
+		$config['base_url'] = '#';
+		$config['total_rows'] = count($this->Users_model->getcount());
+		$config['per_page'] = 10;
+		$config['uri_segment'] = 3;
+		$config['use_page_numbers'] = TRUE;
+		$config['full_tag_open'] = '<ul class="pagination">';
+		$config['full_tag_close'] = '</ul>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['next_link'] = '&gt;';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['prev_link'] = '&lt;';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['cur_tag_open'] = "<li class='active'><a href='#'>";
+		$config['cur_tag_close'] = '</a></li>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['num_links'] = 3;
+		$this->pagination->initialize($config);
+		$page = $this->uri->segment(3);
+		$start = ($page - 1) * $config['per_page'];
+
+		if(isset($title) || isset($search_location) || isset($specialist) || isset($userType) || isset($usersubType)) {
+			$getdata=$this->Users_model->workers_fetchdata($config["per_page"], $start, $title, $search_location, $specialist, $userType, $usersubType);
+		} else {
+			$getdata=$this->Users_model->workers_fetchdata($config["per_page"], $start, $title, $search_location, $specialist, $userType, $usersubType);
 		}
 
 		$output = array(

@@ -42,14 +42,15 @@ function completeSub() {
 		        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		            <span class="navbar-toggler-icon"></span>
 		        </button>
+                <?php $url = $this->uri->segment(2);?>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="<?= base_url()?>">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<?= base_url()?>page/agent_list">Agents</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<?= base_url()?>page/attorney_lists">Attorneys</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<?= base_url()?>page/representative_lists">Representatives</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<?= base_url()?>page/about-us">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<?= base_url()?>page/contact-us">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link <?php if($url == "") { echo "active";}?>" aria-current="page" href="<?= base_url()?>">Home</a></li>
+                        <li class="nav-item"><a class="nav-link <?php if($url == "agent_list") { echo "active";}?>" href="<?= base_url()?>page/agent_list">Agents</a></li>
+                        <li class="nav-item"><a class="nav-link <?php if($url == "attorney_lists") { echo "active";}?>" href="<?= base_url()?>page/attorney_lists">Attorneys</a></li>
+                        <li class="nav-item"><a class="nav-link <?php if($url == "representative_lists") { echo "active";}?>" href="<?= base_url()?>page/representative_lists">Representatives</a></li>
+                        <li class="nav-item"><a class="nav-link <?php if($url == "about-us") { echo "active";}?>" href="<?= base_url()?>page/about-us">About</a></li>
+                        <li class="nav-item"><a class="nav-link <?php if($url == "contact-us") { echo "active";}?>" href="<?= base_url()?>page/contact-us">Contact</a></li>
                         <?php if(!empty($_SESSION['authorized']['userId'])) { ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link btn text-capitalize" href="#" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-user"></i> Dashboard <i class="fas fa-angle-down"></i></a>

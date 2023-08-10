@@ -103,7 +103,7 @@ $(document).ready(function () {
         var location = $('#location').val();
         var specialist = $('#example').val();
         $.ajax({
-            url: base_url + "home/workerlist_fetchdata/" + page,
+            url: base_url + "home/representativelist_fetchdata/" + page,
             method: "POST",
             dataType: "JSON",
             data: {
