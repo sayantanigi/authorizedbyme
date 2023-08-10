@@ -61,6 +61,7 @@ $route['new-password/(:any)'] = "user/login/new_password/$1";
 $route['page/agent_list'] = "home/agent_list";
 $route['page/attorney_lists'] = "home/attorney_lists";
 $route['page/representative_lists'] = "home/representative_lists";
+$route['page/worker-detail/(:any)'] = "home/worker_detail/$1";
 $route['page/about-us'] = "home/about";
 $route['page/contact-us'] = "home/contact";
 $route['page/blogs'] = "home/blogs";

@@ -5,17 +5,15 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
     $banner_img=base_url("assets/images/resource/mslider1.jpg");
 } ?>
 
-<section class="overlape">
-    <div class="block no-padding">
-        <div data-velocity="-.1" style="background: url('<?= $banner_img ?>') repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div>
-        <!-- PARALLAX BACKGROUND IMAGE -->
-        <div class="container fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="inner-header">
-                        <h3>Contact Us</h3>
-                    </div>
-                </div>
+<section class="breadcrumbpnl" style="background-image:url(./<?= base_url()?>/images/f-2.jpg);">  
+    <div class="container">
+        <div class="">
+            <h3 class="fw-semibold">Contact Us</h3>
+            <div >
+                <ol class="breadcrumb mb-2">
+                <li class="breadcrumb-item"><a href="<?= base_url()?>">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+                </ol>
             </div>
         </div>
     </div>

@@ -110,6 +110,7 @@ class Dashboard extends CI_Controller {
 		);
 
 		$academicsitemCount = count($_POST["college_name"]);
+		$delete_query = $this->db->query("DELETE FROM user_education WHERE user_id = '".$_SESSION['authorized']['userId']."'");
 		for ($i = 0; $i < $academicsitemCount; $i ++) {
 			if (!empty($_POST["college_name"][$i]) || !empty($_POST["coursename"][$i]) || !empty($_POST["class_rank"][$i]) || !empty($_POST["passing_of_year"][$i]) || !empty($_POST["achievement"][$i])) {
 				$academicsinsrt = array(
@@ -126,6 +127,7 @@ class Dashboard extends CI_Controller {
 		}
 
 		$experienceitemCount = count($_POST["company_name"]);
+		$delete_query = $this->db->query("DELETE FROM user_workexperience WHERE user_id = '".$_SESSION['authorized']['userId']."'");
 		for ($j = 0; $j < $experienceitemCount; $j ++) {
 			if (!empty($_POST["company_name"][$j]) || !empty($_POST["exp_designation"][$j]) || !empty($_POST["exp_start_date"][$j]) || !empty($_POST["exp_end_date"][$j]) || !empty($_POST["exp_information"][$j])) {
 				$experienceinsrt = array(
@@ -142,6 +144,7 @@ class Dashboard extends CI_Controller {
 		}
 
 		$referreritemCount = count($_POST["referrer_name"]);
+		$delete_query = $this->db->query("DELETE FROM user_reference WHERE user_id = '".$_SESSION['authorized']['userId']."'");
 		for ($j = 0; $j < $referreritemCount; $j ++) {
 			if (!empty($_POST["referrer_name"][$j]) || !empty($_POST["referrer_email"][$j])) {
 				$referrerinsrt = array(

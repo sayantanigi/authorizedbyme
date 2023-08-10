@@ -3,7 +3,17 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
     $banner_img=base_url("uploads/banner/".$get_banner->image);
 } else{
     $banner_img=base_url("assets/images/resource/mslider1.jpg");
-} ?>
+} 
+if($user_detail->usersubType == '1') {
+    $user = 'Agent';
+} else if($user_detail->usersubType == '2') {
+    $user = 'Attorny';
+} else if($user_detail->usersubType == '3') {
+    $user = 'Representative';
+} else {
+    $user = 'Client';
+}
+?>
 
 <section class="overlape">
     <div class="block no-padding">
@@ -13,7 +23,7 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
             <div class="row">
                 <div class="col-lg-12">
                     <div class="inner-header">
-                        <h3>Frelancer Details</h3>
+                        <h3><?= $user?> Details</h3>
                     </div>
                 </div>
             </div>
@@ -26,7 +36,6 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <!-- <div class="cand-single-user"> -->
                     <div class="worker_cand-single-user">
                         <div class="row m-0">
                             <div class="col-lg-2 col-md-4 col-sm-12">
@@ -42,22 +51,13 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
                             </div>
                             <div class="col-lg-6 col-md-4 col-sm-12 Worker_Head_Text">
                                 <div class="Worker_Head_Text_Data">
-                                    <h3><?php if(!empty($user_detail->firstname)){ echo $user_detail->firstname.' '.$user_detail->lastname;} else { echo $user_detail->username; }?></h3>
+                                    <h3><?php if(!empty($user_detail->firstname)){ echo $user_detail->firstname.' '.$user_detail->lastname;}?></h3>
                                     <p>Member Since, <?= date('Y',strtotime(@$user_detail->created))?></p>
                                     <p><i class="la la-map-marker"></i><?= @$user_detail->address?></p>
                                 </div>
                             </div>
-
-                            <!-- <div class="col-lg-4 col-md-4 col-sm-12 Worker_Head_Social">
-                                <div class="Worker_Head_Social_Data">
-                                    <div class="download-cv">
-                                        <a class="btn btn-info" href="<?= base_url('uploads/users/resume/'.@$user_detail->resume)?>" title="" download>Download CV <i class="la la-download"></i></a>
-                                    </div>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
-                    <!-- </div> -->
                     <ul class="cand-extralink">
                         <li><a href="#about" title="">About</a></li>
                         <li><a href="#education" title="">Education</a></li>
@@ -68,21 +68,18 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
                         <div class="row">
                             <div class="col-lg-8 column">
                                 <div class="cand-details" id="about">
-                                    <h2>About This Freelancer</h2>
-                                    <p>
-                                        <?= @$user_detail->short_bio;?>
-                                    </p>
-
+                                    <h2>About This <?= $user?></h2>
+                                    <p><?= @$user_detail->short_bio;?></p>
                                     <div class="edu-history-sec" id="education">
                                         <h2>Education</h2>
                                         <?php if(!empty($user_education)){ foreach($user_education as $edu){?>
                                         <div class="edu-history">
                                             <i class="la la-graduation-cap"></i>
                                             <div class="edu-hisinfo">
-                                                <h3><?= ucfirst($edu->education)?> in <?= $edu->department?> depertment</h3>
+                                                <h3><?= ucfirst($edu->class_rank)?> in <?= $edu->coursename?> depertment</h3>
                                                 <i><?= $edu->passing_of_year?></i>
                                                 <span><?= $edu->college_name?></span>
-                                                <p><?= $edu->description?></p>
+                                                <p><?= $edu->achievement?></p>
                                             </div>
                                         </div>
                                         <?php } }?>
@@ -112,24 +109,19 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
                             </div>
                             <div class="col-lg-4 column">
                                 <div class="job-overview">
-                                    <h3>Candidate Overview</h3>
+                                    <h3><?= $user?> Overview</h3>
                                     <ul>
                                         <li>
                                             <i class="la la-mars-double"></i>
                                             <h3>Gender</h3>
                                             <span><?= @$user_detail->gender?></span>
                                         </li>
-                                        <!-- <li>
-                                            <i class="la la-shield"></i>
-                                            <h3>Experience</h3>
-                                            <span><?= @$user_detail->experience?></span>
-                                        </li> -->
                                     </ul>
                                 </div>
                                 <!-- Job Overview -->
                                 <?php if(!empty($_SESSION['afrebay']['userId'])&& $_SESSION['afrebay']['userType']==2){?>
                                 <div class="quick-form-job">
-                                    <h3>Rate This Freelancer</h3>
+                                    <h3>Rate This <?= $user?></h3>
                                     <form method="post" action="<?= base_url('user/dashboard/save_employer_rating')?>">
                                         <div class="row m-0">
                                             <div class="col-lg-12 col-md-12 col-sm-12">
@@ -154,7 +146,6 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
                                                 <button class="submit btn btn-info">Submit</button>
                                             </div>
                                         </div>
-                                        <!--  <span>You accepts our <a href="javascript:void(0)" title="">Terms and Conditions</a></span> -->
                                     </form>
                                 </div>
                                 <?php } ?>
