@@ -12,6 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="<?=base_url(); ?>assets/css/custom.css">
 	<link rel="stylesheet" type="text/css" href="<?=base_url(); ?>assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="<?=base_url(); ?>assets/css/responsive.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <style>

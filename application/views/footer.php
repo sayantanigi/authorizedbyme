@@ -40,7 +40,7 @@ if(!empty($_SESSION['afrebay']['userId'])) {
                         </ul>
                     </div>
                     <div class="col-lg-6 order-lg-1">
-                        <p>©2023 Digital Sports Resume All Rights Reserved</p>
+                        <p>Copyright © <?php echo date('Y')?> Authorized By Me, All Rights Reserved</p>
                     </div>
                 </div>
             </div>

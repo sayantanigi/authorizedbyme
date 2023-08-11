@@ -179,40 +179,30 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function subscription() {
-		$vis_ip = $this->getVisIPAddr(); // Store the IP address
-		$ipdat = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $vis_ip));
-		$countryName = $ipdat->geoplugin_countryName;
-		if($countryName == 'Nigeria') {
-			$cond = " WHERE subscription_country = 'Nigeria'";
+		if($_SESSION['authorized']['userType'] == '1') {
+			$uType = 'Agents';
 		} else {
-			$cond = " WHERE subscription_country = 'Global'";
+			$uType = 'Representatives';
 		}
 
-		if($_SESSION['afrebay']['userType'] == '1') {
-			$uType = 'Freelancer';
-		} else {
-			$uType = 'Vendor';
-		}
-
-		//$data['get_subscription'] = $this->Crud_model->GetData('subscription');
-		$data['get_subscription'] = $this->db->query("SELECT * FROM subscription ".$cond." AND subscription_user_type = '".$uType."'")->result();
-		$data['current_plan'] = $this->Crud_model->GetData('employer_subscription', '', "employer_id='".$_SESSION['afrebay']['userId']."' AND status IN (1,2)");
-		$data['expired_plan'] = $this->Crud_model->GetData('employer_subscription', '', "employer_id='".$_SESSION['afrebay']['userId']."' AND status = '3'");
-		$data['subscription_check'] = $this->db->query("SELECT * FROM employer_subscription WHERE employer_id='".$_SESSION['afrebay']['userId']."' AND (status = '1' OR status = '2')")->result_array();
+		$data['get_subscription'] = $this->db->query("SELECT * FROM subscription WHERE subscription_user_type = '".$uType."'")->result();
+		$data['current_plan'] = $this->Crud_model->GetData('employer_subscription', '', "employer_id='".$_SESSION['authorized']['userId']."' AND status IN (1,2)");
+		$data['expired_plan'] = $this->Crud_model->GetData('employer_subscription', '', "employer_id='".$_SESSION['authorized']['userId']."' AND status = '3'");
+		$data['subscription_check'] = $this->db->query("SELECT * FROM employer_subscription WHERE employer_id='".$_SESSION['authorized']['userId']."' AND (status = '1' OR status = '2')")->result_array();
 		$this->load->view('header');
 		$this->load->view('user_dashboard/subscription', $data);
 		$this->load->view('footer');
 	}
 
 	public function products() {
-		$data['product_list'] = $this->Crud_model->GetData('user_product', '', "user_id='".$_SESSION['afrebay']['userId']."' AND status = 1 and is_delete = 1");
+		$data['product_list'] = $this->Crud_model->GetData('user_product', '', "user_id='".$_SESSION['authorized']['userId']."' AND status = 1 and is_delete = 1");
 		$this->load->view('header');
 		$this->load->view('user_dashboard/product/list', $data);
 		$this->load->view('footer');
 	}
 
 	public function myservice() {
-		$data['get_services'] = $this->Crud_model->GetData('employer_services', '', "employer_id='" . $_SESSION['afrebay']['userId'] . "'");
+		$data['get_services'] = $this->Crud_model->GetData('employer_services', '', "employer_id='" . $_SESSION['authorized']['userId'] . "'");
 		$this->load->view('header');
 		$this->load->view('user_dashboard/my_service', $data);
 		$this->load->view('footer');
@@ -259,7 +249,7 @@ class Dashboard extends CI_Controller {
 
 	public function save_service() {
 		$data = array(
-			'employer_id' => $_SESSION['afrebay']['userId'],
+			'employer_id' => $_SESSION['authorized']['userId'],
 			'service_name' => $_POST['service_name'],
 			'category_id' => $_POST['category_id'],
 			'subcategory_id' => $_POST['subcategory_id'],
@@ -292,7 +282,7 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function myjob() {
-		$data['get_postjob'] = $this->Crud_model->GetData('postjob', '', "user_id='".$_SESSION['afrebay']['userId']."' ");
+		$data['get_postjob'] = $this->Crud_model->GetData('postjob', '', "user_id='".$_SESSION['authorized']['userId']."' ");
 		//print_r($data); die();
 		$this->load->view('header');
 		$this->load->view('user_dashboard/my_job', $data);
@@ -300,7 +290,7 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function buy_subscription() {
-		$employer_id = $_SESSION['afrebay']['userId'];
+		$employer_id = $_SESSION['authorized']['userId'];
 		$data = array(
 			'employer_id' => $employer_id,
 			'subscription_id' => $_POST['subscription_id'],
@@ -315,12 +305,12 @@ class Dashboard extends CI_Controller {
 	////////////////////////////////////////// start job bidding//////////////////
 	function jobbid() {
 		$this->load->model('Post_job_model');
-		if($_SESSION['afrebay']['userType'] == '1'){
-			//$data['get_postjob'] = $this->db->query("SELECT postjob.*, job_bid.*, users.* from job_bid JOIN postjob ON job_bid.postjob_id = postjob.id JOIN users ON job_bid.user_id = users.userId WHERE postjob.user_id ='".$_SESSION['afrebay']['userId']."'")
-			$cond = "job_bid.user_id='" . $_SESSION['afrebay']['userId'] . "'";
+		if($_SESSION['authorized']['userType'] == '1'){
+			//$data['get_postjob'] = $this->db->query("SELECT postjob.*, job_bid.*, users.* from job_bid JOIN postjob ON job_bid.postjob_id = postjob.id JOIN users ON job_bid.user_id = users.userId WHERE postjob.user_id ='".$_SESSION['authorized']['userId']."'")
+			$cond = "job_bid.user_id='" . $_SESSION['authorized']['userId'] . "'";
 		} else {
 			//$data['get_postjob'] = $this->db->query("SELECT postjob.*, job_bid.*, users.* from job_bid JOIN postjob ON job_bid.postjob_id = postjob.id JOIN users ON job_bid.user_id = users.userId WHERE postjob.user_id =")
-			$cond = "postjob.user_id='" . $_SESSION['afrebay']['userId'] . "'";
+			$cond = "postjob.user_id='" . $_SESSION['authorized']['userId'] . "'";
 		}
 		$data['get_postjob'] = $this->Post_job_model->postjob_bid($cond);
 		$this->load->view('header');
@@ -331,7 +321,7 @@ class Dashboard extends CI_Controller {
 	function save_postbid() {
 		$data = array(
 			'postjob_id' => $_POST['postjob_id'],
-			'user_id' => $_SESSION['afrebay']['userId'],
+			'user_id' => $_SESSION['authorized']['userId'],
 			'bid_amount' => $_POST['bid_amount'],
 			'currency' => $_POST['currency'],
 			//'email' => $_POST['email'],
@@ -417,7 +407,7 @@ class Dashboard extends CI_Controller {
 
 	////////////////////////////////// start chat functionality////////////////
 	function chat() {
-		$data['get_user'] = $this->Crud_model->get_single('users', "userId ='".$_SESSION['afrebay']['userId']."'");
+		$data['get_user'] = $this->Crud_model->get_single('users', "userId ='".$_SESSION['authorized']['userId']."'");
 		//$cond = "job_bid.bidding_status='Accept'";
 		$cond = "job_bid.bidding_status IN ('Short Listed','Selected')";
 		$data['get_jobbid'] = $this->Users_model->get_jobbidding($cond);
@@ -469,7 +459,7 @@ class Dashboard extends CI_Controller {
 	}
 
 	function showmessage_list() {
-		$userdId = $_SESSION['afrebay']['userId'];
+		$userdId = $_SESSION['authorized']['userId'];
 		$usert_id = $this->input->post('usert_id');
 		$post_id = $this->input->post('post_id');
 		$get_data = $this->Users_model->getChat();
@@ -498,12 +488,12 @@ class Dashboard extends CI_Controller {
 				} else {
 					$to_pic = '<img src="' . base_url('uploads/users/user.png') . '" alt="" />';
 				}
-				if ($key->userfrom_id == $_SESSION['afrebay']['userId'] && $key->userto_id == $_POST['usert_id'] && $key->postjob_id == $_POST['post_id']) {
+				if ($key->userfrom_id == $_SESSION['authorized']['userId'] && $key->userto_id == $_POST['usert_id'] && $key->postjob_id == $_POST['post_id']) {
 					$sent = '<li class="sent">' . $from_pic . '<p>' . $key->message . '</p><div style="font-size: 10px;">'.$key->created_date.'</li>';
 				} else {
 					$sent = '';
 				}
-				if ($key->userto_id == $_SESSION['afrebay']['userId'] && $key->userfrom_id == $_POST['usert_id'] && $key->postjob_id == $_POST['post_id']) {
+				if ($key->userto_id == $_SESSION['authorized']['userId'] && $key->userfrom_id == $_POST['usert_id'] && $key->postjob_id == $_POST['post_id']) {
 					$reply = '<li class="replies">' . $to_pic . '<p>' . $key->message . '</p><div style="font-size: 10px;">'.$key->created_date.'</li>';
 				} else {
 					$reply = '';
@@ -547,12 +537,12 @@ class Dashboard extends CI_Controller {
 				} else {
 					$to_pic = '<img src="' . base_url('uploads/users/user.png') . '" alt="" />';
 				}
-				if ($key->userfrom_id == $_SESSION['afrebay']['userId'] && $key->userto_id == $user_id && $key->postjob_id == $post_id) {
+				if ($key->userfrom_id == $_SESSION['authorized']['userId'] && $key->userto_id == $user_id && $key->postjob_id == $post_id) {
 					$sent = '<li class="sent">' . $from_pic . '<p>' . $key->message . '</p><div style="font-size: 10px;">'.$key->created_date.'</li>';
 				} else {
 					$sent = '';
 				}
-				if ($key->userto_id == $_SESSION['afrebay']['userId'] && $key->userfrom_id == $user_id && $key->postjob_id == $post_id) {
+				if ($key->userto_id == $_SESSION['authorized']['userId'] && $key->userfrom_id == $user_id && $key->postjob_id == $post_id) {
 					$reply = '<li class="replies">' . $to_pic . '<p>' . $key->message . '</p><div style="font-size: 10px;">'.$key->created_date.'</li>';
 				} else {
 					$reply = '';
@@ -606,7 +596,7 @@ class Dashboard extends CI_Controller {
 		// $starttime=$_POST['starthours'].':'.$_POST['startminute'].' '.$_POST['starttype'];
 		// $endtime=$_POST['endhours'].':'.$_POST['endminute'].' '.$_POST['endtype'];
 		$data = array(
-			'user_id' => $_SESSION['afrebay']['userId'],
+			'user_id' => $_SESSION['authorized']['userId'],
 			'event_name' => $_POST['event_name'],
 			'event_date' => date('Y-m-d', strtotime($_POST['event_date'])),
 			'start_time' => date('H:i', strtotime($_POST['start_time'])),
@@ -622,7 +612,7 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function get_events() {
-		$events = $this->db->query("select * from appointment_scheduling where user_id='" . $_SESSION['afrebay']['userId'] . "'")->result();
+		$events = $this->db->query("select * from appointment_scheduling where user_id='" . $_SESSION['authorized']['userId'] . "'")->result();
 		$data_events = array();
 
 		foreach ($events as $r) {
@@ -646,12 +636,12 @@ class Dashboard extends CI_Controller {
 	}
 
 	function update_password() {
-		$get_user = $this->Crud_model->get_single('users', "userId='" . $_SESSION['afrebay']['userId'] . "'");
+		$get_user = $this->Crud_model->get_single('users', "userId='" . $_SESSION['authorized']['userId'] . "'");
 		if ($get_user->password == md5($_POST['cur_password'])) {
 			$data = array(
 				'password' => md5($_POST['new_password']),
 			);
-			$this->Crud_model->SaveData('users', $data, "userId='" . $_SESSION['afrebay']['userId'] . "'");
+			$this->Crud_model->SaveData('users', $data, "userId='" . $_SESSION['authorized']['userId'] . "'");
 			$this->session->set_flashdata('message', 'Password Reset Successfully !');
 			echo "1";
 		} else {
@@ -664,7 +654,7 @@ class Dashboard extends CI_Controller {
 	function save_employer_rating() {
 		if (!empty($this->input->post('rating'))) {
 			$data = array(
-				'employer_id' => $_SESSION['afrebay']['userId'],
+				'employer_id' => $_SESSION['authorized']['userId'],
 				'worker_id' => $_POST['user_id'],
 				'rating' => $this->input->post('rating', TRUE),
 				'subject' => $this->input->post('subject', TRUE),
@@ -683,7 +673,7 @@ class Dashboard extends CI_Controller {
 	//////////////////////////////// start education ///////////////////////////
 	function education_list()
 	{
-		$data['education_list'] = $this->Crud_model->GetData('user_education', '', "user_id='".$_SESSION['afrebay']['userId']."' order by id DESC");
+		$data['education_list'] = $this->Crud_model->GetData('user_education', '', "user_id='".$_SESSION['authorized']['userId']."' order by id DESC");
 		$this->load->view('header');
 		$this->load->view('user_dashboard/education/list', $data);
 		$this->load->view('footer');
@@ -718,7 +708,7 @@ class Dashboard extends CI_Controller {
 	public function save_education()
 	{
 		$data = array(
-			'user_id' => $_SESSION['afrebay']['userId'],
+			'user_id' => $_SESSION['authorized']['userId'],
 			'education' => $this->input->post('education', TRUE),
 			'passing_of_year' => $this->input->post('passing_of_year', TRUE),
 			'college_name' => $this->input->post('college_name', TRUE),
@@ -795,7 +785,7 @@ class Dashboard extends CI_Controller {
 	///////////////// start work experience //////////////////////////
 
 	function workexperience_list() {
-		$data['workexperience_list'] = $this->Crud_model->GetData('user_workexperience', '', "user_id='".$_SESSION['afrebay']['userId']."' order by id DESC");
+		$data['workexperience_list'] = $this->Crud_model->GetData('user_workexperience', '', "user_id='".$_SESSION['authorized']['userId']."' order by id DESC");
 		$this->load->view('header');
 		$this->load->view('user_dashboard/work_experience/list', $data);
 		$this->load->view('footer');
@@ -829,7 +819,7 @@ class Dashboard extends CI_Controller {
 
 	public function save_workexperience() {
 		$data = array(
-			'user_id' => $_SESSION['afrebay']['userId'],
+			'user_id' => $_SESSION['authorized']['userId'],
 			'designation' => $this->input->post('designation', TRUE),
 			'company_name' => $this->input->post('company_name', TRUE),
 			//'duration' => $this->input->post('duration', TRUE),
@@ -999,7 +989,7 @@ class Dashboard extends CI_Controller {
 		//print_r($this->input->post()); die;
 		if(!empty($this->input->post())){
 			$data = array(
-				'user_id' => $_SESSION['afrebay']['userId'],
+				'user_id' => $_SESSION['authorized']['userId'],
 				'prod_name' => $this->input->post('prod_name'),
 				'prod_description' => $this->input->post('prod_description'),
 				'created_date' => date("Y-m-d H:i:s"),

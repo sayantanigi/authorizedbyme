@@ -1,7 +1,6 @@
-<?php 
- if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->image)){
+<?php if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->image)) {
     $banner_img=base_url("uploads/banner/".$get_banner->image);
-} else{
+} else {
     $banner_img=base_url("assets/images/resource/mslider1.jpg");
 } ?>
 <style>
@@ -10,11 +9,11 @@
 <section class="breadcrumbpnl" style="background-image:url(./assets/images/f-2.jpg);">
     <div class="container">
         <div class="">
-            <h3 class="fw-semibold">Terms and Conditions</h3>
+            <h3 class="fw-semibold">Feedback</h3>
             <div >
                 <ol class="breadcrumb mb-2">
                     <li class="breadcrumb-item"><a href="<?= base_url()?>">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Terms and Conditions</li>
+                    <li class="breadcrumb-item active" aria-current="page">Feedback</li>
                 </ol>
             </div>
         </div>

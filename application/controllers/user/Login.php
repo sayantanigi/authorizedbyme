@@ -99,45 +99,25 @@ class Login extends CI_Controller {
 		$email = $this->input->post("login_email");
 		$password = $this->input->post("login_password"); 
 		if($this->Mymodel->check_record($email, $password)) {
-			/*$this->session->set_flashdata('message', 'Logged in successfully !');
-			if($_SESSION['authorized']['userType'] == '1') {
-				$check_sub = $this->Crud_model->GetData('employer_subscription', '', "employer_id='".$_SESSION['authorized']['userId']."' AND status IN (1,2)");
-				if(empty($check_sub)) {
-					redirect('subscription');
-				} else {
-					$profile_check = $this->db->query("SELECT `firstname`, `lastname`, `email`, `gender`, `address`, `zip`, `short_bio` FROM `users` WHERE userId = '".@$_SESSION['authorized']['userId']."'")->result_array();
-					if(empty($profile_check[0]['firstname']) || empty($profile_check[0]['lastname']) || empty($profile_check[0]['email']) || empty($profile_check[0]['gender']) || empty($profile_check[0]['address']) || empty($profile_check[0]['zip']) || empty($profile_check[0]['short_bio'])) {
-						redirect('profile');
-					} else {
-						redirect('jobbid');
-					}
-				}
-			} else if ($_SESSION['authorized']['userType'] == '2') {
-				$check_sub = $this->Crud_model->GetData('employer_subscription', '', "employer_id='".$_SESSION['authorized']['userId']."' AND status IN (1,2)");
-				if(empty($check_sub)) {
-					redirect('subscription');
-				} else {
-					$profile_check = $this->db->query("SELECT `profilePic`, `companyname`, `email`, `mobile`,`address`, `foundedyear`, `teamsize`, `short_bio` FROM `users` WHERE userId = '".@$_SESSION['authorized']['userId']."'")->result_array();
-					if(empty($profile_check[0]['companyname']) || empty($profile_check[0]['email']) || empty($profile_check[0]['address']) || empty($profile_check[0]['teamsize'])  || empty($profile_check[0]['short_bio'])) {
-						redirect('profile');
-					} else {
-						redirect('dashboard');
-					}
-				}
-			} else {
-					redirect('login');
-			}*/
-			//echo $_SESSION['authorized']['userId']; die();
 			if(!empty($_SESSION['authorized']['userId'])) {
 				$this->session->set_flashdata('message', 'Logged in successfully !');
-				redirect('profile/dashboard');
+				$check_sub = $this->Crud_model->GetData('employer_subscription', '', "employer_id='".$_SESSION['authorized']['userId']."' AND status IN (1,2)");
+				if(empty($check_sub)) {
+					redirect('profile/subscription');
+				} else {
+					$profile_check = $this->db->query("SELECT `firstname`, `lastname`, `email`, `address`, `zipcode`, `short_bio` FROM `users` WHERE userId = '".@$_SESSION['authorized']['userId']."'")->result_array();
+					if(empty($profile_check[0]['firstname']) || empty($profile_check[0]['lastname']) || empty($profile_check[0]['email']) || empty($profile_check[0]['address']) || empty($profile_check[0]['zipcode']) || empty($profile_check[0]['short_bio'])) {
+						redirect('profile/dashboard');
+					} else {
+						redirect('profile/jobbid');
+					}
+				}
 			} else {
-				$this->session->set_flashdata('message', 'Something went wrong. Please try again later !');
-				redirect('/');
+				redirect();
 			}
 		} else {
 			$this->session->set_flashdata('message', 'Invalid email address or password !');
-			redirect('/');
+			redirect();
 		}
 	}
 

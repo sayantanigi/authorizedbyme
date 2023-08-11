@@ -44,6 +44,14 @@ class Home extends MY_Controller {
 		$this->load->view('footer');
 	}
 
+	public function term_and_conditions() {
+		$data['get_cms'] = $this->Crud_model->get_single('manage_cms', "id='1'");
+		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Term and conditions'");
+		$this->load->view('header');
+		$this->load->view('frontend/term_and_conditions', $data);
+		$this->load->view('footer');
+	}
+
 	public function about() {
 		$data['get_cms'] = $this->Crud_model->get_single('manage_cms', "id='2'");
 		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='About Us Top'");
@@ -51,6 +59,30 @@ class Home extends MY_Controller {
 		$data['get_employer'] = $this->Crud_model->GetData('users', '', "userType='2'", '', '(userId)desc', '4');
 		$this->load->view('header');
 		$this->load->view('frontend/about_us', $data);
+		$this->load->view('footer');
+	}
+
+	public function privacy() {
+		$data['get_cms'] = $this->Crud_model->get_single('manage_cms', "id='3'");
+		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Privacy Policy'");
+		$this->load->view('header');
+		$this->load->view('frontend/privacy_policy', $data);
+		$this->load->view('footer');
+	}
+
+	public function faq() {
+		$data['get_cms'] = $this->Crud_model->get_single('manage_cms', "id='4'");
+		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='FAQ'");
+		$this->load->view('header');
+		$this->load->view('frontend/faq', $data);
+		$this->load->view('footer');
+	}
+
+	public function feedback() {
+		$data['get_cms'] = $this->Crud_model->get_single('manage_cms', "id='5'");
+		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Feedback'");
+		$this->load->view('header');
+		$this->load->view('frontend/privacy_policy', $data);
 		$this->load->view('footer');
 	}
 
@@ -105,30 +137,6 @@ class Home extends MY_Controller {
 			$this->session->set_flashdata('message', 'Something went wrong. Please try again later!');
 			redirect('page/contact-us');
 		}
-	}
-
-	public function faq() {
-		$data['get_cms'] = $this->Crud_model->get_single('manage_cms', "id='3'");
-		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Privacy policy'");
-		$this->load->view('header');
-		$this->load->view('frontend/faq', $data);
-		$this->load->view('footer');
-	}
-
-	public function privacy() {
-		$data['get_cms'] = $this->Crud_model->get_single('manage_cms', "id='3'");
-		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Privacy policy'");
-		$this->load->view('header');
-		$this->load->view('frontend/privacy_policy', $data);
-		$this->load->view('footer');
-	}
-
-	public function term_and_conditions() {
-		$data['get_cms'] = $this->Crud_model->get_single('manage_cms', "id='1'");
-		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Term and conditions'");
-		$this->load->view('header');
-		$this->load->view('frontend/term_and_conditions', $data);
-		$this->load->view('footer');
 	}
 
 	function getVisIpAddr() {

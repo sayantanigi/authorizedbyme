@@ -1,25 +1,18 @@
-<section class="overlape">
-    <div class="block no-padding">
-        <div data-velocity="-.1" style="background: url('<?= base_url('assets/images/resource/mslider1.jpg')?>') repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div>
-        <div class="container fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="inner-header" style="padding-top: 90px;"></div>
-                </div>
+<?php $get_setting=$this->Crud_model->get_single('setting');?>
+<section class="breadcrumbpnl" style="background-image:url(./assets/images/f-2.jpg);">
+    <div class="container">
+        <div class="">
+            <h3 class="fw-semibold">Subscription</h3>
+            <div >
+                <ol class="breadcrumb mb-2">
+                    <li class="breadcrumb-item"><a href="<?= base_url()?>">Home</a></li>
+                    <li class="breadcrumb-item"><a href="<?= base_url()?>page/worker-detail/<?= base64_encode($_SESSION['authorized']['userId'])?>"><?= ucwords($_SESSION['authorized']['firstname'].' '.$_SESSION['authorized']['lastname'])?>'s Profile</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Subscription</li>
+                </ol>
             </div>
         </div>
     </div>
 </section>
-<section class="dashboardhak">
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-md-12 col-12">
-                <h2 class="breadcrumb-title">Subscription</h2>
-            </div>
-        </div>
-    </div>
-</section>
-
 <?php $this->load->view('sidebar');?>
 <div class="col-md-12 col-sm-12 display-table-cell v-align User_Sub">
     <div id="subscription-messages" class="text-success-msg f-20">
@@ -44,7 +37,7 @@
                     </span>
                     <?php if(!empty($current_plan)) { ?>
                     <div class="col-xl-12 col-lg-12 col-md-12" style="display: inline-block; text-align: center; padding-bottom: 15px;">
-                        <h3>Active Plan</h3>
+                        <h3 class="h4 fw-bold text-uppercase text-center text-primary mb-4">Active Plan</h3>
                     </div>
                     <?php } ?>
                     <div class="row row-sm">
@@ -62,21 +55,6 @@
                                                             <td class="heading">Transaction ID: <?php echo $row->transaction_id;?></td>
                                                             <td class="btn-option">
                                                                 <table class="plan-active-table">
-                                                                    <!-- <tr>
-                                                                        <?php
-                                                                        if($row->status == '1') { ?>
-                                                                        <td class="active-plan">Active Plan</td>
-                                                                        <?php } ?>
-                                                                        <td style="width: 8%;"></td>
-                                                                        <?php
-                                                                        if($row->status == '1') { ?>
-                                                                        <td class="cnc-plan" id="cancelSubsription" onclick="cancelSubsription('<?php echo $row->id;?>','<?php echo $row->transaction_id;?>','<?php echo $row->amount?>')">Cancel Subscription</td>
-                                                                        <?php } else if($row->status == '2') { ?>
-                                                                        <td class="cnc-plan" style="font-size: 12px;">You have cancelled your subscription. Your afrebay subscription expires on <?php echo date ('d M Y',strtotime($row->expiry_date));?></td>
-                                                                        <?php } else { ?>
-                                                                        <td class="cnc-plan">Your Afrebay Subscription Expired on <?php echo date ('d M Y',strtotime($row->expiry_date));?></td>
-                                                                        <?php } ?>
-                                                                    </tr> -->
                                                                     <tr>
                                                                         <?php
                                                                         if($row->status == '1') { ?>
@@ -99,10 +77,6 @@
                                                             </table>
                                                             </td>
                                                         </tr>
-                                                        <!-- <tr>
-                                                            <td class="heading">Subscription Plan Name: <?php echo $row->name_of_card;?></td>
-                                                            <td class="btn-option"><a href="<?php echo $row->invoice_pdf?>" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px; border-radius: 30px; padding: 7px 25px; font-weight: 500; color: orange;">Download invoice</a></td>
-                                                        </tr> -->
                                                         <tr>
                                                             <td colspan="2" class="bid-amount">
                                                             <?php if($row->amount=='0') { ?>
@@ -140,7 +114,7 @@
                     </div>
                     <?php if(!empty($expired_plan)) { ?>
                     <div class="col-xl-12 col-lg-12 col-md-12" style="display: inline-block; text-align: center; padding-bottom: 15px;">
-                        <h3>Expired Plan</h3>
+                        <h3 class="h4 fw-bold text-uppercase text-center text-primary mb-4">Expired Plan</h3>
                     </div>
                     <?php } ?>
                     <div class="row row-sm">
@@ -219,7 +193,7 @@
                 <?php if(empty($subscription_check)) { ?>
                 <div class="cardak" style="background: #f2f2f2 !important; margin-top: 40px;">
                     <div style="display: inline-block; text-align: center;">
-                        <h3>Pricing</h3>
+                        <h3 class="h4 fw-bold text-uppercase text-center text-primary mb-4">Pricing</h3>
                     </div>
                     <div class="container-fluid">
                         <div class="row text-center align-items-end">
@@ -243,7 +217,7 @@
                                         </div>
                                         <div class="Icon">
                                             <span>
-                                                <img src="<?php echo base_url()?>uploads/logo/3397_favicon.png" />
+                                                <img src="<?php echo base_url()?>uploads/logo/<?=$get_setting->favicon?>" />
                                             </span>
                                         </div>
                                     </div>
@@ -253,14 +227,14 @@
                                     if(!empty($value->product_key)) { ?>
                                         <a class="btn btn-info" href="<?= base_url('stripe/'.base64_encode($value->price_key))?>">Subscribe</a>
                                         <?php } else { ?>
-                                            <a class="btn btn-info" href="<?= base_url('paystackCheckout/'.base64_encode($value->plan_code).'/'.base64_encode($value->subscription_amount).'/'.base64_encode($_SESSION['afrebay']['userEmail']))?>">Subscribe</a>
+                                            <a class="btn btn-info" href="<?= base_url('paystackCheckout/'.base64_encode($value->plan_code).'/'.base64_encode($value->subscription_amount).'/'.base64_encode($_SESSION['authorized']['userEmail']))?>">Subscribe</a>
                                         <?php } ?>
                                     <?php } else { ?>
                                     <a href="javascript:void(0);" class="btn btn-primary getSubscription_<?php echo $value->id?>" id="getSubscription_<?php echo $value->id?>">Subscribe</a>
-                                    <input type="hidden" name="user_id_<?php echo $value->id?>" id="user_id_<?php echo $value->id?>" value="<?php echo $_SESSION['afrebay']['userId']?>">
+                                    <input type="hidden" name="user_id_<?php echo $value->id?>" id="user_id_<?php echo $value->id?>" value="<?php echo $_SESSION['authorized']['userId']?>">
                                     <input type="hidden" name="sub_id_<?php echo $value->id?>" id="sub_id_<?php echo $value->id?>" value="<?php echo $value->id?>">
                                     <input type="hidden" name="sub_name_<?php echo $value->id?>" id="sub_name_<?php echo $value->id?>" value="<?php echo $value->subscription_name?>">
-                                    <input type="hidden" name="user_email_<?php echo $value->id?>" id="user_email_<?php echo $value->id?>" value="<?php echo $_SESSION['afrebay']['userEmail']?>">
+                                    <input type="hidden" name="user_email_<?php echo $value->id?>" id="user_email_<?php echo $value->id?>" value="<?php echo $_SESSION['authorized']['userEmail']?>">
                                     <input type="hidden" name="sub_price_<?php echo $value->id?>" id="sub_price_<?php echo $value->id?>" value="<?php echo $value->subscription_amount?>">
                                     <input type="hidden" name="sub_duration_<?php echo $value->id?>" id="sub_duration_<?php echo $value->id?>" value="<?php echo $value->subscription_duration?>">
                                     <?php } ?>

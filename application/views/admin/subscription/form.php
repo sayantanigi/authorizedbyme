@@ -24,8 +24,8 @@
 								<label>Subscription Plan for Specific User Type</label>
 								<select class="form-control" name="subscription_user_type" id="subscription_user_type" required>
 									<option value="">Choose an option</option>
-									<option value="Freelancer" <?php if($subscription_user_type == 'Freelancer') { echo "selected"; } ?>>Freelancer</option>
-									<option value="Vendor" <?php if($subscription_user_type == 'Vendor') { echo "selected"; } ?>>Vendor</option>
+									<option value="Agents" <?php if($subscription_user_type == 'Agents') { echo "selected"; } ?>>Agents</option>
+									<option value="Representatives" <?php if($subscription_user_type == 'Representatives') { echo "selected"; } ?>>Representatives</option>
 								</select>
 							</div>
 							<div class="form-group subscription_type">
@@ -36,14 +36,14 @@
 									<option value="paid" <?php if($subscription_type == 'paid') { echo "selected"; } ?>>Paid</option>
 								</select>
 							</div>
-							<div class="form-group subscription_country">
+							<!-- <div class="form-group subscription_country">
 								<label>Subscription Country</label>
 								<select class="form-control" name="subscription_country" id="subscription_country" required onclick="showpaystackField()">
 									<option value="">Choose an option</option>
 									<option value="Nigeria" <?php if($subscription_country == 'Nigeria') { echo "selected"; } ?>>Nigeria</option>
 									<option value="Global" <?php if($subscription_country == 'Global') { echo "selected"; } ?>>Global</option>
 								</select>
-							</div>
+							</div> -->
 							<div class="form-group showSubPrice" >
 								<label>Subscription Amount ($)</label>
 								<input class="form-control" type="text" placeholder="Example: 100 USD" id="subscription_amount" name="subscription_amount" value="<?= $subscription_amount;?>" required  onkeypress="only_number(event)">
