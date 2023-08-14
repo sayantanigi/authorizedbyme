@@ -1,34 +1,17 @@
-<section class="overlape">
-    <div class="block no-padding">
-        <div data-velocity="-.1" style="background: url('<?= base_url('assets/images/resource/mslider1.jpg') ?>') repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div>
-        <!-- PARALLAX BACKGROUND IMAGE -->
-        <div class="container fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="inner-header" style="padding-top: 90px;"></div>
-            </div>
-         </div>
-      </div>
-   </div>
-</section>
-
-<section class="dashboardhak">
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-md-12 col-12">
-                <h2 class="breadcrumb-title">Messages</h2>
-                <!-- <nav aria-label="breadcrumb" class="page-breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                    </ol>
-                </nav> -->
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="dashboard-gig Chat_User">
+    <section class="breadcrumbpnl" style="background-image:url(./assets/images/f-2.jpg);">
+		<div class="container">
+			<div class="">
+				<h3 class="fw-semibold">Chat</h3>
+				<div >
+					<ol class="breadcrumb mb-2">
+						<li class="breadcrumb-item"><a href="<?= base_url()?>">Home</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Chat</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</section>
+    <section class="dashboard-gig Chat_User">
     <div class="container-fluid display-table">
         <div class="row display-table-row">
             <?php $this->load->view('sidebar'); ?>
@@ -48,12 +31,7 @@
                                                         <?php } else { ?>
                                                         <img id="profile-img" src="<?= base_url('uploads/users/user.png') ?>" class="online" alt="" />
                                                         <?php } ?>
-                                                        <p>
-                                                        <?php if (!empty($get_user->firstname)) {
-                                                            echo $get_user->firstname . ' ' . $get_user->lastname;
-                                                        } else {
-                                                            echo $get_user->companyname;
-                                                        } ?></p>
+                                                        <p><?php echo $get_user->firstname.' '.$get_user->lastname; ?></p>
                                                         <div id="status-options">
                                                             <ul>
                                                                 <li id="status-online" class="active">
@@ -75,22 +53,15 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <!-- <div class="chatList">
-                                                        <?php if (!empty($get_user->firstname)) { ?>
-                                                        <a href="javascript:void(0)" id="showBidList">My Bid List</a>
-                                                        <?php } ?>
-                                                    </div> -->
                                                 </div>
                                                 <div id="search">
-                                                   <!--  <span class="char-sea"><i class="fa fa-search" aria-hidden="true"></i></span> -->
                                                    <input type="text" placeholder="Search by Contacts and Job ID" />
                                                 </div>
                                                 <div id="contacts">
                                                     <ul>
                                                     <?php if (!empty($get_jobbid)) {
                                                     foreach ($get_jobbid as $user) {
-                                                        //if ($user->postjob_id == $user->post_id && $user->user_id == $_SESSION['afrebay']['userId'] && $user->bidding_status == 'Accept') {
-                                                        if ($user->postjob_id == $user->post_id && $user->user_id == $_SESSION['afrebay']['userId'] && ($user->bidding_status == 'Selected' || $user->bidding_status == 'Short Listed')) {
+                                                        if ($user->postjob_id == $user->post_id && $user->user_id == $_SESSION['authorized']['userId'] && ($user->bidding_status == 'Selected' || $user->bidding_status == 'Short Listed')) {
                                                             $get_user = $this->Crud_model->get_single('users', "userId='" . $user->userid . "'");
                                                             $get_msg = $this->Crud_model->GetData('chat', '', "userto_id='".$user->userid."' and userfrom_id='".$user->user_id."' and postjob_id = '".$user->post_id."'", '', 'id desc', '', '1');
                                                         ?>
@@ -103,27 +74,13 @@
                                                                 <img src="<?= base_url('uploads/users/user.png') ?>" alt="" />
                                                                 <?php } ?>
                                                                 <div class="meta">
-                                                                    <p class="name">
-                                                                    <?php if (!empty($get_user->firstname)) {
-                                                                        echo ucfirst($get_user->firstname . ' ' . $get_user->lastname);
-                                                                    } else {
-                                                                        echo ucfirst($get_user->companyname);
-                                                                    } ?>
-                                                                    <?php
-                                                                    //$countMessage = $this->db->query("Select COUNT(id) as msgcount FROM chat WHERE userto_id ='".$_SESSION['afrebay']['userId']."' AND status = '0' AND postjob_id = '".$user->post_id."'")->result();
-                                                                    //if($countMessage[0]->msgcount != 0) { ?>
-                                                                    <!-- <span class="notification EachChatv"><?php echo $countMessage[0]->msgcount;?></span> -->
-                                                                    <?php //} ?>
-                                                                    <!-- <span class="notification EachvChat"></span> -->
-                                                                    </p>
-
+                                                                    <p class="name"><?php echo ucfirst($get_user->firstname . ' ' . $get_user->lastname);?></p>
                                                                     <p class="preview" title="<?= $user->post_title; ?>">Job ID : <?= "Job_".sprintf("%03d",$user->post_id); ?></p>
-                                                                    <!-- <p class="preview"><?= !empty($get_msg->message) ? $get_msg->message : ''; ?></p> -->
                                                                     <input type="hidden" name="postjob_id" id="postjob_id" value="<?= $user->post_id; ?>">
                                                                 </div>
                                                             </div>
                                                         </li>
-                                                        <?php } else if ($user->postjob_id == $user->post_id && $user->userid == $_SESSION['afrebay']['userId'] && ($user->bidding_status == 'Selected' || $user->bidding_status == 'Short Listed')) {
+                                                        <?php } else if ($user->postjob_id == $user->post_id && $user->userid == $_SESSION['authorized']['userId'] && ($user->bidding_status == 'Selected' || $user->bidding_status == 'Short Listed')) {
                                                             $get_user = $this->Crud_model->get_single('users', "userId='" . $user->user_id . "'");
                                                             $get_msg1 = $this->Crud_model->GetData('chat', '', "userfrom_id='".$user->user_id."' and userto_id='".$user->userid."' and postjob_id = '".$user->post_id."'", '', 'id desc', '', '1');
                                                         ?>
@@ -136,22 +93,8 @@
                                                                 <img src="<?= base_url('uploads/users/user.png') ?>" alt="" />
                                                                 <?php } ?>
                                                                 <div class="meta">
-                                                                    <p class="name">
-                                                                    <?php if (!empty($get_user->firstname)) {
-                                                                        echo ucfirst($get_user->firstname . ' ' . $get_user->lastname);
-                                                                    } else {
-                                                                        echo ucfirst($get_user->companyname);
-                                                                    } ?>
-                                                                    <?php
-                                                                    //$countMessage = $this->db->query("Select COUNT(id) as msgcount FROM chat WHERE userto_id ='".$_SESSION['afrebay']['userId']."' AND status = '0' AND postjob_id = '".$user->post_id."'")->result();
-                                                                    //if($countMessage[0]->msgcount != 0) { ?>
-                                                                    <!-- <span class="notification EachChatf"><?php echo $countMessage[0]->msgcount;?></span> -->
-                                                                    <?php //} ?>
-                                                                    <!-- <span class="notification EachfChat"></span> -->
-                                                                    </p>
-
+                                                                    <p class="name"><?php echo ucfirst($get_user->firstname . ' ' . $get_user->lastname); ?> </p>
                                                                     <p class="preview" title="<?= $user->post_title; ?>">Job ID : <?= "Job_".sprintf("%03d",$user->post_id); ?></p>
-                                                                    <!-- <p class="preview"><?= !empty($get_msg1->message) ? $get_msg1->message : ''; ?></p> -->
                                                                     <input type="hidden" name="postjob_id" id="postjob_id" value="<?= $user->post_id; ?>">
                                                                 </div>
                                                             </div>
@@ -159,19 +102,15 @@
                                                     <?php } } } ?>
                                                     </ul>
                                                 </div>
-                                                <!-- <div id="bottom-bar">
-                                                    <button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button>
-                                                    <button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span></button>
-                                                </div> -->
                                             </div>
                                             <div class="content">
-                                                <img class="chat-start-img" src="assets/images/chat-start-img.png">
+                                                <img class="chat-start-img" src="<?= base_url()?>assets/images/chat-start-img.png">
                                                 <div id="message_list" style="height:350px;  overflow-y: scroll;overflow-y: hidden;">
                                                     </ul>
                                                 </div>
                                                 <div class="message-input">
                                                     <div class="wrap">
-                                                        <input type="hidden" name="userfromid" id="userfromid" value="<?= $_SESSION['afrebay']['userId']?>" />
+                                                        <input type="hidden" name="userfromid" id="userfromid" value="<?= $_SESSION['authorized']['userId']?>" />
                                                         <input type="hidden" name="usertoid" id="usertoid" value="" />
                                                         <input type="hidden" name="postid" id="postid" value="" />
                                                         <input type="text" name="message" id="message" placeholder="Write your message..." />
@@ -197,7 +136,7 @@
     <div class="modal-dialog modal-sm" role="document" style="max-width: 100%;">
         <div class="modal-content">
         <?php
-        $myBidList =  $this->db->query("SELECT postjob.post_title FROM job_bid JOIN postjob on job_bid.postjob_id = postjob.id where job_bid.user_id = '".$_SESSION['afrebay']['userId']."' and job_bid.bidding_status = 'Accept' and job_bid.status = 'Active'")->result_array();
+        $myBidList =  $this->db->query("SELECT postjob.post_title FROM job_bid JOIN postjob on job_bid.postjob_id = postjob.id where job_bid.user_id = '".$_SESSION['authorized']['userId']."' and job_bid.bidding_status = 'Accept' and job_bid.status = 'Active'")->result_array();
         if(!empty($myBidList)) {
         $i = 1;
         foreach ($myBidList as $value) { ?>
@@ -344,7 +283,7 @@ function getMessageCount(){
         dataType: 'json',
         success: function(result) {
             //console.log(result);
-            <?php if(@$_SESSION['afrebay']['userType']=='2') { ?>
+            <?php if(@$_SESSION['authorized']['userType']=='2') { ?>
             if(result.count > 0) {
                 $('.EachChatv').hide();
                 $('.EachvChat').show();

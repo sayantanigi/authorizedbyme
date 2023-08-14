@@ -1,25 +1,13 @@
-<section class="overlape">
-    <div class="block no-padding">
-        <div data-velocity="-.1" style="background: url('<?= base_url('assets/images/resource/mslider1.jpg')?>') repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div>
-        <!-- PARALLAX BACKGROUND IMAGE -->
-        <div class="container fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="inner-header" style="padding-top: 90px;"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="dashboardhak">
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-md-12 col-12">
-                <?php if($_SESSION['afrebay']['userType'] == '1') { ?>
-                <h2 class="breadcrumb-title">My Jobs</h2>
-                <?php } else { ?>
-                <h2 class="breadcrumb-title">List of Bids</h2>
-                <?php } ?>
+
+<section class="breadcrumbpnl" style="background-image:url(./assets/images/f-2.jpg);">
+    <div class="container">
+        <div class="">
+            <h3 class="fw-semibold">List of Bids</h3>
+            <div >
+                <ol class="breadcrumb mb-2">
+                    <li class="breadcrumb-item"><a href="<?= base_url()?>">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">List of Bids</li>
+                </ol>
             </div>
         </div>
     </div>

@@ -306,10 +306,8 @@ class Dashboard extends CI_Controller {
 	function jobbid() {
 		$this->load->model('Post_job_model');
 		if($_SESSION['authorized']['userType'] == '1'){
-			//$data['get_postjob'] = $this->db->query("SELECT postjob.*, job_bid.*, users.* from job_bid JOIN postjob ON job_bid.postjob_id = postjob.id JOIN users ON job_bid.user_id = users.userId WHERE postjob.user_id ='".$_SESSION['authorized']['userId']."'")
 			$cond = "job_bid.user_id='" . $_SESSION['authorized']['userId'] . "'";
 		} else {
-			//$data['get_postjob'] = $this->db->query("SELECT postjob.*, job_bid.*, users.* from job_bid JOIN postjob ON job_bid.postjob_id = postjob.id JOIN users ON job_bid.user_id = users.userId WHERE postjob.user_id =")
 			$cond = "postjob.user_id='" . $_SESSION['authorized']['userId'] . "'";
 		}
 		$data['get_postjob'] = $this->Post_job_model->postjob_bid($cond);
@@ -385,10 +383,6 @@ class Dashboard extends CI_Controller {
 				);
 				$this->Crud_model->SaveData('job_bid', $data, "id='" . $row->id . "'");
 			}
-			// $getChatData = $this->db->query("SELECT * FROM chat WHERE userfrom_id != '".$jobbiduserid."' AND userto_id != '".$jobbiduserid."' AND postjob_id = '".$postJobid."'")->result();
-			// if(!empty($getChatData)) {
-			// 	$updateChatData = $this->db->query("UPDATE chat SET is_delete = '2' WHERE userfrom_id != '".$jobbiduserid."' AND userto_id != '".$jobbiduserid."' AND postjob_id = '".$postJobid."'");
-			// }
 			$updatepost = array(
 				'is_delete' => 1,
 			);
@@ -408,7 +402,6 @@ class Dashboard extends CI_Controller {
 	////////////////////////////////// start chat functionality////////////////
 	function chat() {
 		$data['get_user'] = $this->Crud_model->get_single('users', "userId ='".$_SESSION['authorized']['userId']."'");
-		//$cond = "job_bid.bidding_status='Accept'";
 		$cond = "job_bid.bidding_status IN ('Short Listed','Selected')";
 		$data['get_jobbid'] = $this->Users_model->get_jobbidding($cond);
 		$this->load->view('header');
@@ -1027,9 +1020,8 @@ class Dashboard extends CI_Controller {
 					}
 				}
 			}
-			redirect(base_url('product'));
+			redirect(base_url('profile/product'));
 		}
-
 		$this->load->view('header');
 		$this->load->view('user_dashboard/product/form', $data);
 		$this->load->view('footer');
@@ -1050,7 +1042,6 @@ class Dashboard extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-
 	public function edit_product() {
 		$id = $_POST['id'];
 		$data = array(
@@ -1058,7 +1049,6 @@ class Dashboard extends CI_Controller {
 			'prod_description' => $this->input->post('prod_description', TRUE),
 		);
 		$updateQuery = $this->Crud_model->SaveData('user_product', $data, "id='".$id."'");
-		//print_r($_FILES['prod_image']['name'][0]); die;
 		if (!empty($_FILES['prod_image']['name'][0])) {
 			$cpt = count($_FILES['prod_image']['name']);
 			for($i=0; $i<$cpt; $i++) {
@@ -1085,11 +1075,10 @@ class Dashboard extends CI_Controller {
 					'created_date' => date("Y-m-d H:i:s"),
 				);
 				$this->Crud_model->SaveData('user_product_image', $data_image);
-				//$this->session->set_flashdata('message', 'Product Created Successfully !');
 			}
 		}
 		$this->session->set_flashdata('message', 'Product Updated Successfully !');
-		redirect(base_url('product'));
+		redirect(base_url('profile/product'));
 	}
 
 	function delete_product() {
@@ -1100,7 +1089,6 @@ class Dashboard extends CI_Controller {
 		} else {
 			echo '2';
 		}
-
 	}
 
 	function delete_job() {
@@ -1111,13 +1099,10 @@ class Dashboard extends CI_Controller {
 		} else {
 			echo '2';
 		}
-
 	}
 
 	function delete_product_image() {
 		$p_id = $this->input->post('id');
 		$delete_prod = $this->db->query("DELETE FROM user_product_image WHERE id = '$p_id'");
 	}
-
-	///////////////// End User Product //////////////////////////
 }

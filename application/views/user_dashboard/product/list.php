@@ -1,33 +1,16 @@
-<section class="overlape">
-    <div class="block no-padding">
-        <div data-velocity="-.1"
-            style="background: url('<?= base_url('assets/images/resource/mslider1.jpg')?>') repeat scroll 50% 422.28px transparent;"
-            class="parallax scrolly-invisible no-parallax"></div>
-        <div class="container fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="inner-header" style="padding-top: 90px;"></div>
-                </div>
+<section class="breadcrumbpnl" style="background-image:url(./assets/images/f-2.jpg);">
+    <div class="container">
+        <div class="">
+            <h3 class="fw-semibold">Products</h3>
+            <div >
+                <ol class="breadcrumb mb-2">
+                    <li class="breadcrumb-item"><a href="<?= base_url()?>">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Products</li>
+                </ol>
             </div>
         </div>
     </div>
 </section>
-<section class="dashboardhak">
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-md-12 col-12">
-                <h2 class="breadcrumb-title">Products</h2>
-                <!-- <nav aria-label="breadcrumb" class="page-breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">My Products</li>
-                    </ol>
-                </nav> -->
-            </div>
-        </div>
-    </div>
-</section>
-
 <?php $this->load->view('sidebar');?>
 <div class="col-md-12 col-md-12 col-sm-12 display-table-cell v-align">
     <div id="product-messages" class="text-success-msg f-20">
@@ -46,7 +29,7 @@
     <div class="user-dashboard">
         <div class="row row-sm">
             <div class="col-xl-12 col-lg-12 col-md-12" style="margin-bottom: 10px; text-align: right;">
-                <a href="<?php echo base_url('add-product')?>" class="btn btn-primary Education_Btn" style="border-radius: 40px; letter-spacing: 0;">Add Product</a>
+                <a href="<?php echo base_url('profile/add-product')?>" class="btn btn-primary Education_Btn" style="border-radius: 40px; letter-spacing: 0;">Add Product</a>
             </div>
             <div class="col-xl-12 col-lg-12 col-md-12">
                 <div class="cardak custom-cardak">

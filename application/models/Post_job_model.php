@@ -97,7 +97,7 @@ class Post_job_model extends My_Model {
     }*/
 
     function postjob_bid($cond) {
-        $this->db->select('job_bid.*, job_bid.user_id as userid, job_bid.description, postjob.user_id, postjob.post_title, CONCAT(users.firstname," ",users.lastname) as fullname, users.username, users.profilePic, users.email, users.mobile');
+        $this->db->select('job_bid.*, job_bid.user_id as userid, job_bid.description, postjob.user_id, postjob.post_title, CONCAT(users.firstname," ",users.lastname) as fullname, users.profilePic, users.email, users.mobile');
         $this->db->from('job_bid');
         $this->db->join('postjob','job_bid.postjob_id=postjob.id','left');
         $this->db->join('users','users.userId=job_bid.user_id','left');

@@ -1,27 +1,19 @@
-<section class="overlape">
-    <div class="block no-padding">
-        <div data-velocity="-.1" style="background: url(<?= base_url()?>assets/images/resource/mslider1.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div>
-        <!-- PARALLAX BACKGROUND IMAGE -->
-        <div class="container fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="inner-header" style="padding-top: 90px;"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="dashboardhak">
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-md-12 col-12">
-                <h2 class="breadcrumb-title">Add Product</h2>
-                <!-- <nav aria-label="breadcrumb" class="page-breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Add Product</li>
-                    </ol>
-                </nav> -->
+<style>
+    .tab-content > .tab-pane {display: block !important;}
+    label { position: relative; display: inline-block; padding: 0 0 0 2em; margin-right: 10px; height: 1.5em; line-height: 1.5; cursor: pointer;}
+    .pull-right {float: right;}
+    .post-job-btn { float: left; font-family: Open Sans; font-size: 15px; color: #ffffff; padding: 10px 27px; -webkit-border-radius: 40px; -moz-border-radius: 40px; -ms-border-radius: 40px; -o-border-radius: 40px; border-radius: 40px;}
+    .pull-right {float: right;}
+</style>
+<section class="breadcrumbpnl" style="background-image:url(./assets/images/f-2.jpg);">
+    <div class="container">
+        <div class="">
+            <h3 class="fw-semibold">Add Product</h3>
+            <div >
+                <ol class="breadcrumb mb-2">
+                    <li class="breadcrumb-item"><a href="<?= base_url()?>">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Add Product</li>
+                </ol>
             </div>
         </div>
     </div>

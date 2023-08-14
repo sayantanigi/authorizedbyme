@@ -57,8 +57,7 @@ class Users_model extends My_Model {
     }
 
     function getChat() {
-        //$this->db->select('chat.*,users.username,CONCAT(users.firstname," ",users.lastname) as full_name,users.profilePic,to_user.username as to_username,CONCAT(to_user.firstname," ",to_user.lastname) as to_fullname,to_user.profilePic as to_profile');
-        $this->db->select('chat.*,users.username,CONCAT(users.firstname," ",users.lastname) as full_name,users.profilePic,to_user.username as to_username,CONCAT(to_user.firstname," ",to_user.lastname) as to_fullname');
+        $this->db->select('chat.*,CONCAT(users.firstname," ",users.lastname) as full_name,users.profilePic,to_user.username as to_username,CONCAT(to_user.firstname," ",to_user.lastname) as to_fullname');
         $this->db->from('chat');
         $this->db->join('users','users.userId=chat.userfrom_id');
         $this->db->join('users to_user','to_user.userId=chat.userto_id');
@@ -68,7 +67,7 @@ class Users_model extends My_Model {
     }
 
     function getCurrentChat($userfrom_id, $user_id, $post_id) {
-        $this->db->select('chat.*,users.username,CONCAT(users.firstname," ",users.lastname) as full_name,users.profilePic,to_user.username as to_username,CONCAT(to_user.firstname," ",to_user.lastname) as to_fullname');
+        $this->db->select('chat.*,CONCAT(users.firstname," ",users.lastname) as full_name,users.profilePic,to_user.username as to_username,CONCAT(to_user.firstname," ",to_user.lastname) as to_fullname');
         $this->db->from('chat');
         $this->db->join('users','users.userId=chat.userfrom_id');
         $this->db->join('users to_user','to_user.userId=chat.userto_id');
@@ -80,7 +79,7 @@ class Users_model extends My_Model {
     }
 
     function getmessage($con) {
-        $this->db->select('chat.*,users.username,CONCAT(users.firstname," ",users.lastname) as full_name,users.profilePic,to_user.username as to_username,CONCAT(to_user.firstname," ",to_user.lastname) as to_fullname,to_user.profilePic as to_profile');
+        $this->db->select('chat.*,CONCAT(users.firstname," ",users.lastname) as full_name,users.profilePic,to_user.username as to_username,CONCAT(to_user.firstname," ",to_user.lastname) as to_fullname,to_user.profilePic as to_profile');
         $this->db->from('chat');
         $this->db->join('users','users.userId=chat.userfrom_id');
         $this->db->join('users to_user','to_user.userId=chat.userto_id');
@@ -90,7 +89,7 @@ class Users_model extends My_Model {
     }
 
     function get_jobbidding($cond) {
-        $this->db->select('job_bid.*,job_bid.user_id as userid,users.username,CONCAT(users.firstname," ",users.lastname) as full_name,users.profilePic,postjob.user_id,postjob.id as post_id,postjob.post_title as post_title');
+        $this->db->select('job_bid.*,job_bid.user_id as userid,CONCAT(users.firstname," ",users.lastname) as full_name,users.profilePic,postjob.user_id,postjob.id as post_id,postjob.post_title as post_title');
         $this->db->from('job_bid');
         $this->db->join('postjob','postjob.id=job_bid.postjob_id','left');
         $this->db->join('users','users.userId=job_bid.user_id','left');
