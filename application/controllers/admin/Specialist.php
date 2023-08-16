@@ -61,10 +61,18 @@ class Specialist extends MY_Controller {
         	} else {
 	            $img ='<img class="rounded service-img mr-1" src="'.base_url('uploads/no_image.png').'">';
 	        }
+			if($row->userType == '1') {
+				$userType = 'Agents';
+			} else if($row->userType == '2') {
+				$userType = 'Attorney';
+			} else {
+				$userType = 'Representative';
+			}
 			$no++;
 			$nestedData = array();
 			$nestedData[] = $no;
 			$nestedData[] = $img.' '.ucwords($row->specialist_name);
+			$nestedData[] = $userType;
 			$nestedData[] = date('d-m-Y',strtotime($row->created_date));
 			$nestedData[] = $btn;
 			$data[] = $nestedData;
@@ -104,6 +112,7 @@ class Specialist extends MY_Controller {
         if(empty($get_data)) {
 			$data=array(
 				'specialist_name'=>$_POST['specialist_name'],
+				'userType'=>$_POST['userType'],
 				'specialist_image'=>$image,
 				'created_date'=>date('Y-m-d H:i:s'),
 			);
@@ -130,6 +139,7 @@ class Specialist extends MY_Controller {
 		$data=array(
 			'id'=>$specialist_data->id,
 			'specialist_name'=>$specialist_data->specialist_name,
+			'userType'=>$specialist_data->userType,
 			'image'=>$img,
 			'old_image'=>$specialist_data->specialist_image,
 		);
@@ -157,20 +167,21 @@ class Specialist extends MY_Controller {
         } else {
            	$image  = $_POST['old_image'];;
         }
-    	$get_data=$this->Crud_model->get_single_record('specialist',"specialist_name='".$_POST['specialist_name']."' and id!='".$_POST['id']."'");
-      	if(empty($get_data)) {
+    	//$get_data=$this->Crud_model->get_single_record('specialist',"specialist_name='".$_POST['specialist_name']."' and id!='".$_POST['id']."'");
+      	//if(empty($get_data)) {
 			$data = array(
 				'specialist_name'=> $_POST['specialist_name'],
+				'userType'=>$_POST['userType'],
 				'specialist_image'=>$image,
 				'update_date'=>date('Y-m-d H:i:s'),
 			);
        		$this->Crud_model->SaveData('specialist',$data,"id='".$_POST['id']."'");
         	$this->session->set_flashdata('message', 'Skill Set updated successfully');
        		echo 1; exit;
-		} else {
-			$this->session->set_flashdata('message', 'Something went wrong. Please try again later!');
-      		echo 0; exit;
-     	}
+		//} else {
+			//$this->session->set_flashdata('message', 'Something went wrong. Please try again later!');
+      		//echo 0; exit;
+     	//}
     }
 
 	public function delete() {

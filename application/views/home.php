@@ -26,11 +26,11 @@
                             <h5 class="fw-bold text-primary">Select your type</h5>
                             <div class="fortabselect d-flex align-items-center mb-3 select-user-type">
                                 <div class="itemselect" style="width:50%;">
-                                    <input type="radio" name="type" id="clients" value="1" checked>
+                                    <input type="radio" name="type" id="clients" value="2" checked>
                                     <label for="clients"><span>Clients</span></label>
                                 </div>
                                 <div class="itemselect" style="width:50%;">
-                                    <input type="radio" name="type" id="representatives" value="2">
+                                    <input type="radio" name="type" id="representatives" value="1">
                                     <label for="representatives"><span>Representatives</span></label>
                                 </div>
                                 <div class="error text-left" id="select-user-type"></div>
@@ -40,11 +40,11 @@
                                 <div class="fortabselect d-flex align-items-center mb-3 select-user-subtype">
                                     <div class="itemselect">
                                         <input type="radio" name="subtype" id="agent" value="1">
-                                        <label for="agents"><span>Agent</span></label>
+                                        <label for="agent"><span>Agent</span></label>
                                     </div>
                                     <div class="itemselect">
                                         <input type="radio" name="subtype" id="attorney" value="2">
-                                        <label for="attorneys"><span>Attorney</span></label>
+                                        <label for="attorney"><span>Attorney</span></label>
                                     </div>
                                     <div class="itemselect">
                                         <input type="radio" name="subtype" id="representative" value="3">
@@ -118,34 +118,6 @@
         </div>
     </section>
 
-    <?php if(!empty($get_clients)) { ?>
-    <section class="pb-5">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <h2 class="fw-bold text-primary mb-3 me-2 h2">Popular Clients</h2>
-                <a href="<?= base_url('page/client_list')?>" class="text-uppercase fw-bold btn btn-primary px-4 mb-3">View All</a>
-            </div>
-            <div class="popular-players">
-                <div class="owl-carousel owl-theme" id="players">
-                    <?php foreach($get_clients as $client) { ?>
-                    <div class="item text-center">
-                        <a href="<?= base_url()?>page/worker-detail/<?= base64_encode($client->userId)?>" class="listplayer">
-                            <?php if(!empty($client->profilePic)) { ?>
-                            <img src="<?= base_url()?>uploads/users/<?= $client->profilePic?>" class="listplayerimg">
-                            <?php } else { ?>
-                            <img src="<?= base_url()?>uploads/users/user.png" alt="" class="listplayerimg">
-                            <?php } ?>
-                            <h4><?= $client->firstname." ".$client->lastname?></h4>
-                            <h6>Client, <?= $client->address?></h6>
-                        </a>
-                    </div>
-                    <?php } ?>
-                </div>
-            </div>
-        </div>
-    </section>
-    <?php } ?>
-    
     <?php if(!empty($get_agents)) { ?>
     <section class="pb-5">
         <div class="container">

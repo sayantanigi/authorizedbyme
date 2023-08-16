@@ -25,20 +25,20 @@ $seg2=$this->uri->segment(2);
                             if(!empty($get_sub_data)) {
                             ?>
                             <a href="<?= base_url('profile/dashboard')?>"><i class="fa fa-user-circle" aria-hidden="true"></i>
-                                <span class="hidden-xs hidden-sm">Profile</span>
+                                <span class="hidden-xs hidden-sm">Dashboard</span>
                             </a>
                             <?php } else { ?>
                             <a href="javascript:void(0)" onclick="completeSub()"><i class="fa fa-user-circle" aria-hidden="true"></i>
-                                <span class="hidden-xs hidden-sm">Profile</span>
+                                <span class="hidden-xs hidden-sm">Dashboard</span>
                             </a>
                             <?php } ?>
                         </li>
 
-                        <?php if(@$_SESSION['authorized']['userType']=='1') {
-                        $get_sub_data = $this->db->query("SELECT * FROM employer_subscription WHERE employer_id='".$_SESSION['authorized']['userId']."' AND (status = '1' OR status = '2')")->result_array();
-                        if(!empty($get_sub_data)) {
-                        $profile_check = $this->db->query("SELECT * FROM `users` WHERE userId = '".@$_SESSION['authorized']['userId']."'")->result_array();
-                        if(empty($profile_check[0]['firstname']) || empty($profile_check[0]['lastname']) || empty($profile_check[0]['email']) || empty($profile_check[0]['address']) || empty($profile_check[0]['short_bio'])) { ?>
+                        <!-- <?php //if(@$_SESSION['authorized']['userType']=='1') {
+                        //$get_sub_data = $this->db->query("SELECT * FROM employer_subscription WHERE employer_id='".$_SESSION['authorized']['userId']."' AND (status = '1' OR status = '2')")->result_array();
+                        //if(!empty($get_sub_data)) {
+                        //$profile_check = $this->db->query("SELECT * FROM `users` WHERE userId = '".@$_SESSION['authorized']['userId']."'")->result_array();
+                        //if(empty($profile_check[0]['firstname']) || empty($profile_check[0]['lastname']) || empty($profile_check[0]['email']) || empty($profile_check[0]['address']) || empty($profile_check[0]['short_bio'])) { ?>
                         <li <?php if($seg2=='education-list') { ?>class="active" <?php } ?>>
                             <span class="cover"></span>
                             <a href="javascript:void(0)" onclick="completeSub()"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
@@ -51,7 +51,7 @@ $seg2=$this->uri->segment(2);
                                 <span class="hidden-xs hidden-sm">Work Experience</span>
                             </a>
                         </li>
-                        <?php } else { ?>
+                        <?php //} else { ?>
                         <li <?php if($seg2=='education-list') { ?>class="active" <?php } ?>>
                             <span class="cover"></span>
                             <a href="<?= base_url('profile/education-list')?>"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
@@ -64,7 +64,7 @@ $seg2=$this->uri->segment(2);
                                 <span class="hidden-xs hidden-sm">Work Experience</span>
                             </a>
                         </li>
-                        <?php } } else { ?>
+                        <?php //} } else { ?>
                         <li <?php if($seg2=='education-list') { ?>class="active" <?php } ?>>
                             <span class="cover"></span>
                             <a href="javascript:void(0)" onclick="completeSub()"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
@@ -77,7 +77,7 @@ $seg2=$this->uri->segment(2);
                                 <span class="hidden-xs hidden-sm">Work Experience</span>
                             </a>
                         </li>
-                        <?php } } ?>
+                        <?php //} } ?> -->
 
                         <?php if(@$_SESSION['authorized']['userType']=='2') {
                         $get_sub_data = $this->db->query("SELECT * FROM employer_subscription WHERE employer_id='".$_SESSION['authorized']['userId']."' AND (status = '1' OR status = '2')")->result_array();

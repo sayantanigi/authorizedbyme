@@ -68,6 +68,7 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Skill Set Name</th>
+                                            <th>User Type</th>
                                             <th>Created Date</th>
                                             <th>Manage</th>
                                         </tr>
@@ -98,6 +99,15 @@
                             <div class="form-group">
                                 <label>Skill Set Name <span style="color:red;">*</span> <span id="specialist_err"></span></label>
                                 <input class="form-control" type="text" name="specialist_name" id="specialist_name">
+                            </div>
+                            <div class="form-group">
+                                <label>User Type <span style="color:red;">*</span> <span id="userType_err"></span></label>
+                                <select class="form-control" name="userType_name" id="userType_name">
+                                    <option value="">User Type</option>
+                                    <option value="1">Agents</option>
+                                    <option value="2">Attorney</option>
+                                    <option value="3">Representative</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Skill Set Image</label>
@@ -134,6 +144,14 @@
                             <div class="form-group">
                                 <label>Skill Set Name <span style="color:red;">*</span> <span id="edit_specialist_err"></span></label>
                                 <input class="form-control" type="text" name="specialist_name" id="edit_specialist_name">
+                            </div>
+                            <div class="form-group">
+                                <label>User Type <span style="color:red;">*</span> <span id="edit_userType_err"></span></label>
+                                <select class="form-control " name="userType_name" id="edit_userType_name">
+                                    <option value="1">Agents</option>
+                                    <option value="2">Attorney</option>
+                                    <option value="3">Representative</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Skill Set Image</label>

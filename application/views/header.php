@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><?php echo $get_setting->website_name?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="shortcut icon" type="image/x-icon" href="<?=base_url(); ?>assets/images/favicon.png">
+	<link rel="shortcut icon" href="<?=base_url(); ?>uploads/logo/<?= $get_setting->favicon?>">
 	<link rel="stylesheet" type="text/css" href="<?=base_url(); ?>assets/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="<?=base_url(); ?>assets/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?=base_url(); ?>assets/css/owl.carousel.min.css">

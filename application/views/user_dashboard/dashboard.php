@@ -80,15 +80,15 @@
 														if(!empty($userinfo->profilePic)) {
 															if(!file_exists('uploads/users/'.$userinfo->profilePic)) {
 														?>
-														<img class="img-circle img-responsive" src="<?php echo base_url('uploads/no_image.png')?>" style="width: 86px;height: 86px;object-fit: cover;margin-top: -50px;" />
+														<img class="img-circle img-responsive" src="<?php echo base_url('uploads/no_image.png')?>" style="width: 64px;height: 64px;object-fit: cover;margin-top: -18px;" />
 														<?php } else { ?>
-														<img class="img-circle img-responsive" src="<?php echo base_url('uploads/users/'.$userinfo->profilePic); ?>" style="width: 86px;height: 86px;object-fit: cover;margin-top: -50px;" />
+														<img class="img-circle img-responsive" src="<?php echo base_url('uploads/users/'.$userinfo->profilePic); ?>" style="width: 64px;height: 64px;object-fit: cover;margin-top: -18px;" />
 														<?php } } else { ?>
-														<img class="img-circle img-responsive" src="<?php echo base_url('uploads/no_image.png')?>" style="width: 86px;height: 86px;object-fit: cover;margin-top: -50px;" />
+														<img class="img-circle img-responsive" src="<?php echo base_url('uploads/no_image.png')?>" style="width: 64px;height: 64px;object-fit: cover;margin-top: -18px;" />
 														<?php } ?>
 														<input type="hidden" name="old_image" value="<?=$userinfo->profilePic ?>">
 														<input type="hidden" name="id" value="<?=$userinfo->userId  ?>">
-														<div class="profile-ak" style="width: 84%; display: inline-block;">
+														<div class="profile-ak1" style="width: 88%; display: inline-block;">
 															<?php if(!empty($userinfo->profilePic)) { ?>
 															<h6>Upload a different photo</h6>
 															<?php } else { ?>

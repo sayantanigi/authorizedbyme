@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$(".select-user-type input[name='type']").change(function() {
 		if($(this).is(":checked")) {
-			if($(this).val() == '2') {
+			if($(this).val() == '1') {
 				$('.displayOnType').show();
 			} else {
 				$('.displayOnType').hide();
@@ -13,7 +13,7 @@ $(document).ready(function(){
 function onuserRegistration() {
 	var base_url=$('#base_url').val();
     var userType=$(".select-user-type input[name='type']:checked").val();
-	if(userType == '2'){
+	if(userType == '1'){
 		var userSubtype=$(".select-user-subtype input[name='subtype']:checked").val();
 	} else {
 		var userSubtype='';
@@ -31,7 +31,7 @@ function onuserRegistration() {
 		return false;
 	}
 
-	if(userType == '2'){
+	if(userType == '1'){
 		if(userSubtype == undefined) {
 			$('#err_select-user-subtype').fadeIn().html('Please select your sub type').css('color','red');
 			setTimeout(function(){$("#err_select-user-subtype").html("&nbsp;");},3000);
@@ -170,22 +170,22 @@ function onuserLogin() {
 		return false;
 	}
 
-	// $.ajax({
-	// 	url: base_url+'validate',
-	// 	type: 'POST',
-	// 	data: {login_email:login_email, login_pass:login_pass},
-	// 	dataType:'json',
-	// 	beforeSend : function(){
-	// 		$("#rLogin").text("Please Wait...");
-	// 		$("#rLogin").prop("disable", "true");
-	// 	},
-	// 	success:function(returndata) {
-	// 		console.log(returndata);
-	// 		if(returndata != 1) {
-	// 			window.location.reload();
-	// 		} else {
-	// 			window.location.href = base_url+"profile/dashboard";
-	// 		}
-	// 	}
-	// });
+	/*$.ajax({
+		url: base_url+'validate',
+		type: 'POST',
+		data: {login_email:login_email, login_pass:login_pass},
+		dataType:'json',
+		beforeSend : function(){
+			$("#rLogin").text("Please Wait...");
+			$("#rLogin").prop("disable", "true");
+		},
+		success:function(returndata) {
+			console.log(returndata);
+			if(returndata != 1) {
+				window.location.reload();
+			} else {
+				window.location.href = base_url+"profile/dashboard";
+			}
+		}
+	});*/
 }

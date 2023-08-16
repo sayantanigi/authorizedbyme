@@ -120,24 +120,18 @@ class Login extends CI_Controller {
 			redirect();
 		}
 	}
-
-	public function logout() {
-	    unset($_SESSION['authorized']);
-		$this->session->set_flashdata('message', 'You have logged out.');
-		redirect();
-	}
-
-    function forgot_password() {
-   	   	$this->load->view('header');
+	
+    public function forgot_password() {
+		$this->load->view('header');
 		$this->load->view('forgot_password');
 		$this->load->view('footer');
-   	}
+	}
 
-	function send_forget_password() {
-    	if(!empty($this->input->post('email',TRUE))) {
-     		$get_email = $this->Crud_model->get_single('users',"email='".$_POST['email']."'");
-         	if(!empty($get_email)) {
-             	$data=array(
+	public function send_forget_password() {
+		if(!empty($this->input->post('email',TRUE))) {
+			$get_email = $this->Crud_model->get_single('users',"email='".$_POST['email']."'");
+			if(!empty($get_email)) {
+				$data=array(
 					'email'=>$get_email->email
 				);
 				$get_setting=$this->Crud_model->get_single('setting');
@@ -163,22 +157,19 @@ class Login extends CI_Controller {
 					$mail->Username   = "no-reply@goigi.com";
 					$mail->Password   = "wj8jeml3eu0z";
 					$mail->send();
-					//echo $msg = '1';
 					$this->session->set_flashdata('message', 'Please check your inbox. We have sent you an email to reset your password.');
 				} catch (Exception $e) {
-					//echo $msg = '2';
 					$this->session->set_flashdata('message', 'Something went wrong. Please try again later!');
 				}
-         	} else {
-   				//echo $msg = '3';
+			} else {
 				$this->session->set_flashdata('error', 'invalid Email Id!');
-   			}
+			}
 			redirect(base_url('forgot-password'));
 		}
 	}
 
-	function new_password() {
-	    $data['title']='Forget Password';
+	public function new_password() {
+		$data['title']='Forget Password';
 		$this->load->view('header',$data);
 		$this->load->view('new_password');
 		$this->load->view('footer');
@@ -186,17 +177,23 @@ class Login extends CI_Controller {
 
 	public function setnew_password() {
 		if($this->input->post('email',TRUE)){
-		 	$get_email = $this->Crud_model->GetData('users','',"email='".$_POST['email']."'",'','','','1');
+			$get_email = $this->Crud_model->GetData('users','',"email='".$_POST['email']."'",'','','','1');
 			if(!empty($get_email)) {
 				$data = array('password' =>md5($_POST['password']));
-			 	$con="userId='".$get_email->userId."'";
-			 	$this->Crud_model->SaveData('users',$data, $con);
-			 	$this->session->set_flashdata('message', 'You have reset your password successfully. Please try to login.');
-	           	echo "1";
-            } else {
-            	$this->session->set_flashdata('message', 'Something went wrong. Please try again later!');
-            }
-        }
+				$con="userId='".$get_email->userId."'";
+				$this->Crud_model->SaveData('users',$data, $con);
+				$this->session->set_flashdata('message', 'You have reset your password successfully. Please try to login.');
+					echo "1";
+			} else {
+				$this->session->set_flashdata('message', 'Something went wrong. Please try again later!');
+			}
+		}
+	}
+
+	public function logout() {
+	    unset($_SESSION['authorized']);
+		$this->session->set_flashdata('message', 'You have logged out.');
+		redirect();
 	}
 
 }//end controller

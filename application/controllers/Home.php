@@ -22,10 +22,10 @@ class Home extends MY_Controller {
 		$data['get_company'] = $this->Crud_model->GetData('company_logo', '', "status='Active'", '', '', '');
 		$data['get_users'] = $this->Users_model->get_users();
 		$data['get_ourservice'] = $this->Crud_model->GetData('our_service', '', "status='Active'", '', '', '');*/
-		$data['get_clients'] = $this->Crud_model->GetData('users', '', "userType='1' AND usersubType='0' AND status='1' AND email_verified='1'", '', '', '');
-		$data['get_agents'] = $this->Crud_model->GetData('users', '', "userType='2' AND usersubType='1' AND status='1' AND email_verified='1'", '', '', '');
-		$data['get_attornyes'] = $this->Crud_model->GetData('users', '', "userType='2' AND usersubType='2' AND status='1' AND email_verified='1'", '', '', '');
-		$data['get_representative'] = $this->Crud_model->GetData('users', '', "userType='2' AND usersubType='3' AND status='1' AND email_verified='1'", '', '', '');
+		$data['get_clients'] = $this->Crud_model->GetData('users', '', "userType='2' AND usersubType='0' AND status='1' AND email_verified='1'", '', '', '');
+		$data['get_agents'] = $this->Crud_model->GetData('users', '', "userType='1' AND usersubType='1' AND status='1' AND email_verified='1'", '', '', '');
+		$data['get_attornyes'] = $this->Crud_model->GetData('users', '', "userType='1' AND usersubType='2' AND status='1' AND email_verified='1'", '', '', '');
+		$data['get_representative'] = $this->Crud_model->GetData('users', '', "userType='1' AND usersubType='3' AND status='1' AND email_verified='1'", '', '', '');
 		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Home Top'");
 		$data['get_banner_middle'] = $this->Crud_model->get_single('banner', "page_name='Home Middle'");
 		$this->load->view('header');
