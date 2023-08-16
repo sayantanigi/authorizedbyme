@@ -129,7 +129,7 @@
                 <div class="owl-carousel owl-theme" id="players">
                     <?php foreach($get_clients as $client) { ?>
                     <div class="item text-center">
-                        <a href="" class="listplayer">
+                        <a href="<?= base_url()?>page/worker-detail/<?= base64_encode($client->userId)?>" class="listplayer">
                             <?php if(!empty($client->profilePic)) { ?>
                             <img src="<?= base_url()?>uploads/users/<?= $client->profilePic?>" class="listplayerimg">
                             <?php } else { ?>
@@ -157,7 +157,7 @@
                 <div class="owl-carousel owl-theme" id="scores">
                     <?php foreach($get_agents as $agents) { ?>
                     <div class="item text-center">
-                        <a href="" class="listplayer">
+                        <a href="<?= base_url()?>page/worker-detail/<?= base64_encode($agents->userId)?>" class="listplayer">
                             <?php if(!empty($agents->profilePic)) { ?>
                             <img src="<?= base_url()?>uploads/users/<?= $agents->profilePic?>" class="listplayerimg">
                             <?php } else { ?>
@@ -185,7 +185,7 @@
                 <div class="owl-carousel owl-theme" id="topteam">
                     <?php foreach($get_attornyes as $attorney) { ?>
                     <div class="item text-center">
-                        <a href="" class="listplayer">
+                        <a href="<?= base_url()?>page/worker-detail/<?= base64_encode($attorney->userId)?>" class="listplayer">
                             <?php if(!empty($attorney->profilePic)) { ?>
                             <img src="<?= base_url()?>uploads/users/<?= $attorney->profilePic?>" class="listplayerimg">
                             <?php } else { ?>
@@ -213,7 +213,7 @@
                 <div class="owl-carousel owl-theme" id="discover">
                     <?php foreach($get_representative as $representative) { ?>
                     <div class="item text-center">
-                        <a href="" class="listplayer">
+                        <a href="<?= base_url()?>page/worker-detail/<?= base64_encode($representative->userId)?>" class="listplayer">
                             <?php if(!empty($representative->profilePic)) { ?>
                             <img src="<?= base_url()?>uploads/users/<?= $representative->profilePic?>" class="listplayerimg">
                             <?php } else { ?>
