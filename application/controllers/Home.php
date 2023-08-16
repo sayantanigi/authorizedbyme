@@ -17,11 +17,15 @@ class Home extends MY_Controller {
 	public function index() {
 		$data['get_post'] = $this->Crud_model->GetData('postjob', 'id,post_title,description,user_id', "is_delete='0'", '', '(id)desc', '6');
 		$data['countries']=$this->Crud_model->GetData('countries',"","");
-		$data['get_freelancerspost'] = $this->Crud_model->GetData('postjob', '', "is_delete='0'", '', '', '8');
+		/*$data['get_freelancerspost'] = $this->Crud_model->GetData('postjob', '', "is_delete='0'", '', '', '8');
 		$data['get_career'] = $this->Crud_model->GetData('career_tips', '', "status='Active'", '', '', '3');
 		$data['get_company'] = $this->Crud_model->GetData('company_logo', '', "status='Active'", '', '', '');
 		$data['get_users'] = $this->Users_model->get_users();
-		$data['get_ourservice'] = $this->Crud_model->GetData('our_service', '', "status='Active'", '', '', '');
+		$data['get_ourservice'] = $this->Crud_model->GetData('our_service', '', "status='Active'", '', '', '');*/
+		$data['get_clients'] = $this->Crud_model->GetData('users', '', "userType='1' AND usersubType='0' AND status='1' AND email_verified='1'", '', '', '');
+		$data['get_agents'] = $this->Crud_model->GetData('users', '', "userType='2' AND usersubType='1' AND status='1' AND email_verified='1'", '', '', '');
+		$data['get_attornyes'] = $this->Crud_model->GetData('users', '', "userType='2' AND usersubType='2' AND status='1' AND email_verified='1'", '', '', '');
+		$data['get_representative'] = $this->Crud_model->GetData('users', '', "userType='2' AND usersubType='3' AND status='1' AND email_verified='1'", '', '', '');
 		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Home Top'");
 		$data['get_banner_middle'] = $this->Crud_model->get_single('banner', "page_name='Home Middle'");
 		$this->load->view('header');
@@ -283,6 +287,65 @@ class Home extends MY_Controller {
 		}
 		$this->load->view('frontend/post_detail', $data);
 		$this->load->view('footer');
+	}
+
+	function client_list() {
+		$data['get_specialist'] = $this->Crud_model->GetData('specialist');
+		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Freelancers'");
+		$this->load->view('header');
+		$this->load->view('frontend/client_list', $data);
+		$this->load->view('footer');
+	}
+
+	function clientlist_fetchdata() {
+		sleep(1);
+		$title = $this->input->post('title_keyword');
+		$search_location = $this->input->post('location');
+		$specialist = $this->input->post('specialist');
+		if($specialist) {
+			$specialist = implode(',', $specialist);
+		}
+		$userType = 1;
+		$usersubType = 0;
+		$this->load->library('pagination');
+		$config = array();
+		$config['base_url'] = '#';
+		$config['total_rows'] = count($this->Users_model->getcount());
+		$config['per_page'] = 10;
+		$config['uri_segment'] = 3;
+		$config['use_page_numbers'] = TRUE;
+		$config['full_tag_open'] = '<ul class="pagination">';
+		$config['full_tag_close'] = '</ul>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['next_link'] = '&gt;';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['prev_link'] = '&lt;';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['cur_tag_open'] = "<li class='active'><a href='#'>";
+		$config['cur_tag_close'] = '</a></li>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['num_links'] = 3;
+		$this->pagination->initialize($config);
+		$page = $this->uri->segment(3);
+		$start = ($page - 1) * $config['per_page'];
+
+		if(isset($title) || isset($search_location) || isset($specialist) || isset($userType) || isset($usersubType)) {
+			$getdata=$this->Users_model->workers_fetchdata($config["per_page"], $start, $title, $search_location, $specialist, $userType, $usersubType);
+		} else {
+			$getdata=$this->Users_model->workers_fetchdata($config["per_page"], $start, $title, $search_location, $specialist, $userType, $usersubType);
+		}
+
+		$output = array(
+			'pagination_link'  => $this->pagination->create_links(),
+			'product_list'   => $getdata
+		);
+		echo json_encode($output);
 	}
 
 	function agent_list() {

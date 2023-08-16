@@ -118,192 +118,118 @@
         </div>
     </section>
 
+    <?php if(!empty($get_clients)) { ?>
     <section class="pb-5">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
-                <h2 class="fw-bold text-primary mb-3 me-2 h2">Discover</h2>
-                <a href="#" class="text-uppercase fw-bold btn btn-primary px-4 mb-3">View All</a>
-            </div>
-            <div class="discoverslide">
-                <div class="owl-carousel owl-theme" id="discover">
-                    <div class="item">
-                        <a href="#"><img src="<?= base_url()?>assets/images/f-1.jpg"></a>
-                    </div>
-                    <div class="item">
-                        <a href="#"><img src="<?= base_url()?>assets/images/f-2.jpg"></a>
-                    </div>
-                    <div class="item">
-                        <a href="#"><img src="<?= base_url()?>assets/images/f-3.jpg"></a>
-                    </div>
-                    <div class="item">
-                        <a href="#"><img src="<?= base_url()?>assets/images/f-4.jpg"></a>
-                    </div>
-                    <div class="item">
-                        <a href="#"><img src="<?= base_url()?>assets/images/f-3.jpg"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="pb-5">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <h2 class="fw-bold text-primary mb-3 me-2 h2">Popular Players</h2>
-                <a href="#" class="text-uppercase fw-bold btn btn-primary px-4 mb-3">View All</a>
+                <h2 class="fw-bold text-primary mb-3 me-2 h2">Popular Clients</h2>
+                <a href="<?= base_url('page/client_list')?>" class="text-uppercase fw-bold btn btn-primary px-4 mb-3">View All</a>
             </div>
             <div class="popular-players">
                 <div class="owl-carousel owl-theme" id="players">
+                    <?php foreach($get_clients as $client) { ?>
                     <div class="item text-center">
                         <a href="" class="listplayer">
-                            <img src="<?= base_url()?>assets/images/user-1.jpg" class="listplayerimg">
-                            <h4>Sam Mendes</h4>
-                            <h6>Footballer, Gemini United</h6>
+                            <?php if(!empty($client->profilePic)) { ?>
+                            <img src="<?= base_url()?>uploads/users/<?= $client->profilePic?>" class="listplayerimg">
+                            <?php } else { ?>
+                            <img src="<?= base_url()?>uploads/users/user.png" alt="" class="listplayerimg">
+                            <?php } ?>
+                            <h4><?= $client->firstname." ".$client->lastname?></h4>
+                            <h6>Client, <?= $client->address?></h6>
                         </a>
                     </div>
-                    <div class="item text-center">
-                        <a href="" class="listplayer">
-                            <img src="<?= base_url()?>assets/images/user-2.jpg" class="listplayerimg">
-                            <h4>Sam Mendes</h4>
-                            <h6>Footballer, Gemini United</h6>
-                        </a>
-                    </div>
-                    <div class="item text-center">
-                        <a href="" class="listplayer">
-                            <img src="<?= base_url()?>assets/images/user-3.jpg" class="listplayerimg">
-                            <h4>Sam Mendes</h4>
-                            <h6>Footballer, Gemini United</h6>
-                        </a>
-                    </div>
-                    <div class="item text-center">
-                        <a href="" class="listplayer">
-                            <img src="<?= base_url()?>assets/images/user-1.jpg" class="listplayerimg">
-                            <h4>Sam Mendes</h4>
-                            <h6>Footballer, Gemini United</h6>
-                        </a>
-                    </div>
-                    <div class="item text-center">
-                        <a href="" class="listplayer">
-                            <img src="<?= base_url()?>assets/images/user-2.jpg" class="listplayerimg">
-                            <h4>Sam Mendes</h4>
-                            <h6>Footballer, Gemini United</h6>
-                        </a>
-                    </div>
-                    <div class="item text-center">
-                        <a href="" class="listplayer">
-                            <img src="<?= base_url()?>assets/images/user-3.jpg" class="listplayerimg">
-                            <h4>Sam Mendes</h4>
-                            <h6>Footballer, Gemini United</h6>
-                        </a>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
     </section>
-
+    <?php } ?>
+    
+    <?php if(!empty($get_agents)) { ?>
     <section class="pb-5">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
-                <h2 class="fw-bold text-primary mb-3 me-2 h2">Top Scores</h2>
-                <a href="#" class="text-uppercase fw-bold btn btn-primary px-4 mb-3">View All</a>
+                <h2 class="fw-bold text-primary mb-3 me-2 h2">Popular Agents</h2>
+                <a href="<?= base_url('page/agent_list')?>" class="text-uppercase fw-bold btn btn-primary px-4 mb-3">View All</a>
             </div>
-            <div class="teamboxslide">
+            <div class="popular-players">
                 <div class="owl-carousel owl-theme" id="scores">
-                    <div class="item">
-                        <a href="#" class="d-block">
-                            <div class="topteam-1 mb-1">
-                                <img src="<?= base_url()?>assets/images/team-logo1.png">
-                            </div>
-                            <div class="topteam-2 text-end">
-                                <img src="<?= base_url()?>assets/images/team-logo2.png">
-                            </div>
+                    <?php foreach($get_agents as $agents) { ?>
+                    <div class="item text-center">
+                        <a href="" class="listplayer">
+                            <?php if(!empty($agents->profilePic)) { ?>
+                            <img src="<?= base_url()?>uploads/users/<?= $agents->profilePic?>" class="listplayerimg">
+                            <?php } else { ?>
+                            <img src="<?= base_url()?>uploads/users/user.png" alt="" class="listplayerimg">
+                            <?php } ?>
+                            <h4><?= $agents->firstname." ".$agents->lastname?></h4>
+                            <h6>Agents, <?= $agents->address?></h6>
                         </a>
                     </div>
-                    <div class="item">
-                        <a href="#" class="d-block">
-                            <div class="topteam-1 mb-1">
-                                <img src="<?= base_url()?>assets/images/team-logo3.png">
-                            </div>
-                            <div class="topteam-2 text-end">
-                                <img src="<?= base_url()?>assets/images/team-logo4.png">
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <a href="#" class="d-block">
-                            <div class="topteam-1 mb-1">
-                                <img src="<?= base_url()?>assets/images/team-logo5.png">
-                            </div>
-                            <div class="topteam-2 text-end">
-                                <img src="<?= base_url()?>assets/images/team-logo6.png">
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <a href="#" class="d-block">
-                            <div class="topteam-1 mb-1">
-                                <img src="<?= base_url()?>assets/images/team-logo2.png">
-                            </div>
-                            <div class="topteam-2 text-end">
-                                <img src="<?= base_url()?>assets/images/team-logo4.png">
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <a href="#" class="d-block">
-                            <div class="topteam-1 mb-1">
-                                <img src="<?= base_url()?>assets/images/team-logo5.png">
-                            </div>
-                            <div class="topteam-2 text-end">
-                                <img src="<?= base_url()?>assets/images/team-logo1.png">
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <a href="#" class="d-block">
-                            <div class="topteam-1 mb-1">
-                                <img src="<?= base_url()?>assets/images/team-logo2.png">
-                            </div>
-                            <div class="topteam-2 text-end">
-                                <img src="<?= base_url()?>assets/images/team-logo3.png">
-                            </div>
-                        </a>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
     </section>
-
+    <?php } ?>
+    
+    <?php if(!empty($get_attornyes)) { ?>
     <section class="pb-5">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
-                <h2 class="fw-bold text-primary mb-3 me-2 h2">Top Teams</h2>
-                <a href="#" class="text-uppercase fw-bold btn btn-primary px-4 mb-3">View All</a>
+                <h2 class="fw-bold text-primary mb-3 me-2 h2">Popular Attorneys</h2>
+                <a href="<?= base_url('page/attorney_lists')?>" class="text-uppercase fw-bold btn btn-primary px-4 mb-3">View All</a>
             </div>
-            <div class="topteamslide">
+            <div class="popular-players">
                 <div class="owl-carousel owl-theme" id="topteam">
-                    <div class="item">
-                        <a href="#"><img src="<?= base_url()?>assets/images/team1.jpg"></a>
+                    <?php foreach($get_attornyes as $attorney) { ?>
+                    <div class="item text-center">
+                        <a href="" class="listplayer">
+                            <?php if(!empty($attorney->profilePic)) { ?>
+                            <img src="<?= base_url()?>uploads/users/<?= $attorney->profilePic?>" class="listplayerimg">
+                            <?php } else { ?>
+                            <img src="<?= base_url()?>uploads/users/user.png" alt="" class="listplayerimg">
+                            <?php } ?>
+                            <h4><?= $attorney->firstname." ".$attorney->lastname?></h4>
+                            <h6>Attorney, <?= $attorney->address?></h6>
+                        </a>
                     </div>
-                    <div class="item">
-                        <a href="#"><img src="<?= base_url()?>assets/images/team2.jpg"></a>
-                    </div>
-                    <div class="item">
-                        <a href="#"><img src="<?= base_url()?>assets/images/team3.jpg"></a>
-                    </div>
-                    <div class="item">
-                        <a href="#"><img src="<?= base_url()?>assets/images/team4.jpg"></a>
-                    </div>
-                    <div class="item">
-                        <a href="#"><img src="<?= base_url()?>assets/images/team5.jpg"></a>
-                    </div>
-                    <div class="item">
-                        <a href="#"><img src="<?= base_url()?>assets/images/team2.jpg"></a>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
     </section>
+    <?php } ?>
+    
+    <?php if(!empty($get_representative)) { ?>
+    <section class="pb-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="fw-bold text-primary mb-3 me-2 h2">Popular Representatives</h2>
+                <a href="<?= base_url('page/representative_lists')?>" class="text-uppercase fw-bold btn btn-primary px-4 mb-3">View All</a>
+            </div>
+            <div class="popular-players">
+                <div class="owl-carousel owl-theme" id="discover">
+                    <?php foreach($get_representative as $representative) { ?>
+                    <div class="item text-center">
+                        <a href="" class="listplayer">
+                            <?php if(!empty($representative->profilePic)) { ?>
+                            <img src="<?= base_url()?>uploads/users/<?= $representative->profilePic?>" class="listplayerimg">
+                            <?php } else { ?>
+                            <img src="<?= base_url()?>uploads/users/user.png" alt="" class="listplayerimg">
+                            <?php } ?>
+                            <h4><?= $representative->firstname." ".$representative->lastname?></h4>
+                            <h6>Representative, <?= $representative->address?></h6>
+                        </a>
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+    </section>
+    <?php } ?>
+
     <style>
         #register-messages {text-align: center; margin-top: 25px; display: none;}
         #err-messages {text-align: center; margin-top: 10px; display: none;}

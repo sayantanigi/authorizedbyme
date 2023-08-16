@@ -89,6 +89,50 @@ if(!empty($_SESSION['afrebay']['userId'])) {
     <script src="<?= base_url('assets/js/maps2.js')?>" type="text/javascript"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtg6oeRPEkRL9_CE-us3QdvXjupbgG14A&libraries=places&callback=initMap" async defer></script>
     <script type="text/javascript" src="<?= base_url('assets/custom_js/validation.js')?>"></script>
-    <input type="hidden" name="base_url" id="base_url" value="<?= base_url()?>">     
+    <link rel="stylesheet" href="<?php echo base_url()?>assets/multi_select/css/modern/tail.select-dark-feather.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url()?>assets/multi_select/css/modern/tail.select-dark.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url()?>assets/multi_select/css/modern/tail.select-light-feather.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url()?>assets/multi_select/css/modern/tail.select-light.min.css" />
+
+    <script src="<?php echo base_url()?>assets/multi_select/js/tail.select.min.js"></script>
+<!-- Languages -->
+    <script src="<?php echo base_url()?>assets/multi_select/langs/tail.select-de.js"></script>
+    <script src="<?php echo base_url()?>assets/multi_select/langs/tail.select-es.js"></script>
+    <script src="<?php echo base_url()?>assets/multi_select/langs/tail.select-fi.js"></script>
+    <script src="<?php echo base_url()?>assets/multi_select/langs/tail.select-fr.js"></script>
+    <script src="<?php echo base_url()?>assets/multi_select/langs/tail.select-it.js"></script>
+    <script src="<?php echo base_url()?>assets/multi_select/langs/tail.select-no.js"></script>
+    <script src="<?php echo base_url()?>assets/multi_select/langs/tail.select-pt_BR.js"></script>
+    <script src="<?php echo base_url()?>assets/multi_select/langs/tail.select-ru.js"></script>
+    <script src="<?php echo base_url()?>assets/multi_select/langs/tail.select-tr.js"></script>
+    <input type="hidden" name="base_url" id="base_url" value="<?= base_url()?>">
+    <script>
+    $(document).ready(function () {
+        tail.select('#example',{
+            startOpen: true,
+            multiple: true,
+            stayOpen: true,
+            multiPinSelected: true,
+            multiShowCount: false,
+            multiShowLimit: true,
+            multiContainer: true,
+            search: true,
+            searcgConfig: [
+                "text", "value"
+            ],
+            searchFocus: true,
+            searchMarked: true,
+            searchMinLength: 1,
+        });
+
+        $('.sb-title.open').next().slideDown();
+        $('.sb-title.closed').next().slideUp();
+        $('.sb-title').on('click', function(){
+            $(this).next().slideToggle();
+            $(this).toggleClass('active');
+            $(this).toggleClass('closed');
+        });
+    })
+    </script>
 </body>
 </html>

@@ -58,6 +58,7 @@ $route['email-verification/(:any)'] = "user/login/emailVerification/$1";
 $route['login'] = "home/login_page";
 $route['forgot-password'] = "user/login/forgot_password";
 $route['new-password/(:any)'] = "user/login/new_password/$1";
+$route['page/client_list'] = "home/client_list";
 $route['page/agent_list'] = "home/agent_list";
 $route['page/attorney_lists'] = "home/attorney_lists";
 $route['page/representative_lists'] = "home/representative_lists";

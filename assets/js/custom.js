@@ -37,7 +37,7 @@ $('#discover').owlCarousel({
             items:3
         },
         1000:{
-            items:4
+            items:5
         }
     }
 });
@@ -80,6 +80,25 @@ $('#scores').owlCarousel({
     }
 });
 $('#topteam').owlCarousel({
+    loop:false,
+    margin:15,
+    nav:true,
+    dots:false,
+    autoplay:true,
+    navText:["<div class='nav-btn prev-slide'><i class='fas fa-chevron-left'></i></div>","<div class='nav-btn next-slide'><i class='fas fa-chevron-right'></i></div>"],
+    responsive:{
+        0:{
+            items:2
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:5
+        }
+    }
+});
+$('#representatives').owlCarousel({
     loop:false,
     margin:15,
     nav:true,
