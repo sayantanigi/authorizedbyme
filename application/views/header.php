@@ -59,10 +59,18 @@ function completeSub() {
                         <li class="nav-item dropdown">
                             <a class="nav-link btn text-capitalize" href="#" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-user"></i> Dashboard <i class="fas fa-angle-down"></i></a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="<?= base_url()?>profile/dashboard">Profile</a></li>
-                                <li><a class="dropdown-item" href="<?= base_url()?>profile/teams">Teams</a></li>
-                                <li><a class="dropdown-item" href="<?= base_url()?>profile/matches">Matches</a></li>
-                                <li><a class="dropdown-item" href="<?= base_url()?>profile/dashboard">Subscription</a></li>
+                                <li><a class="dropdown-item" href="<?= base_url()?>page/worker-detail/<?= base64_encode($_SESSION['authorized']['userId'])?>">Profile</a></li>
+                                <?php $check_sub = $this->Crud_model->GetData('employer_subscription', '', "employer_id='".$_SESSION['authorized']['userId']."' AND status IN (1,2)");
+                                if(empty($check_sub)) { ?>
+                                <li><a class="dropdown-item" href="<?= base_url()?>profile/subscription">Subscription</a></li>
+                                <?php } else {
+                                    $profile_check = $this->db->query("SELECT `firstname`, `lastname`, `email`, `address`, `zipcode`, `short_bio` FROM `users` WHERE userId = '".@$_SESSION['authorized']['userId']."'")->result_array();
+                                    if(empty($profile_check[0]['firstname']) || empty($profile_check[0]['lastname']) || empty($profile_check[0]['email']) || empty($profile_check[0]['address']) || empty($profile_check[0]['zipcode']) || empty($profile_check[0]['short_bio'])) { ?>
+                                    <li><a class="dropdown-item" href="<?= base_url()?>profile/dashboard">Dashboard</a></li>
+                                    <?php } else { ?>
+                                    <li><a class="dropdown-item" href="<?= base_url()?>profile/dashboard">Dashboard</a></li>
+                                    <?php }
+                                } ?>
                                 <li><a class="dropdown-item" href="<?= base_url()?>logout">Logout</a></li>
                             </ul>
                         </li>

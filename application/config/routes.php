@@ -70,6 +70,7 @@ $route['page/faq'] = "home/faq";
 $route['page/feedback'] = "home/feedback";
 $route['page/terms-condition'] = "home/term_and_conditions";
 $route['page/privacy-policy'] = "home/privacy";
+$route['page/postjob'] = "welcome/post_job";
 $route['save'] = "user/login/reg";
 $route['validate'] = "user/login/validate_user";
 $route['profile/dashboard'] = "user/dashboard/profile";

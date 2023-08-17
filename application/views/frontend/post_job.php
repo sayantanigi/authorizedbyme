@@ -6,17 +6,19 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
     $banner_img=base_url("assets/images/resource/mslider1.jpg");
 } ?>
 
-<section class="overlape">
-    <div class="block no-padding">
-        <div data-velocity="-.1" style="background: url('<?= $banner_img ?>') repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div>
-        <!-- PARALLAX BACKGROUND IMAGE -->
-        <div class="container fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="inner-header">
-                        <h3>Post Jobs</h3>
-                    </div>
-                </div>
+<section class="breadcrumbpnl" style="background-image:url('<?= $banner_img ?>');">  
+    <div class="container">
+        <div class="">
+            <?php if(empty(@$id)) { ?>
+            <h3 class="fw-semibold">Add Post Job</h3>
+            <?php } else { ?>
+            <h3 class="fw-semibold">Update Posted Job</h3>
+            <?php } ?>
+            <div >
+                <ol class="breadcrumb mb-2">
+                <li class="breadcrumb-item"><a href="<?= base_url()?>">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Post Job</li>
+                </ol>
             </div>
         </div>
     </div>
@@ -29,11 +31,11 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
                 <div class="col-lg-12 column">
                     <div class="padding-left">
                         <div class="profile-title" style="text-align: center;">
-                            <?php if(empty(@$id)) { ?>
+                            <!-- <?php if(empty(@$id)) { ?>
                             <h3>Post a New Job</h3>
                             <?php } else { ?>
                             <h3>Update Posted Job</h3>
-                            <?php } ?>
+                            <?php } ?> -->
                             <span class="text-success-msg f-20" style="text-align: center;">
                             <?php if($this->session->flashdata('message')) {
                                 echo $this->session->flashdata('message');
@@ -94,14 +96,10 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
                                     </div>
                                     <div class="col-lg-6">
                                         <span class="pf-title">Approximate Remuneration ($)</span>
-                                        <div style="width: 75px;">
-                                        <?php if($countryName == 'Nigeria') { ?>
-                                            <input type="text" class="form-control f1" name="currency" id="currency" value="NGN (₦)" readonly style=" padding: 15px; ">
-                                        <?php } else { ?>
-                                            <input type="text" class="form-control f1" name="currency" id="currency" value="USD ($)" readonly style=" padding: 15px; ">
-                                        <?php } ?>
+                                        <div style="width: 75px;display: inline-block;float: left;">
+                                            <input type="text" class="form-control f1" name="currency" id="currency" value="USD ($)" readonly style="padding: 10px;font-size: 12px;height: 56px;">
                                         </div>
-                                        <div class="pf-field" style=" float: left; width: 85%; margin-left: 10px; ">
+                                        <div class="pf-field" style="float: left;width: 86%;margin-left: 10px;">
                                             <input type="text" placeholder="Enter Charges" name="charges" class="form-control " value="<?= @$charges; ?>"/>
                                         </div>
                                     </div>
@@ -246,17 +244,64 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
     </div>
 </section>
 
-
 <!-- <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/taginput.css')?>">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" integrity="sha512-xmGTNt20S0t62wHLmQec2DauG9T+owP9e6VU8GigI0anN7OXLip9i7IwEhelasml2osdxX71XcYm6BQunTQeQg==" crossorigin="anonymous" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js" integrity="sha512-VvWznBcyBJK71YKEKDMpZ0pCVxjNuKwApp4zLF3ul+CiflQi6aIJR+aZCP/qWsoFBA28avL5T5HA+RE+zrGQYg==" crossorigin="anonymous"></script> -->
 <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
 <script>
-CKEDITOR.replace('description');
+    CKEDITOR.replace('description');
 </script>
+<style>
+    .select2-results__option[aria-selected]{ margin: 0px !important;}
+    .contact-edit .srch-lctn {
+    float: right;
+    font-family: Open Sans;
+    font-size: 15px;
+    color: #8b91dd;
+    border: 2px solid #8b91dd;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    border-radius: 30px;
+    padding: 11px 26px;
+    margin-top: 30px;
+}
+.profile-form-edit>form button {
+    float: right;
+    background: #ffffff;
+    border: 2px solid #fb236a;
+    color: #202020;
+    font-family: Open Sans;
+    font-size: 15px;
+    padding: 11px 40px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+.post-job-page .contact-edit button {
+    background: #294CA6 !important;
+    border: 0;
+    color: #fff;
+    border-radius: 4px;
+    font-family: 'Nunito', sans-serif;
+}
+.post-job-page {
+    box-shadow: 0 0 10px #e3e3e3;
+    border-radius: 10px;
+    padding: 20px 35px;
+    margin-bottom: 30px;
+}
+.profile-form-edit {
+    float: left;
+    width: 100%;
+}
+</style>
 <script>
 $('.key_skills').select2({
     tags: true,
