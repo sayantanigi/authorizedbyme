@@ -118,7 +118,7 @@ if($user_detail->usersubType == '1') {
                                     </ul>
                                 </div>
                                 <!-- Job Overview -->
-                                <?php if(!empty($_SESSION['afrebay']['userId'])&& $_SESSION['afrebay']['userType']==2){?>
+                                <?php if(!empty($_SESSION['authorized']['userId']) && $_SESSION['authorized']['userType']==2){?>
                                 <div class="quick-form-job">
                                     <h3>Rate This <?= $user?></h3>
                                     <form method="post" action="<?= base_url('user/dashboard/save_employer_rating')?>">
@@ -142,7 +142,8 @@ if($user_detail->usersubType == '1') {
                                                 <textarea placeholder="Enter review" name="review"></textarea>
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 Form_Btn">
-                                                <button class="submit btn btn-info">Submit</button>
+                                                <!-- <button type="submit" class="submit btn btn-info" value="submit">Submit</button> -->
+                                                <input type="submit" class="btn-primary Submit_Btn" value="Submit">
                                             </div>
                                         </div>
                                     </form>

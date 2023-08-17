@@ -91,10 +91,29 @@ class Dashboard extends CI_Controller {
 			$image  = $_POST['old_image'];
 		}
 
+		if(!empty($this->input->post('key_skills'))) {
+			$key_skills = $this->input->post('key_skills');
+			for ($i=0; $i < count($key_skills); $i++) {
+				$get_specialist = $this->db->query("SELECT * FROM specialist WHERE specialist_name = '".$key_skills[$i]."'")->result();
+				if(empty($get_specialist)) {
+					$insrt = array(
+						'specialist_name'=>$key_skills[$i],
+						'userType'=>$_SESSION['authorized']['usersubType'],
+						'created_date'=>date('Y-m-d H:i:s'),
+					);
+					$this->db->insert('specialist',$insrt);
+				}
+			}
+			$skills = implode(", ",$this->input->post('key_skills',TRUE));
+		} else {
+			$skills = '';
+		}
+
 		$data = array(
 			'firstname' => $_POST['firstname'],
 			'lastname' => $_POST['lastname'],
 			'designation' => $_POST['designation'],
+			'skills' => $skills,
 			'email' => $_POST['email'],
 			'mobile' => $_POST['mobile'],
 			'address' => $_POST['address'],

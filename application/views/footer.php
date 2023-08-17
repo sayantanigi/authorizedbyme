@@ -89,6 +89,7 @@ if(!empty($_SESSION['afrebay']['userId'])) {
     <script src="<?= base_url('assets/js/maps2.js')?>" type="text/javascript"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtg6oeRPEkRL9_CE-us3QdvXjupbgG14A&libraries=places&callback=initMap" async defer></script>
     <script type="text/javascript" src="<?= base_url('assets/custom_js/validation.js')?>"></script>
+    <script src="<?= base_url('assets/js/select-chosen.js')?>" type="text/javascript"></script>
     <link rel="stylesheet" href="<?php echo base_url()?>assets/multi_select/css/modern/tail.select-dark-feather.min.css" />
     <link rel="stylesheet" href="<?php echo base_url()?>assets/multi_select/css/modern/tail.select-dark.min.css" />
     <link rel="stylesheet" href="<?php echo base_url()?>assets/multi_select/css/modern/tail.select-light-feather.min.css" />

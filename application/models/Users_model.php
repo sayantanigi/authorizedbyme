@@ -243,7 +243,8 @@ class Users_model extends My_Model {
             }
 
             if(isset($specialist) && !empty($specialist)) {
-                $query .= " AND instr(concat(',', skills, ','), ',$specialist,')";
+                //$query .= " AND instr(concat(',', skills, ','), ',$specialist,')";
+                $query .= " AND skills like '%$specialist%'";
             }
             return $query;
         }

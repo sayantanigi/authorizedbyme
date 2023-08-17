@@ -822,17 +822,13 @@ input[type="text"], input[type="password"], input[type="email"], textarea:focus-
     background: linear-gradient(180deg, rgba(249, 80, 30, 1) 0%, rgba(252, 119, 33, 1) 100%);
     border: 0 !important;
     color: #fff !important;
-    font-weight: 600;
+    font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 25px !important;
+    font-family: 'Nunito', sans-serif;
  }
- 
- .List_Of_Workers .emply-resume-sec .emply-resume-list .shortlists a:hover {
-    background: linear-gradient(180deg, rgba(252, 119, 33, 1) 0%, rgba(249, 80, 30, 1) 100%) !important;
- }
-
 .emply-resume-thumb {
     display: table-cell;
     vertical-align: top;
@@ -870,11 +866,7 @@ input[type="text"], input[type="password"], input[type="email"], textarea:focus-
     text-align: left;
     line-height: 35px;
     padding-right: 20px;
-    -webkit-border-radius: 21px;
-    -moz-border-radius: 21px;
-    -ms-border-radius: 21px;
-    -o-border-radius: 21px;
-    border-radius: 21px;
+    border-radius: 5px;
     cursor: pointer;
     margin-right: 40px;
 }
@@ -2448,11 +2440,218 @@ i {
     height: 15px;
 }
 
-
-
 .Employees_Search_List .Employees_Search_Result .emply-resume-list .shortlists a:last-child:hover {
     background: #294ca6
 }
 .List_Of_Workers .emply-resume-sec .emply-resume-list .shortlists a:hover {
     background: #294ca6 !important;
+}
+
+.Worker_Detail .cand-details, .Worker_Detail .job-overview, .Worker_Detail .quick-form-job {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #dddddd;
+    margin-top: 30px;
+}
+.quick-form-job {
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+}
+.quick-form-job>h3 {
+    float: left;
+    width: 100%;
+    font-size: 18px;
+    color: #202020;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+.Worker_Detail .cand-details-sec .quick-form-job form {
+    padding: 0 !important;
+    border: 0 !important;
+}
+.cand-details-sec .quick-form-job form {
+    border-width: 2px;
+}
+.quick-form-job form {
+    float: left;
+    width: 100%;
+    border: 2px solid #e8ecec;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    border-radius: 8px;
+    padding: 30px;
+}
+.Worker_Detail .cand-details-sec .quick-form-job form .star-rating {
+    margin-bottom: 20px !important;
+}
+.star-rating.star-5 {
+    width: 250px;
+}
+.quick-form-job form input, .quick-form-job form textarea {
+    float: left;
+    width: 100%;
+    background: none;
+    border: 2px solid #e8ecec;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #888888;
+    /* padding: 15px 25px; */
+    padding: 0px;
+    font-family: Open Sans;
+    margin-bottom: 15px;
+}
+.quick-form-job form input {
+    float: left;
+    width: 100%;
+    background: none;
+    border: 2px solid #e8ecec;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #888888;
+    padding: 15px 25px;
+}
+.Worker_Detail .cand-details-sec .quick-form-job form .Form_Subject input, .Worker_Detail .cand-details-sec .quick-form-job form .Form_Textarea textarea {
+    background: transparent !important;
+    font-size: 14px;
+    margin-bottom: 20px !important;
+    padding: 10px 10px !important;
+    border-bottom: 2px solid #b1b1b1;
+    border-radius: 10px !important;
+    box-shadow: 0 0 10px #e1e1e1;
+    border: 0 !important;
+}
+.quick-form-job form input, .quick-form-job form textarea {
+    float: left;
+    width: 100%;
+    background: none;
+    border: 2px solid #e8ecec;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #888888;
+    /* padding: 15px 25px; */
+    padding: 0px;
+    font-family: Open Sans;
+    margin-bottom: 15px;
+}
+.quick-form-job form input {
+    float: left;
+    width: 100%;
+    background: none;
+    border: 2px solid #e8ecec;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #888888;
+    padding: 15px 25px;
+}
+.Worker_Detail .cand-details-sec .quick-form-job form .Form_Subject input, .Worker_Detail .cand-details-sec .quick-form-job form .Form_Textarea textarea {
+    background: transparent !important;
+    font-size: 14px;
+    margin-bottom: 20px !important;
+    padding: 10px 10px !important;
+    border-bottom: 2px solid #b1b1b1;
+    border-radius: 10px !important;
+    box-shadow: 0 0 10px #e1e1e1;
+    border: 0 !important;
+}
+.quick-form-job form input, .quick-form-job form textarea {
+    float: left;
+    width: 100%;
+    background: none;
+    border: 2px solid #e8ecec;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #888888;
+    /* padding: 15px 25px; */
+    padding: 0px;
+    font-family: Open Sans;
+    margin-bottom: 15px;
+}
+.Worker_Detail .cand-details-sec .quick-form-job form .Form_Btn .btn {
+    width: auto !important;
+    margin: 0 !important;
+    background: linear-gradient(180deg, rgba(249, 80, 30, 1) 0%, rgba(252, 119, 33, 1) 100%) !important;
+    border: 0;
+    color: #fff;
+    border-radius: 30px;
+    letter-spacing: 0;
+    pointer-events: auto !important;
+}
+.Worker_Detail .cand-details-sec .quick-form-job form .Form_Btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.quick-form-job form button {
+    float: left;
+    width: 100%;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    border-radius: 30px;
+    background: #424f95;
+    font-size: 18px;
+    font-family: Open Sans;
+    padding: 16px 10px;
+    margin-bottom: 15px;
+    border: 2px solid #424f95;
+}
+.btn-info {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.btn {
+    font-size: 15px !important;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    font-family: 'Nunito', sans-serif;
+    box-shadow: none !important;
+    border: 0;
+    padding: 10px 20px !important;
+}
+
+.Worker_Detail .Submit_Btn {
+    width: 100px; height: 35px; color: #fff; font-size: 17px; font-family: sans-serif;
 }

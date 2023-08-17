@@ -35,16 +35,11 @@
 							} ?>
 						</span>
 						<div class="container">
-							<!-- <ul class="navlist-profile">
-								<li><a href="<?= base_url()?>profile/dashboard" class="active">Profile</a></li>
-								<li><a href="<?= base_url()?>profile/teams">Teams</a></li>
-								<li><a href="<?= base_url()?>profile/matches">Matches</a></li>
-							</ul>
-							<div class="divider my-2"></div> -->
 							<div class="mt-4">
 								<h3 class="h4 fw-bold text-uppercase text-center text-primary mb-4">Update Profile</h3>
 								<div class="profileform">
 									<form class="form" action="<?php echo base_url('user/Dashboard/update_profile')?>" method="post" id="msform" enctype="multipart/form-data">
+										<?php if($_SESSION['authorized']['userType'] == 1) { ?>
 										<ul id="progressbar">
 											<li class="active">
 												<div class="progressIcon"><i class="fa fa-user"></i></div>
@@ -63,6 +58,7 @@
 												Reference
 											</li>
 										</ul>
+										<?php } ?>
 										<fieldset>
 											<div  class="form-box text-start">
 												<h4 class="formheading"><span>Personal Information</span></h4>
@@ -90,17 +86,38 @@
 														<input type="hidden" name="id" value="<?=$userinfo->userId  ?>">
 														<div class="profile-ak1" style="width: 88%; display: inline-block;">
 															<?php if(!empty($userinfo->profilePic)) { ?>
-															<h6>Upload a different photo</h6>
+															<label>Upload a different photo</label>
 															<?php } else { ?>
 															<label>Upload Profile Photo</label>
 															<?php } ?>
 															<input type="file" class="form-control" name="profilePic" id="profilePic" value="">
 														</div>
 													</div>
+													<?php if($_SESSION['authorized']['userType'] == 1) { ?>
 													<div class="col-lg-6 mb-3">
 														<label>Designation</label>
 														<input type="text" class="form-control" name="designation" id="designation" placeholder="Designation" value="<?php echo $userinfo->designation;?>">
 													</div>
+													<div class="col-lg-12 mb-3">
+														<label>Skill Sets</label>
+														<select class="form-control key_skills" multiple="multiple" name="key_skills[]" id="key_skills" style="width: 100%;">
+                                            			<?php $skills = $this->Crud_model->GetData('specialist',"","userType = '".$_SESSION['authorized']['usersubType']."' AND status = 'Active'");
+                                            			foreach($skills as $val) {?>
+                                                			<option value="<?php echo $val->specialist_name; ?>"
+															<?php if(!empty($userinfo->skills)) {
+																if(!empty($skills)){
+																	$vskills = explode(", ", $userinfo->skills);
+																	for($i=0; $i<count($vskills); $i++) {
+																		if($vskills[$i] == $val->specialist_name){
+																			echo "selected";
+																		}
+																	}
+																}
+															} ?>><?php echo $val->specialist_name;?></option>
+														<?php } ?>
+                                            			</select>
+													</div>
+													<?php } ?>
 													<div class="col-lg-6 mb-3">
 														<label>Email Id</label>
 														<input type="email" class="form-control" name="email" id="email" placeholder="Email Address" value="<?php echo $userinfo->email;?>" readonly>
@@ -113,10 +130,13 @@
 														<label>Address</label>
 														<input type="text" class="form-control" name="address" id="address" placeholder="Address" value="<?php echo $userinfo->address;?>">
 													</div>
+													<?php if($_SESSION['authorized']['userType'] == 1) { ?>
 													<div class="col-lg-6 mb-3" style="position:sticky;">
+													<?php } else { ?>
+													<div class="col-lg-12 mb-3" style="position:sticky;">
+													<?php } ?>
 														<label>Location</label>
 														<input type="text" class="form-control" name="location" id="location" placeholder="Legal Address" value="<?php echo $userinfo->location;?>" style="height: 49px !important;" autocomplete="off" />
-														<!-- <div id="vld_location" style="color:red; margin-top: 10px;">Please enter Legal Address.</div> -->
 														<input type="hidden" name="latitude" id="search_lat" value="<?= $userinfo->latitude ?>">
 														<input type="hidden" name="longitude" id="search_lon" value="<?= $userinfo->longitude ?> ">
 													</div>
@@ -161,8 +181,13 @@
 													</div>
 												</div>
 											</div>
+											<?php if($_SESSION['authorized']['userType'] == 2) { ?>
+											<input type="submit" name="submit" class=" action-button" value="Submit" /> 
+											<?php } else { ?>
 											<input type="button" name="next" class="next action-button" value="Next" />
+											<?php } ?>
 										</fieldset>
+										<?php if($_SESSION['authorized']['userType'] == 1) { ?>
 										<fieldset>
 											<div class="form-box text-start">
 												<div class="field_wrapper">
@@ -326,6 +351,7 @@
 											<input type="submit" name="submit" class=" action-button" value="Submit" /> 
 											<input type="button" name="previous" class="previous action-button-previous" value="Previous" />
 										</fieldset>
+										<?php } ?>
 									</form>
 								</div>
 							</div>
@@ -340,9 +366,26 @@
 #subscription-messages{display: none; text-align: center;}
 #cnclsubscription-messages{display: none; text-align: center;}
 #err-messages{display: none; text-align: center;}
+.select2-container .select2-selection--multiple{min-height: 42px !important;}
+.select2-container .select2-search--inline .select2-search__field{padding: 4px 0px 4px 12px !important;}
+.select2-container--default .select2-selection--multiple {
+    background-color: #f3f3f3 !important;
+    border: 1px solid #ebebeb !important;
+    border-radius: 0 !important;
+    cursor: text !important;
+}
+.select2-results__option[aria-selected] {margin-bottom: 0px !important;}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
 <script>
+$('.key_skills').select2({
+	tags: true,
+	//maximumSelectionLength: 10,
+	tokenSeparators: [','],
+	placeholder: "Select or Type Skills"
+});
 $('#short_bio').keyup(function() {
 	var characterCount = $(this).val().length,
 	current = $('#current'),

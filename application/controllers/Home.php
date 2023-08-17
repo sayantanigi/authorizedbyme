@@ -349,7 +349,7 @@ class Home extends MY_Controller {
 	}
 
 	function agent_list() {
-		$data['get_specialist'] = $this->Crud_model->GetData('specialist');
+		$data['get_specialist'] = $this->Crud_model->GetData('specialist', '', "userType='1'", '', '(id)desc');
 		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Freelancers'");
 		$this->load->view('header');
 		$this->load->view('frontend/agents_list', $data);
@@ -362,9 +362,9 @@ class Home extends MY_Controller {
 		$search_location = $this->input->post('location');
 		$specialist = $this->input->post('specialist');
 		if($specialist) {
-			$specialist = implode(',', $specialist);
+			$specialist = implode(', ', $specialist);
 		}
-		$userType = 2;
+		$userType = 1;
 		$usersubType = 1;
 		$this->load->library('pagination');
 		$config = array();
@@ -408,7 +408,7 @@ class Home extends MY_Controller {
 	}
 
 	function attorney_lists() {
-		$data['get_specialist'] = $this->Crud_model->GetData('specialist');
+		$data['get_specialist'] = $this->Crud_model->GetData('specialist', '', "userType='2'", '', '(id)desc');
 		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Freelancers'");
 		$this->load->view('header');
 		$this->load->view('frontend/attorney_list', $data);
@@ -423,7 +423,7 @@ class Home extends MY_Controller {
 		if($specialist) {
 			$specialist = implode(',', $specialist);
 		}
-		$userType = 2;
+		$userType = 1;
 		$usersubType = 2;
 		$this->load->library('pagination');
 		$config = array();
@@ -467,7 +467,7 @@ class Home extends MY_Controller {
 	}
 
 	function representative_lists() {
-		$data['get_specialist'] = $this->Crud_model->GetData('specialist');
+		$data['get_specialist'] = $this->Crud_model->GetData('specialist', '', "userType='3'", '', '(id)desc');
 		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Freelancers'");
 		$this->load->view('header');
 		$this->load->view('frontend/representatives_list', $data);
@@ -482,7 +482,7 @@ class Home extends MY_Controller {
 		if($specialist) {
 			$specialist = implode(',', $specialist);
 		}
-		$userType = 2;
+		$userType = 1;
 		$usersubType = 3;
 		$this->load->library('pagination');
 		$config = array();
