@@ -4,17 +4,17 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
 } else{
     $banner_img=base_url("assets/images/resource/mslider1.jpg");
 } ?>
-<section class="overlape">
-    <div class="block no-padding">
-        <div data-velocity="-.1" style="background: url('<?= $banner_img ?>') repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div>
-        <!-- PARALLAX BACKGROUND IMAGE -->
-        <div class="container fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="inner-header">
-                        <h3>Vendor Details</h3>
-                    </div>
-                </div>
+
+<section class="breadcrumbpnl" style="background-image:url('<?= $banner_img ?>');">  
+    <div class="container">
+        <div class="">
+            <h3 class="fw-semibold">Client Details</h3>
+            <div >
+                <ol class="breadcrumb mb-2">
+                    <li class="breadcrumb-item"><a href="<?= base_url()?>">Home</a></li>
+                    <li class="breadcrumb-item"><a href="<?= base_url()?>">Client Details</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><?= $userdata->firstname." ".$userdata->lastname;?></li>
+                </ol>
             </div>
         </div>
     </div>
@@ -38,15 +38,7 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
                                             <?php } ?>
                                         </div>
                                         <div class="job-single-info3">
-                                            <h3>
-                                                <?php
-                                                $companyname=$userdata->companyname;
-                                                if(!empty($companyname)) {
-                                                    echo ucwords($companyname);
-                                                } else {
-                                                    echo $userdata->username;
-                                                } ?>
-                                            </h3>
+                                            <h3><?= $companyname= $userdata->firstname." ".$userdata->lastname;?></h3>
                                             <span><i class="la la-map-marker"></i><?= @$userdata->address;?></span>
                                             <!--<span class="job-is ft">Full time</span>-->
                                             <ul class="tags-jobs">
@@ -82,32 +74,14 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
                             <div class="row">
                                 <div class="col-lg-8 col-md-12 col-sm-12 column">
                                     <div class="job-details">
-                                        <h3>About
-                                            <?php
-                                            $companyname=$userdata->companyname;
-                                            if(!empty($companyname)) {
-                                                echo ucwords($companyname);
-                                            } else {
-                                                echo $userdata->username;
-                                            } ?>
-                                        </h3>
+                                        <h3>About <?= $companyname= $userdata->firstname." ".$userdata->lastname;?></h3>
                                         <p><?= @$userdata->short_bio;?></p>
                                     </div>
                                     <div class="recent-jobs">
-                                        <h3>Jobs from
-                                            <?php
-                                            $companyname=$userdata->companyname;
-                                            if(!empty($companyname)) {
-                                                echo ucwords($companyname);
-                                            } else {
-                                                echo $userdata->username;
-                                            } ?>
-                                        </h3>
+                                        <h3>Jobs from <?= $companyname= $userdata->firstname." ".$userdata->lastname;?></h3>
                                         <div class="job-list-modern">
                                             <div class="job-listings-sec no-border">
-                                                <?php
-                                                //echo "<pre>"; print_r($get_post);
-                                                $total_post=count($get_post);
+                                                <?php $total_post=count($get_post);
                                                 if(!empty($get_post)){
                                                 foreach ($get_post as $key) {
                                                 ?>

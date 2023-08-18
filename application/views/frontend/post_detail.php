@@ -5,40 +5,23 @@ if (!empty($get_banner->image) && file_exists('uploads/banner/' . $get_banner->i
     $banner_img = base_url("assets/images/resource/mslider1.jpg");
 } ?>
 <style media="screen">
-.postdetail {
-    padding: 7px 33px;
-    border-radius: 10px;
-    background: red;
-    color: #fff;
-    margin: 10px;
-    font-size: 20px;
-}
-.cstm_viewbid_btn {background: linear-gradient(180deg, rgba(249, 80, 30, 1) 0%, rgba(252, 119, 33, 1) 100%) !important;
-    border: 0;
-    border-radius: 35px;
-    letter-spacing: 0;
-    font-weight: 600;
-    width: 100%;
-    display: block;
-    color: #fff;
-    padding: 10px;
-    text-align: center;}
+.postdetail {padding: 7px 33px; border-radius: 10px; background: red; color: #fff; margin: 10px; font-size: 20px;}
+.cstm_viewbid_btn {background: linear-gradient(180deg, rgba(249, 80, 30, 1) 0%, rgba(252, 119, 33, 1) 100%) !important; border: 0; border-radius: 35px; letter-spacing: 0; font-weight: 600; width: 100%; display: block; color: #fff; padding: 10px; text-align: center;}
 </style>
-<section class="overlape">
-    <div class="block no-padding">
-        <div data-velocity="-.1" style="background: url('<?= $banner_img ?>') repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div>
-        <!-- PARALLAX BACKGROUND IMAGE -->
-        <div class="container fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="inner-header text-center">
-                        <h3 style="text-transform: uppercase;">
-                            <?php if (!empty($post_data->post_title)) {
-                                echo $post_data->post_title;
-                            } ?>
-                        </h3>
-                    </div>
-                </div>
+<section class="breadcrumbpnl" style="background-image:url('<?= $banner_img ?>');">  
+    <div class="container">
+        <div class="">
+            <h3 class="fw-semibold">Post Job</h3>
+            <div >
+                <ol class="breadcrumb mb-2">
+                    <li class="breadcrumb-item"><a href="<?= base_url()?>">Home</a></li>
+                    <li class="breadcrumb-item"><a href="<?= base_url()?>">Post Job</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                    <?php if (!empty($post_data->post_title)) {
+                        echo $post_data->post_title;
+                    } ?>
+                    </li>
+                </ol>
             </div>
         </div>
     </div>
@@ -56,9 +39,9 @@ if (!empty($get_banner->image) && file_exists('uploads/banner/' . $get_banner->i
             <div class="col-md-12 col-sm-12 display-table-cell v-align">
                 <div class="user-dashboard">
                     <div class="row row-sm">
-                        <?php if (@$_SESSION['afrebay']['userType'] == '1') { ?>
+                        <?php if (@$_SESSION['authorized']['userType'] == '1') { ?>
                         <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 col-12">
-                        <?php } else if(@$_SESSION['afrebay']['userType'] == '2'){ ?>
+                        <?php } else if(@$_SESSION['authorized']['userType'] == '2'){ ?>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
                         <?php } else { ?>
                         <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 col-12">
@@ -67,7 +50,7 @@ if (!empty($get_banner->image) && file_exists('uploads/banner/' . $get_banner->i
                                 <ul>
                                     <li>
                                         <span>Job Title </span>
-                                        <a href="<?= base_url('postdetail/' . base64_encode($post_data->id)) ?>" style="text-transform: uppercase;">
+                                        <a href="<?= base_url('page/postdetail/' . base64_encode($post_data->id)) ?>" style="text-transform: uppercase;">
                                         <?php if (!empty($post_data->post_title)) {
                                             echo $post_data->post_title;
                                         } ?>
@@ -116,14 +99,7 @@ if (!empty($get_banner->image) && file_exists('uploads/banner/' . $get_banner->i
                                     <?php } ?>
                                 </ul>
                                 <?php $postedBy = $this->db->query("SELECT * FROM users WHERE userId = '" . $post_data->user_id . "'")->result_array(); ?>
-                                <a class="btn btn-info" href="<?= base_url('employerdetail/' . base64_encode($post_data->user_id)) ?>">
-                                    <?php
-                                    if ($postedBy[0]['userType'] == 1) {
-                                        echo $postedBy[0]['firstname'] . ' ' . $postedBy[0]['lastname'];
-                                    } else if ($postedBy[0]['userType'] == 2) {
-                                        echo $postedBy[0]['companyname'];
-                                    } ?>
-                                </a>
+                                <a class="btn btn-info" href="<?= base_url('page/employerdetail/' . base64_encode($post_data->user_id)) ?>" style="background: #294CA6;color: #fff;text-transform: uppercase;letter-spacing: .5px;border: 0;padding: 8px 16px !important;border-radius: 5px;"><?= $postedBy[0]['firstname'] . ' ' . $postedBy[0]['lastname']?> </a>
                             </div>
                             <div class="employe-about d-none">
                                 <ul>
@@ -147,9 +123,7 @@ if (!empty($get_banner->image) && file_exists('uploads/banner/' . $get_banner->i
                                     <li>
                                         <div class="hope-aus1">
                                             <ul>
-                                                <!-- <li><a href="javascript:void(0)"><i class="fa fa-shield"></i></a></li> -->
                                                 <li><a href="javascript:void(0)"><i class="fa fa-envelope"></i></a></li>
-                                                <!-- <li><a href="javascript:void(0)"><i class="fa fa-user"></i></a></li> -->
                                                 <li><a href="javascript:void(0)"><i class="fa fa-phone"></i></a></li>
                                             </ul>
                                         </div>
@@ -157,9 +131,9 @@ if (!empty($get_banner->image) && file_exists('uploads/banner/' . $get_banner->i
                                 </ul>
                             </div>
                         </div>
-                        <?php if (@$_SESSION['afrebay']['userType'] == '1' || empty(@$_SESSION['afrebay']['userType'])) { ?>
+                        <?php if (@$_SESSION['authorized']['userType'] == '1' || empty(@$_SESSION['authorized']['userType'])) { ?>
                         <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 col-12">
-                            <?php $userBidData = $this->db->query("SELECT * FROM `job_bid` WHERE postjob_id = '".$post_data->id."' and user_id = '".@$_SESSION['afrebay']['userId']."'")->result_array();
+                            <?php $userBidData = $this->db->query("SELECT * FROM `job_bid` WHERE postjob_id = '".$post_data->id."' and user_id = '".@$_SESSION['authorized']['userId']."'")->result_array();
                             if(!empty($userBidData)) { ?>
                             <div class="bd-form"><a href="<?= base_url()?>jobbid" class="cstm_viewbid_btn"> View Bid</a></div>
                             <?php } else { ?>
@@ -198,9 +172,9 @@ if (!empty($get_banner->image) && file_exists('uploads/banner/' . $get_banner->i
                                     <input type="hidden" name="postjob_id" value="<?php if (!empty($post_data->id)) { echo $post_data->id; } ?>">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="bid-btn">
-                                            <?php if (!empty(@$_SESSION['afrebay']['userType'])) {
-                                                if (@$_SESSION['afrebay']['userType'] == '1') {
-                                                    //$userBidData = $this->db->query("SELECT * FROM `job_bid` WHERE postjob_id = '".$post_data->id."' and user_id = '".$_SESSION['afrebay']['userId']."'")->result_array();
+                                            <?php if (!empty(@$_SESSION['authorized']['userType'])) {
+                                                if (@$_SESSION['authorized']['userType'] == '1') {
+                                                    //$userBidData = $this->db->query("SELECT * FROM `job_bid` WHERE postjob_id = '".$post_data->id."' and user_id = '".$_SESSION['authorized']['userId']."'")->result_array();
                                                     //if(!empty($userBidData)) { ?>
                                                         <!-- <a href="<?= base_url()?>jobbid" class="cstm_viewbid_btn"> View Bid</a> -->
                                                     <?php //} else { ?>

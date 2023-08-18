@@ -108,7 +108,7 @@ class Welcome extends CI_Controller {
 	}
 
 	function employer_detail($user_id) {
-		if(empty($_SESSION['afrebay']['userId'])){
+		if(empty($_SESSION['authorized']['userId'])){
 			$type='admin';
 		} else {
 			$type='user';
@@ -221,7 +221,7 @@ class Welcome extends CI_Controller {
 		}
 		$id = $_POST['id'];
 		$data=array(
-			//'user_id'=>$_SESSION['afrebay']['userId'],
+			//'user_id'=>$_SESSION['authorized']['userId'],
 			'required_key_skills'=>implode(", ",$this->input->post('key_skills',TRUE)),
 			'category_id'=>$this->input->post('category_id',TRUE),
 			'subcategory_id'=>$this->input->post('subcategory_id',TRUE),
@@ -274,7 +274,7 @@ class Welcome extends CI_Controller {
 			}
 		}
 		$data=array(
-			'user_id'=>$_SESSION['afrebay']['userId'],
+			'user_id'=>$_SESSION['authorized']['userId'],
 			'required_key_skills'=>implode(", ",$this->input->post('key_skills',TRUE)),
 			'category_id'=>$this->input->post('category_id',TRUE),
 			'subcategory_id'=>$this->input->post('subcategory_id',TRUE),
@@ -297,7 +297,7 @@ class Welcome extends CI_Controller {
 		$this->Crud_model->SaveData('postjob',$data);
 		$this->session->set_flashdata('message', 'Post Job Created Successfull !');
 		$insert_id = $this->db->insert_id();
-		redirect(base_url("postdetail/".base64_encode($insert_id)));
+		redirect(base_url("page/postdetail/".base64_encode($insert_id)));
 	}
 
 	function post_jobinfo($id) {

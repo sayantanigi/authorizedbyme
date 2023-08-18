@@ -166,7 +166,7 @@ class Home extends MY_Controller {
 
 		//$data['get_subscription'] = $this->Crud_model->GetData('subscription');
 		$data['get_subscription'] = $this->db->query("SELECT * FROM subscription ".$cond."")->result_array();
-		$data['subcriber_pack'] = $this->Crud_model->GetData('employer_subscription', '', "employer_id='" . @$_SESSION['afrebay']['userId'] . "'");
+		$data['subcriber_pack'] = $this->Crud_model->GetData('employer_subscription', '', "employer_id='" . @$_SESSION['authorized']['userId'] . "'");
 		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Pricing'");
 		$this->load->view('header');
 		$this->load->view('frontend/pricing', $data);
@@ -186,7 +186,7 @@ class Home extends MY_Controller {
 
 		//$data['get_subscription'] = $this->Crud_model->GetData('subscription');
 		$data['get_subscription'] = $this->db->query("SELECT * FROM subscription ".$cond."")->result_array();
-		$data['subcriber_pack'] = $this->Crud_model->GetData('employer_subscription', '', "employer_id='".@$_SESSION['afrebay']['userId']."'");
+		$data['subcriber_pack'] = $this->Crud_model->GetData('employer_subscription', '', "employer_id='".@$_SESSION['authorized']['userId']."'");
 		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Pricing'");
 		$this->load->view('header');
 		$this->load->view('frontend/vendor_pricing', $data);
@@ -206,7 +206,7 @@ class Home extends MY_Controller {
 
 		//$data['get_subscription'] = $this->Crud_model->GetData('subscription');
 		$data['get_subscription'] = $this->db->query("SELECT * FROM subscription ".$cond."")->result_array();
-		$data['subcriber_pack'] = $this->Crud_model->GetData('employer_subscription', '', "employer_id='" . @$_SESSION['afrebay']['userId'] . "'");
+		$data['subcriber_pack'] = $this->Crud_model->GetData('employer_subscription', '', "employer_id='" . @$_SESSION['authorized']['userId'] . "'");
 		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Pricing'");
 		$this->load->view('header');
 		$this->load->view('frontend/freelancer_pricing', $data);
@@ -265,7 +265,7 @@ class Home extends MY_Controller {
 		$data['countryName'] = $ipdat->geoplugin_countryName;
 		if(!empty($_SESSION['afrebay_admin'])){
 			$type='admin';
-		} else if(!empty($_SESSION['afrebay'])) {
+		} else if(!empty($_SESSION['authorized'])) {
 			$type='user';
 		} else {
 			$type='nouser';
@@ -622,7 +622,7 @@ class Home extends MY_Controller {
 			try {
 				//Server settings
 				$mail->CharSet = 'UTF-8';
-				$mail->SetFrom('no-reply@goigi.com', 'Afrebay');
+				$mail->SetFrom('no-reply@goigi.com', 'authorized');
 				$mail->AddAddress($_POST['email']);
 				$mail->IsHTML(true);
 				$mail->Subject = $subject;
@@ -688,8 +688,8 @@ class Home extends MY_Controller {
 						</div>
 						<input type='hidden' name='amount' id='amount".$key['id']."' value='".$key['subscription_amount']."'>
 						<div class='pricing-options'>".$key['subscription_description']."</div>";
-						if(!empty($_SESSION['afrebay']['userType'])) {
-							$subcriber_pack = $this->Crud_model->GetData('employer_subscription', '', "employer_id='" . @$_SESSION['afrebay']['userId'] . "'");
+						if(!empty($_SESSION['authorized']['userType'])) {
+							$subcriber_pack = $this->Crud_model->GetData('employer_subscription', '', "employer_id='" . @$_SESSION['authorized']['userId'] . "'");
 							if(!empty($subcriber_pack)) {
 								$html .= "<a class='btn btn-info' href='javascript:void(0);' onclick='sub_alert()'>Buy</a>";
 							} else {
@@ -701,10 +701,10 @@ class Home extends MY_Controller {
 									}
 								} else {
 									$html .= "<a href='javascript:void(0);' class='btn btn-primary getSubscription_".$key['id']." id='getSubscription_".$key['id'].">Buy</a>";
-									$html .= "<input type='hidden' name='user_id_".$key['id']." id='user_id_".$key['id']." value=".$_SESSION['afrebay']['userId'].">";
+									$html .= "<input type='hidden' name='user_id_".$key['id']." id='user_id_".$key['id']." value=".$_SESSION['authorized']['userId'].">";
 									$html .= "<input type='hidden' name='sub_id_".$key['id']." id='sub_id_".$key['id']." value=".$key['id'].">";
 									$html .= "<input type='hidden' name='sub_name_".$key['id']." id='sub_name_".$key['id']." value=".$key['subscription_name'].">";
-									$html .= "<input type='hidden' name='user_email_".$key['id']." id='user_email_".$key['id']." value=".$_SESSION['afrebay']['userEmail'].">";
+									$html .= "<input type='hidden' name='user_email_".$key['id']." id='user_email_".$key['id']." value=".$_SESSION['authorized']['userEmail'].">";
 									$html .= "<input type='hidden' name='sub_price_".$key['id']." id='sub_price_".$key['id']." value=".$key['subscription_amount'].">";
 									$html .= "<input type='hidden' name='sub_duration_".$key['id']." id='sub_duration_".$key['id']." value=".$key['subscription_duration'].">";
 								}

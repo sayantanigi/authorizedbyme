@@ -300,6 +300,7 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
 .profile-form-edit {
     float: left;
     width: 100%;
+    margin-top: 20px;
 }
 </style>
 <script>

@@ -128,54 +128,60 @@ class Dashboard extends CI_Controller {
 			'longitude' => $_POST['longitude'],
 		);
 
-		$academicsitemCount = count($_POST["college_name"]);
-		$delete_query = $this->db->query("DELETE FROM user_education WHERE user_id = '".$_SESSION['authorized']['userId']."'");
-		for ($i = 0; $i < $academicsitemCount; $i ++) {
-			if (!empty($_POST["college_name"][$i]) || !empty($_POST["coursename"][$i]) || !empty($_POST["class_rank"][$i]) || !empty($_POST["passing_of_year"][$i]) || !empty($_POST["achievement"][$i])) {
-				$academicsinsrt = array(
-					'user_id'=>$_SESSION['authorized']['userId'],
-					'college_name'=>$_POST["college_name"][$i],
-					'coursename'=>$_POST["coursename"][$i],
-					'class_rank'=>$_POST["class_rank"][$i],
-					'passing_of_year'=>$_POST["passing_of_year"][$i],
-					'achievement'=>$_POST["achievement"][$i],
-					'created_date'=>date('Y-m-d H:i:s'),
-				);
-				$this->db->insert('user_education',$academicsinsrt);
+		if(!empty($_POST["college_name"])) {
+			$academicsitemCount = count($_POST["college_name"]);
+			$delete_query = $this->db->query("DELETE FROM user_education WHERE user_id = '".$_SESSION['authorized']['userId']."'");
+			for ($i = 0; $i < $academicsitemCount; $i ++) {
+				if (!empty($_POST["college_name"][$i]) || !empty($_POST["coursename"][$i]) || !empty($_POST["class_rank"][$i]) || !empty($_POST["passing_of_year"][$i]) || !empty($_POST["achievement"][$i])) {
+					$academicsinsrt = array(
+						'user_id'=>$_SESSION['authorized']['userId'],
+						'college_name'=>$_POST["college_name"][$i],
+						'coursename'=>$_POST["coursename"][$i],
+						'class_rank'=>$_POST["class_rank"][$i],
+						'passing_of_year'=>$_POST["passing_of_year"][$i],
+						'achievement'=>$_POST["achievement"][$i],
+						'created_date'=>date('Y-m-d H:i:s'),
+					);
+					$this->db->insert('user_education',$academicsinsrt);
+				}
 			}
 		}
-
-		$experienceitemCount = count($_POST["company_name"]);
-		$delete_query = $this->db->query("DELETE FROM user_workexperience WHERE user_id = '".$_SESSION['authorized']['userId']."'");
-		for ($j = 0; $j < $experienceitemCount; $j ++) {
-			if (!empty($_POST["company_name"][$j]) || !empty($_POST["exp_designation"][$j]) || !empty($_POST["exp_start_date"][$j]) || !empty($_POST["exp_end_date"][$j]) || !empty($_POST["exp_information"][$j])) {
-				$experienceinsrt = array(
-					'user_id'=>$_SESSION['authorized']['userId'],
-					'company_name'=>$_POST["company_name"][$j],
-					'designation'=>$_POST["exp_designation"][$j],
-					'from_date'=>$_POST["exp_start_date"][$j],
-					'to_date'=>$_POST["exp_end_date"][$j],
-					'description'=>$_POST["exp_information"][$j],
-					'created_date'=>date('Y-m-d H:i:s'),
-				);
-				$this->db->insert('user_workexperience',$experienceinsrt);
+		
+		if(!empty($_POST["company_name"])) {
+			$experienceitemCount = count($_POST["company_name"]);
+			$delete_query = $this->db->query("DELETE FROM user_workexperience WHERE user_id = '".$_SESSION['authorized']['userId']."'");
+			for ($j = 0; $j < $experienceitemCount; $j ++) {
+				if (!empty($_POST["company_name"][$j]) || !empty($_POST["exp_designation"][$j]) || !empty($_POST["exp_start_date"][$j]) || !empty($_POST["exp_end_date"][$j]) || !empty($_POST["exp_information"][$j])) {
+					$experienceinsrt = array(
+						'user_id'=>$_SESSION['authorized']['userId'],
+						'company_name'=>$_POST["company_name"][$j],
+						'designation'=>$_POST["exp_designation"][$j],
+						'from_date'=>$_POST["exp_start_date"][$j],
+						'to_date'=>$_POST["exp_end_date"][$j],
+						'description'=>$_POST["exp_information"][$j],
+						'created_date'=>date('Y-m-d H:i:s'),
+					);
+					$this->db->insert('user_workexperience',$experienceinsrt);
+				}
 			}
 		}
-
-		$referreritemCount = count($_POST["referrer_name"]);
-		$delete_query = $this->db->query("DELETE FROM user_reference WHERE user_id = '".$_SESSION['authorized']['userId']."'");
-		for ($j = 0; $j < $referreritemCount; $j ++) {
-			if (!empty($_POST["referrer_name"][$j]) || !empty($_POST["referrer_email"][$j])) {
-				$referrerinsrt = array(
-					'user_id'=>$_SESSION['authorized']['userId'],
-					'referrer_name'=>$_POST["referrer_name"][$j],
-					'referrer_email'=>$_POST["referrer_email"][$j],
-					'created_date'=>date('Y-m-d H:i:s'),
-				);
-				$this->db->insert('user_reference',$referrerinsrt);
+		
+		if(!empty($_POST["referrer_name"])) {
+			$referreritemCount = count($_POST["referrer_name"]);
+			$delete_query = $this->db->query("DELETE FROM user_reference WHERE user_id = '".$_SESSION['authorized']['userId']."'");
+			for ($j = 0; $j < $referreritemCount; $j ++) {
+				if (!empty($_POST["referrer_name"][$j]) || !empty($_POST["referrer_email"][$j])) {
+					$referrerinsrt = array(
+						'user_id'=>$_SESSION['authorized']['userId'],
+						'referrer_name'=>$_POST["referrer_name"][$j],
+						'referrer_email'=>$_POST["referrer_email"][$j],
+						'created_date'=>date('Y-m-d H:i:s'),
+					);
+					$this->db->insert('user_reference',$referrerinsrt);
+				}
 			}
 		}
-
+		
 		$this->Crud_model->SaveData('users', $data, "userId='".$_SESSION['authorized']['userId']."'");
 		// echo $_POST['from_data_request'];die;
 		if($_POST['from_data_request']=='admin'){

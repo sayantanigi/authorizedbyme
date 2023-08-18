@@ -44,6 +44,7 @@
 									<option value="Global" <?php if($subscription_country == 'Global') { echo "selected"; } ?>>Global</option>
 								</select>
 							</div> -->
+							<input type="hidden" name="subscription_country" id="subscription_country" value="Global">
 							<div class="form-group showSubPrice" >
 								<label>Subscription Amount ($)</label>
 								<input class="form-control" type="text" placeholder="Example: 100 USD" id="subscription_amount" name="subscription_amount" value="<?= $subscription_amount;?>" required  onkeypress="only_number(event)">

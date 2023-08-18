@@ -20,7 +20,7 @@
 					<div class="card-body">
 						<div class="pricing-header">
 							<p style="text-align: center;"><?php echo "For ".ucwords($key->subscription_user_type) ?></p>
-							<p style="text-align: center;"><?php echo "Country: ".ucwords($key->subscription_country) ?></p>
+							<!-- <p style="text-align: center;"><?php echo "Country: ".ucwords($key->subscription_country) ?></p> -->
 							<h2 style="text-align: center; margin-bottom: 12px;"><?php echo @$key->subscription_name; ?></h2>
 							<?php if(@$key->subscription_type=='free') { ?>
 								<p style="text-align: center;"><?php echo ucfirst(@$key->subscription_type)?> Subscription </p>
@@ -47,7 +47,7 @@
 							<li><i class="far fa-check-circle"></i><?php //echo $row->service;?></li>
 						<?php //} ?>
 						</ul> -->
-						<a href="<?= admin_url('subscription/update/'.base64_encode($key->id))  ?>" class="btn btn-primary btn-block">Edit</a>
+						<a href="<?= admin_url('subscription/update/'.base64_encode($key->id))?>" class="btn btn-primary btn-block">Edit</a>
 						<a href="javascript:void(0);" class="btn btn-sm btn-danger mr-2" onclick="subscriptionDelete(this,<?php echo $key->id?>)" style="margin-top: 10px; width: 100%; padding: 7px;">Delete</a>
 					</div>
 				</div>

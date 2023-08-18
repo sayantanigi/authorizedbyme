@@ -63,7 +63,7 @@ class Post_job_model extends My_Model {
 
     function viewdata($con) {
         //echo 'SELECT postjob.*,category.category_name,CONCAT(users.firstname," ",users.lastname) as fullname,users.username,users.address as user_address,sub_category.sub_category_name,users.userType FROM postjob JOIN category ON category.id=postjob.category_id JOIN users ON users.userId=postjob.user_id JOIN sub_category ON sub_category.id=postjob.subcategory_id WHERE'.$con; die();
-        $this->db->select('postjob.*,category.category_name,CONCAT(users.firstname," ",users.lastname) as fullname,users.username,users.address as user_address,sub_category.sub_category_name,users.userType' );
+        $this->db->select('postjob.*,category.category_name,CONCAT(users.firstname," ",users.lastname) as fullname,users.address as user_address,sub_category.sub_category_name,users.userType,users.usersubType' );
         $this->db->from('postjob');
         $this->db->join('category','category.id=postjob.category_id');
         $this->db->join('users','users.userId=postjob.user_id');

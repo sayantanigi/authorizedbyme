@@ -54,8 +54,8 @@
                                             ?>
                                             </td>
                                             <td class="btn-option">
-                                                <a href="<?php echo base_url('postdetail/'.base64_encode($key->id))?>" target="_blank"><i  class="fa fa-eye" aria-hidden="true"></i></a>
-                                                <a href="<?php echo base_url('update-postjob/'.base64_encode($key->id))?>"><i class="fa fa-edit" aria-hidden="true" style="padding-left: 10px;"></i></a>
+                                                <a href="<?php echo base_url('page/postdetail/'.base64_encode($key->id))?>" target="_blank"><i  class="fa fa-eye" aria-hidden="true"></i></a>
+                                                <a href="<?php echo base_url('page/update-postjob/'.base64_encode($key->id))?>"><i class="fa fa-edit" aria-hidden="true" style="padding-left: 10px;"></i></a>
                                                 <a href="javascript:void(0)" data-toggle="tooltip" title="Delete" onclick="jobDelete(<?php echo $key->id;?>)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                             </td>
                                         </tr>
@@ -84,11 +84,11 @@
                                 <tr>
                                     <td colspan="6">
                                         <center>No Data Found</center>
-                                        <?php if($_SESSION['afrebay']['userType'] == '2') {
-                                        $get_sub_data = $this->db->query("SELECT * FROM employer_subscription where employer_id = ".$_SESSION['afrebay']['userId']." and payment_status = 'paid'")->result_array();
+                                        <?php if($_SESSION['authorized']['userType'] == '2') {
+                                        $get_sub_data = $this->db->query("SELECT * FROM employer_subscription where employer_id = ".$_SESSION['authorized']['userId']." and payment_status = 'paid'")->result_array();
                                         if(!empty($get_sub_data)) {
-                                        $profile_check = $this->db->query("SELECT * FROM `users` WHERE userId = '".@$_SESSION['afrebay']['userId']."'")->result_array();
-                                        if(empty($profile_check[0]['companyname']) || empty($profile_check[0]['email']) || empty($profile_check[0]['address']) || empty($profile_check[0]['teamsize'])  || empty($profile_check[0]['short_bio'])) { ?>
+                                        $profile_check = $this->db->query("SELECT * FROM `users` WHERE userId = '".@$_SESSION['authorized']['userId']."'")->result_array();
+                                        if(empty($profile_check[0]['firstname']) || empty($profile_check[0]['lastname']) || empty($profile_check[0]['email']) || empty($profile_check[0]['address']) || empty($profile_check[0]['short_bio'])) { ?>
                                         <button class="post-job-btn pull-right" type="submit" style="background: #294ca6;border: 0 !important;"><a style=" float: left; font-family: Open Sans; font-size: 15px; color: #ffffff; padding: 10px 27px; -webkit-border-radius: 40px; -moz-border-radius: 40px; -ms-border-radius: 40px; -o-border-radius: 40px; border-radius: 40px; font-family: 'Poppins', sans-serif;" href="javascript:void(0)" onclick="completeSub()">Post Jobs</a></button>
                                         <?php } else { ?>
                                         <button class="post-job-btn pull-right" type="submit" style="background: #294ca6;border: 0 !important;"><a style=" float: left; font-family: Open Sans; font-size: 15px; color: #ffffff; padding: 10px 27px; -webkit-border-radius: 40px; -moz-border-radius: 40px; -ms-border-radius: 40px; -o-border-radius: 40px; border-radius: 40px; font-family: 'Poppins', sans-serif;" href="<?= base_url('page/postjob')?>" title="" target="_blank">Post Jobs</a></button>
