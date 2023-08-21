@@ -54,7 +54,7 @@
                                             <td class="heading"><?php echo $value->prod_name;?></td>
                                             <td class="btn-option">
                                                 <a href="javascript:void(0)" id="View1_<?php echo $value->id;?>" data-toggle="tooltip" title="View"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                                <a href="<?= base_url('update-product/'.base64_encode($value->id));?>" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true" style="padding-left: 10px;"></i></a>
+                                                <a href="<?= base_url('profile/update-product/'.base64_encode($value->id));?>" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true" style="padding-left: 10px;"></i></a>
                                                 <a href="javascript:void(0)" data-toggle="tooltip" title="Delete" onclick="productDelete(<?php echo $value->id;?>)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                             </td>
                                         </tr>
@@ -89,7 +89,7 @@
                                                 foreach($product_image as $row) {
                                                 ?>
                                                 <div class="imgSlides">
-                                                    <img src="<?php echo base_url('uploads/products/'.$row["prod_image"])?>" style="width:100%">
+                                                    <img src="<?php echo base_url('uploads/products/'.$row["prod_image"])?>" style="width:100%; height:100%;">
                                                 </div>
                                                 <?php } } ?>
                                                 <a class="prev" onclick="plusSlides(-1)">❮</a>

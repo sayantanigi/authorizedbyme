@@ -8,17 +8,16 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
 #register-messages {text-align: center; margin-top: 10px; display: none;}
 #err-messages {text-align: center; margin-top: 10px; display: none;}
 </style>
-<section class="overlape">
-    <div class="block no-padding">
-        <div data-velocity="-.1" style="background: url('<?= $banner_img ?>') repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div>
-        <!-- PARALLAX BACKGROUND IMAGE -->
-        <div class="container fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="inner-header">
-                        <h3>Product Details</h3>
-                    </div>
-                </div>
+<section class="breadcrumbpnl" style="background-image:url('<?= $banner_img ?>');">  
+    <div class="container">
+        <div class="">
+            <h3 class="fw-semibold">Product Details</h3>
+            <div >
+                <ol class="breadcrumb mb-2">
+                    <li class="breadcrumb-item"><a href="<?= base_url()?>">Home</a></li>
+                    <li class="breadcrumb-item"><a href="<?= base_url()?>">Product Details</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><?= $prod_details[0]['prod_name'];?></li>
+                </ol>
             </div>
         </div>
     </div>
@@ -37,7 +36,7 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
                             if(!empty($pro_img_list)) {
                                 foreach($pro_img_list as $img_val) { ?>
                             <div class="imgSlides">
-                                <img src="<?php echo base_url()?>/uploads/products/<?php echo $img_val['prod_image']?>" style="width:100%">
+                                <img src="<?php echo base_url()?>/uploads/products/<?php echo $img_val['prod_image']?>" style="width:100%; height: 100%;">
                             </div>
                             <?php } } ?>
                             <a class="prev" onclick="plusSlides(-1)">❮</a>
@@ -58,14 +57,8 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
                         <div><h2><?php echo $prod_details[0]['prod_name'];?></h2></div>
                         <p style="text-align: center;"><span>Vendor:</span>
                             <span>
-                                <?php
-                                $usr_data = $this->db->query("SELECT * FROM users WHERE userId = '".$prod_details[0]['user_id']."'")->result_array();
-                                if(!empty($usr_data[0]['companyname'])){
-                                    echo $usr_data[0]['companyname'];
-                                } else {
-                                    echo $usr_data[0]['username'];
-                                }
-                                ?>
+                                <?php $usr_data = $this->db->query("SELECT * FROM users WHERE userId = '".$prod_details[0]['user_id']."'")->result_array();
+                                echo $usr_data[0]['firstname']." ".$usr_data[0]['lastname'];?>
                             </span>
                         </p>
                         <div class="prod_desc"><?php echo $prod_details[0]['prod_description']; ?></div>
