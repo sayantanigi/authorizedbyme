@@ -204,8 +204,8 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function subscription() {
-		if($_SESSION['authorized']['userType'] == '1') {
-			$uType = 'Agents';
+		if($_SESSION['authorized']['userType'] == '2') {
+			$uType = 'Clients';
 		} else {
 			$uType = 'Representatives';
 		}
@@ -356,11 +356,11 @@ class Dashboard extends CI_Controller {
 		$this->Crud_model->SaveData('job_bid', $data);
 		$insert_id = $this->db->insert_id();
 		if(!empty($insert_id)) {
-			$this->session->set_flashdata('message', 'Bid Submitted Successfully! You will be notified once the Vendor has approved your bid');
-			redirect(base_url("postdetail/".base64_encode($_POST['postjob_id'])), "refresh");
+			$this->session->set_flashdata('message', 'Bid Submitted Successfully! You will be notified once the Client has approved your bid');
+			redirect(base_url("page/postdetail/".base64_encode($_POST['postjob_id'])), "refresh");
 		} else {
 			$this->session->set_flashdata('message', 'Something went wrong. Please try again later.');
-			redirect(base_url("postdetail/".base64_encode($_POST['postjob_id'])), "refresh");
+			redirect(base_url("page/postdetail/".base64_encode($_POST['postjob_id'])), "refresh");
 		}
 
 	}

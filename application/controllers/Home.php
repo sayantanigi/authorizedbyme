@@ -289,7 +289,7 @@ class Home extends MY_Controller {
 		$this->load->view('footer');
 	}
 
-	function client_list() {
+	/*function client_list() {
 		$data['get_specialist'] = $this->Crud_model->GetData('specialist');
 		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Freelancers'");
 		$this->load->view('header');
@@ -305,7 +305,7 @@ class Home extends MY_Controller {
 		if($specialist) {
 			$specialist = implode(',', $specialist);
 		}
-		$userType = 1;
+		$userType = 2;
 		$usersubType = 0;
 		$this->load->library('pagination');
 		$config = array();
@@ -346,7 +346,7 @@ class Home extends MY_Controller {
 			'product_list'   => $getdata
 		);
 		echo json_encode($output);
-	}
+	}*/
 
 	function agent_list() {
 		$data['get_specialist'] = $this->Crud_model->GetData('specialist', '', "userType='1'", '', '(id)desc');
@@ -536,22 +536,21 @@ class Home extends MY_Controller {
 		$this->load->view('footer');
 	}
 
-	function employer_list() {
+	function client_list() {
 		$data['get_banner'] = $this->Crud_model->get_single('banner', "page_name='Vendors'");
 		$data['getcategory']=$this->Crud_model->GetData('category');
 		$this->load->view('header');
-		$this->load->view('frontend/employer_list', $data);
+		$this->load->view('frontend/client_list', $data);
 		$this->load->view('footer');
 	}
 
-	function employerlist_fetchdata() {
+	function clientlist_fetchdata() {
 		sleep(1);
 		$title = $this->input->post('title_keyword');
-		$category_id = $this->input->post('category');
-		$subcategory_id = $this->input->post('subcategory');
 		$search_location = $this->input->post('location');
 		$days = $this->input->post('days');
 		$userType = 2;
+		$usersubType = 0;
 		$this->load->library('pagination');
 		$config = array();
 		$config['base_url'] = '#';
@@ -580,10 +579,10 @@ class Home extends MY_Controller {
 		$page = $this->uri->segment(3);
 		$start = ($page - 1) * $config['per_page'];
 
-		if(isset($title) || isset($category_id) || isset($subcategory_id) || isset($search_location) || isset($days) || isset($userType)) {
-			$getdata=$this->Users_model->employer_fetchdata($config["per_page"], $start, $title, $category_id, $subcategory_id, $search_location, $days, $userType);
+		if(isset($title) || isset($search_location) || isset($days) || isset($userType) || isset($usersubType)) {
+			$getdata=$this->Users_model->employer_fetchdata($config["per_page"], $start, $title, $search_location, $days, $userType, $usersubType);
 		} else {
-			$getdata=$this->Users_model->employer_fetchdata($config["per_page"], $start, $title, $category_id, $subcategory_id, $search_location, $days, $userType);
+			$getdata=$this->Users_model->employer_fetchdata($config["per_page"], $start, $title, $search_location, $days, $userType, $usersubType);
 		}
 
 		$output = array(

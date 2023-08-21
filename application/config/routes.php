@@ -71,6 +71,7 @@ $route['page/feedback'] = "home/feedback";
 $route['page/terms-condition'] = "home/term_and_conditions";
 $route['page/privacy-policy'] = "home/privacy";
 $route['page/postjob'] = "welcome/post_job";
+$route['page/ourjobs'] = "home/our_jobs";
 $route['page/postdetail/(:any)'] = "home/post_bidding/$1";
 $route['page/update-postjob/(:any)'] = "welcome/update_post_job/$1";
 $route['page/employerdetail/(:any)'] = "Welcome/employer_detail/$1";

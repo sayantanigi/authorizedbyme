@@ -226,7 +226,7 @@ function newMessage() {
         dataType: 'json',
         success: function(returndata) {
             setInterval(function(){
-                getMessageCount();
+                //getMessageCount();
             }, 5000);
             if (returndata.result == 1) {
                 $('<li class="sent">' + returndata.userpic + '<p>' + message + '</p></li>').appendTo($('.messages ul'));
@@ -242,7 +242,7 @@ $("#message").mouseover(function(){
     $('.EachvChat').hide();
     $('.EachfChat').hide();
     setInterval(function(){
-        getMessage();
+        //getMessage();
         getMessageCount();
     }, 5000);
 });

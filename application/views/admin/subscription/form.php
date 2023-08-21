@@ -24,7 +24,7 @@
 								<label>Subscription Plan for Specific User Type</label>
 								<select class="form-control" name="subscription_user_type" id="subscription_user_type" required>
 									<option value="">Choose an option</option>
-									<option value="Agents" <?php if($subscription_user_type == 'Agents') { echo "selected"; } ?>>Agents</option>
+									<option value="Clients" <?php if($subscription_user_type == 'Clients') { echo "selected"; } ?>>Clients</option>
 									<option value="Representatives" <?php if($subscription_user_type == 'Representatives') { echo "selected"; } ?>>Representatives</option>
 								</select>
 							</div>

@@ -60,6 +60,11 @@ function completeSub() {
                             <a class="nav-link btn text-capitalize" href="#" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-user"></i> Dashboard <i class="fas fa-angle-down"></i></a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="<?= base_url()?>page/worker-detail/<?= base64_encode($_SESSION['authorized']['userId'])?>">Profile</a></li>
+                                <?php if($_SESSION['authorized']['userType'] == 2) { ?>
+                                <li><a class="dropdown-item" href="<?= base_url()?>page/postjob">Post Job</a></li>
+                                <?php } else { ?>
+                                <li><a class="dropdown-item" href="<?= base_url()?>page/ourjobs">Job Bid</a></li>
+                                <?php } ?>
                                 <?php $check_sub = $this->Crud_model->GetData('employer_subscription', '', "employer_id='".$_SESSION['authorized']['userId']."' AND status IN (1,2)");
                                 if(empty($check_sub)) { ?>
                                 <li><a class="dropdown-item" href="<?= base_url()?>profile/subscription">Subscription</a></li>

@@ -57,7 +57,7 @@ class Users_model extends My_Model {
     }
 
     function getChat() {
-        $this->db->select('chat.*,CONCAT(users.firstname," ",users.lastname) as full_name,users.profilePic,to_user.username as to_username,CONCAT(to_user.firstname," ",to_user.lastname) as to_fullname');
+        $this->db->select('chat.*,CONCAT(users.firstname," ",users.lastname) as full_name,users.profilePic,CONCAT(to_user.firstname," ",to_user.lastname) as to_fullname');
         $this->db->from('chat');
         $this->db->join('users','users.userId=chat.userfrom_id');
         $this->db->join('users to_user','to_user.userId=chat.userto_id');
@@ -67,7 +67,7 @@ class Users_model extends My_Model {
     }
 
     function getCurrentChat($userfrom_id, $user_id, $post_id) {
-        $this->db->select('chat.*,CONCAT(users.firstname," ",users.lastname) as full_name,users.profilePic,to_user.username as to_username,CONCAT(to_user.firstname," ",to_user.lastname) as to_fullname');
+        $this->db->select('chat.*,CONCAT(users.firstname," ",users.lastname) as full_name,users.profilePic,CONCAT(to_user.firstname," ",to_user.lastname) as to_fullname');
         $this->db->from('chat');
         $this->db->join('users','users.userId=chat.userfrom_id');
         $this->db->join('users to_user','to_user.userId=chat.userto_id');
@@ -79,7 +79,7 @@ class Users_model extends My_Model {
     }
 
     function getmessage($con) {
-        $this->db->select('chat.*,CONCAT(users.firstname," ",users.lastname) as full_name,users.profilePic,to_user.username as to_username,CONCAT(to_user.firstname," ",to_user.lastname) as to_fullname,to_user.profilePic as to_profile');
+        $this->db->select('chat.*,CONCAT(users.firstname," ",users.lastname) as full_name,users.profilePic,CONCAT(to_user.firstname," ",to_user.lastname) as to_fullname,to_user.profilePic as to_profile');
         $this->db->from('chat');
         $this->db->join('users','users.userId=chat.userfrom_id');
         $this->db->join('users to_user','to_user.userId=chat.userto_id');
@@ -185,32 +185,23 @@ class Users_model extends My_Model {
         ////////////////////// ajax list employer///////////////////////
 
     function get_employercount() {
-        $this->db->select('users.*,category.category_name');
+        $this->db->select('users.*');
         $this->db->from('users');
-        $this->db->join('category','category.id=users.serviceType','left');
         $this->db->where('users.userType','2');
         $this->db->order_by('users.userId','desc');
         $query = $this->db->get();
         return $query->result();
     }
 
-    function make_query($title, $category_id, $subcategory_id, $search_location, $days, $userType) {
-        if(isset($title) || isset($category_id) || isset($subcategory_id) || isset($search_location) || isset($days) || isset($userType)) {
-            $query = "SELECT * FROM users LEFT JOIN postjob ON users.userId = postjob.user_id WHERE users.userType = $userType";
+    function make_query($title, $search_location, $days, $userType, $usersubType) {
+        if(isset($title) || isset($search_location) || isset($days) || isset($userType) || isset($usersubType)) {
+            $query = "SELECT * FROM users LEFT JOIN postjob ON users.userId = postjob.user_id WHERE users.userType = $userType AND users.usersubType = $usersubType";
             if(isset($title) && !empty($title)) {
                 $query .= " AND users.companyname like '%".$title."%'";
             }
 
             if(isset($search_location) && !empty($search_location)) {
                 $query .= " AND users.address like '%".$search_location."%'";
-            }
-
-            if(isset($category_id) && !empty($category_id)) {
-                $query .= " AND postjob.category_id='".$category_id."'";
-            }
-
-            if(isset($subcategory_id) && !empty($subcategory_id)) {
-                $query .= " AND postjob.subcategory_id='".$subcategory_id."'";
             }
 
             if(isset($days) && !empty($days)) {
@@ -223,9 +214,6 @@ class Users_model extends My_Model {
                 }
             }
 
-            if(isset($specialist) && !empty($specialist)) {
-                $query .= " AND instr(concat(',', skills, ','), ',$specialist,'))";
-            }
             $query .= " AND users.status = 1 and users.email_verified = 1 GROUP BY users.userId";
             return $query;
         }
@@ -250,9 +238,9 @@ class Users_model extends My_Model {
         }
     }
 
-    function employer_fetchdata($limit, $start, $title, $category_id, $subcategory_id, $search_location, $days, $userType) {
-        if(isset($title) || isset($category_id) || isset($subcategory_id) || isset($search_location) || isset($days) || isset($userType)) {
-            $query = $this->make_query($title, $category_id, $subcategory_id, $search_location, $days, $userType);
+    function employer_fetchdata($limit, $start, $title, $search_location, $days, $userType, $usersubType) {
+        if(isset($title) || isset($search_location) || isset($days) || isset($userType) || isset($usersubType)) {
+            $query = $this->make_query($title, $search_location, $days, $userType, $usersubType);
             $query .= ' ORDER BY userId DESC';
             $query .= ' LIMIT '.$start.', ' . $limit;
             $data = $this->db->query($query);
@@ -285,7 +273,7 @@ class Users_model extends My_Model {
                 } else {
                     $profile_pic= '<img src="'.base_url('uploads/users/user.png').'" alt="" />';
                 }
-                $output .= '<div class="emply-resume-list"> <div class="emply-resume-thumb">'.$profile_pic.'</div> <div class="emply-resume-info"> <h3><a href="#" title="">'.$name.'</a></h3><p><i class="la la-map-marker"></i>'. $row['address'].'</p> <p>'.$desc.'</p> <p>Job Posts '.count($get_post).'</p> </div> <div class="shortlists" style="width:50px;"> <a href="'.base_url('employerdetail/'.base64_encode($row['userId'])).'" title="">View Profile<i class="la la-plus"></i></a> </div> </div>';
+                $output .= '<div class="emply-resume-list"> <div class="emply-resume-thumb">'.$profile_pic.'</div> <div class="emply-resume-info"> <h3><a href="#" title="">'.$name.'</a></h3><p><i class="la la-map-marker"></i>'. $row['address'].'</p> <p>'.$desc.'</p> <p>Job Posts '.count($get_post).'</p> </div> <div class="shortlists" style="width:50px;"> <a href="'.base_url('page/employerdetail/'.base64_encode($row['userId'])).'" title="">View Profile<i class="la la-plus"></i></a> </div> </div>';
             }
         } else {
             $output .= '<div class="emply-resume-list"><div class="emply-resume-thumb"><h2>No Data Found</h2></div></div>';

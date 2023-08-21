@@ -36,7 +36,7 @@
                                             <tr>
                                                 <td class="heading"><?=$key->post_title; ?></td>
                                                 <td class="btn-option" style="width: 205px;">
-                                                    <!-- <?php if($_SESSION['afrebay']['userType'] == '2') { ?>
+                                                    <!-- <?php if($_SESSION['authorized']['userType'] == '2') { ?>
                                                     <?php if(@$key->bidding_status=='Pending'){?>
                                                     <a href="#" onclick="change_biddingstatus('<?= $key->id?>');"><span class="badge badge-warning" >
                                                         <?= @$key->bidding_status; ?></span></a>
@@ -49,9 +49,9 @@
                                                         echo @$key->bidding_status;
                                                     } ?> -->
                                                     <?php
-                                                    if($_SESSION['afrebay']['userType'] == '2') {
+                                                    if($_SESSION['authorized']['userType'] == '2') {
                                                         if(@$key->bidding_status == 'Under Review' || @$key->bidding_status == 'Short Listed'|| @$key->bidding_status == 'Pending' || empty(@$key->bidding_status)) {?>
-                                                            <select class="jobbid_select form-control" name="change_biddingstatus" id="change_biddingstatus_<?php echo @$key->id?>" style="width: 80% !important;">
+                                                            <select class="jobbid_select form-control" name="change_biddingstatus" id="change_biddingstatus_<?php echo @$key->id?>" style="width: 80% !important; display: inline-block;">
                                                                 <option value="">Select Option</option>
                                                                 <option value="Under Review" <?php if(@$key->bidding_status == 'Under Review'){echo "Selected"; }?>>Under Review</option>
                                                                 <option value="Short Listed" <?php if(@$key->bidding_status == 'Short Listed'){echo "Selected"; }?>>Short Listed</option>
@@ -106,7 +106,7 @@
                                                     <?php } else { ?>
                                                     <img src="<?php echo base_url()?>uploads/users/user.png" alt="" style="width: 60px; height: 60px; object-fit: cover;">
                                                     <?php } ?>
-                                                    <a href="<?php echo base_url()?>worker-detail/<?php echo base64_encode($key->userid)?>" target="_blank"><p><?=$key->fullname; ?></p></a>
+                                                    <a href="<?php echo base_url()?>page/worker-detail/<?php echo base64_encode($key->userid)?>" target="_blank"><p><?=$key->fullname; ?></p></a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -134,16 +134,16 @@
                                 <tr>
                                     <td colspan="6">
                                         <center>No Data Found</center>
-                                        <?php if($_SESSION['afrebay']['userType'] == '1') {
-                                        $get_sub_data = $this->db->query("SELECT * FROM employer_subscription where employer_id = ".$_SESSION['afrebay']['userId']." and payment_status = 'paid'")->result_array();
+                                        <?php if($_SESSION['authorized']['userType'] == '1') {
+                                        $get_sub_data = $this->db->query("SELECT * FROM employer_subscription where employer_id = ".$_SESSION['authorized']['userId']." and payment_status = 'paid'")->result_array();
                                         if(!empty($get_sub_data)) {
-                                        $profile_check = $this->db->query("SELECT * FROM `users` WHERE userId = '".@$_SESSION['afrebay']['userId']."'")->result_array();
-                                        if(empty($profile_check[0]['firstname']) || empty($profile_check[0]['lastname']) || empty($profile_check[0]['email']) || empty($profile_check[0]['gender']) || empty($profile_check[0]['address']) || empty($profile_check[0]['short_bio'])) { ?>
-                                        <button class="post-job-btn pull-right" type="submit" style=" background: linear-gradient(180deg, rgba(252, 119, 33, 1) 0%, rgba(249, 80, 30, 1) 100%) !important; border: 0 !important; "><a href="javascript:void(0)" onclick="completeSub()">Apply for Jobs</a></button>
+                                        $profile_check = $this->db->query("SELECT * FROM `users` WHERE userId = '".@$_SESSION['authorized']['userId']."'")->result_array();
+                                        if(empty($profile_check[0]['firstname']) || empty($profile_check[0]['lastname']) || empty($profile_check[0]['email']) || empty($profile_check[0]['address']) || empty($profile_check[0]['short_bio'])) { ?>
+                                        <button class="post-job-btn pull-right" type="submit" style="background: #294CA6;color: #fff;text-transform: uppercase;letter-spacing: .5px;border-radius: 5px !important;padding: 8px 16px !important;"><a href="javascript:void(0)" onclick="completeSub()" style="color:#fff;">Apply for Jobs</a></button>
                                         <?php } else { ?>
-                                        <button class="post-job-btn pull-right" type="submit" style=" background: linear-gradient(180deg, rgba(252, 119, 33, 1) 0%, rgba(249, 80, 30, 1) 100%) !important; border: 0 !important; "><a href="<?= base_url('ourjobs')?>" title="" target="_blank">Apply for Jobs</a></button>
+                                        <button class="post-job-btn pull-right" type="submit" style="background: #294CA6;color: #fff;text-transform: uppercase;letter-spacing: .5px;border-radius: 5px !important;padding: 8px 16px !important;"><a href="<?= base_url('page/ourjobs')?>" title="" target="_blank" style="color:#fff;">Apply for Jobs</a></button>
                                         <?php } } else { ?>
-                                        <button class="post-job-btn pull-right" type="submit" style=" background: linear-gradient(180deg, rgba(252, 119, 33, 1) 0%, rgba(249, 80, 30, 1) 100%) !important; border: 0 !important; "><a href="javascript:void(0)" onclick="completeSub()">Apply for Jobs</a></button>
+                                        <button class="post-job-btn pull-right" type="submit" style="background: #294CA6;color: #fff;text-transform: uppercase;letter-spacing: .5px;border-radius: 5px !important;padding: 8px 16px !important;"><a href="javascript:void(0)" onclick="completeSub()" style="color:#fff;">Apply for Jobs</a></button>
                                         <?php } } ?>
                                     </td>
                                 </tr>

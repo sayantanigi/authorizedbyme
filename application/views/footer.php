@@ -107,7 +107,11 @@ if(!empty($_SESSION['afrebay']['userId'])) {
     <script src="<?php echo base_url()?>assets/multi_select/langs/tail.select-ru.js"></script>
     <script src="<?php echo base_url()?>assets/multi_select/langs/tail.select-tr.js"></script>
     <input type="hidden" name="base_url" id="base_url" value="<?= base_url()?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
     <script>
+    var confirmTextDelete = 'Are you sure you want to delete this record?';
+    var confirmationText = 'Are you sure you want to change this status?';
     $(document).ready(function () {
         tail.select('#example',{
             startOpen: true,

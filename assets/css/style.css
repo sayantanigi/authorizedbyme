@@ -3226,4 +3226,335 @@ i {
     padding: 8px 16px !important;
     border-radius: 5px;
   }
-  
+  .dashboard-gig .bd-form {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #dddddd;
+    background: #fff !important;
+}
+.bd-form {
+    background: #ccc;
+    padding: 15px;
+}
+.dashboard-gig .bd-form .job-bid {
+    font-size: 18px;
+    color: #202020 !important;
+    letter-spacing: 0 !important;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+.dashboard-gig .bd-form label {
+    padding: 0;
+    font-weight: 600;
+}
+.dashboard-gig .bd-form input {
+    background: transparent !important;
+    font-size: 14px;
+    margin-bottom: 20px !important;
+    padding: 10px 10px !important;
+    border-bottom: 2px solid #b1b1b1;
+    border-radius: 10px !important;
+    box-shadow: 0 0 10px #e1e1e1;
+}
+.dashboard-gig .bd-form textarea {
+    background: transparent !important;
+    font-size: 14px;
+    padding: 10px 10px !important;
+    border-bottom: 2px solid #b1b1b1;
+    border-radius: 10px !important;
+    box-shadow: 0 0 10px #e1e1e1;
+}
+.custom-table tr td {
+    border: 0 !important;
+    padding: 5px 5px !important;
+}
+.bid_contact-profile {
+    display: flex;
+    align-items: center;
+}
+.bid_contact-profile img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    float: left;
+}
+.bid_contact-profile p {
+    margin: 0 20px;
+}
+.custom-table tr td.bid-amount {
+    padding-top: 5px !important;
+    font-style: normal;
+    font-size: 15px;
+    color: #888888;
+    text-align: left;
+}
+.custom-table tr td {
+    border: 0 !important;
+    padding: 5px 5px !important;
+}
+.custom-table tr td.year label, .custom-table tr td.bid-amount label {
+    padding: 0;
+    margin: 0;
+    color: #000;
+    font-weight: 600;
+    text-align: left;
+}
+.custom-table tr td.year {
+    font-style: normal;
+    font-size: 15px;
+    color: #888888;
+    padding-top: 5px !important;
+    text-align: left;
+}
+.custom-table tr td.desc, .custom-table tr td.desc p {
+    text-align: justify;
+    line-height: 22px !important;
+    font-size: 14px !important;
+    padding-top: 5px !important;
+}
+.custom-table tr td.btn-option .fa {
+    font-size: 20px;
+    color: #294ca6  !important;
+}
+.list-job-modal .modal-header, .list-job-modal .modal-body {
+    padding: 10px !important;
+}
+.list-job-modal .list-job-modal-col p {
+    text-align: left;
+    margin-bottom: 5px !important;
+    color: #000 !important;
+    font-weight: 500;
+}
+.list-job-modal .list-job-modal-col span {
+    font-weight: 300;
+    color: #666666 !important;
+}
+#frame #sidepanel #contacts {
+    height: calc(100% - 177px);
+    /* overflow-y: scroll; */
+    overflow-x: hidden;
+    width: 100%;
+}
+#frame #sidepanel #contacts ul li.contact {
+    position: relative;
+    padding: 10px 0 10px 0;
+    font-size: 0.9em;
+    cursor: pointer;
+    background: #ffffff1f;
+    margin-bottom: 10px;
+}
+.dashboard-gig li, ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.Chat_User #frame #sidepanel #contacts ul li .wrap {
+    width: 80% !important;
+}
+#frame #sidepanel #contacts ul li.contact .wrap {
+    width: 88%;
+    margin: 0 auto;
+    position: relative;
+}
+#frame #sidepanel #contacts ul li.contact .wrap span.online {
+    background: #2ecc71;
+}
+#frame #sidepanel #contacts ul li.contact .wrap span {
+    position: absolute;
+    left: 0;
+    margin: -2px 0 0 -2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid #2c3e50;
+    background: #95a5a6;
+}
+#frame #sidepanel #contacts ul li.contact .wrap img {
+    width: 45px;
+    height: 45px !important;
+    border-radius: 50%;
+    float: left;
+    margin-right: 10px;
+    object-fit: cover;
+}
+#frame #sidepanel #contacts ul li.contact .wrap .meta {
+    padding: 5px 0 0 0;
+}
+#frame #sidepanel #contacts ul li.contact .wrap .meta .name {
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0;
+    line-height: 15px;
+}
+.Chat_User #frame #sidepanel #contacts ul li .wrap .meta p.preview {
+    margin-bottom: 0 !important;
+}
+#frame #sidepanel #contacts ul li.contact .wrap .meta .preview {
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -moz-transition: 1s all ease;
+    -o-transition: 1s all ease;
+    -webkit-transition: 1s all ease;
+    transition: 1s all ease;
+    color: #fff;
+    font-size: 14px;
+}
+#frame .content .contact-profile {
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background: #ffffff;
+    box-shadow: 0 10px 25px #c3c3c3;
+    z-index: 1;
+    position: relative;
+}
+#frame .content .contact-profile img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    float: left;
+    margin: 9px 12px 0 15px;
+}
+.Chat_User #frame .content .contact-profile p {
+    margin: 0 !important;
+    margin-top: 15px !important;
+    font-weight: 600;
+    color: #000;
+}
+#frame .content .contact-profile p {
+    float: left;
+}
+#frame .content .messages {
+    background: #f3f3f3;
+    height: auto;
+    min-height: calc(100% - 93px);
+    max-height: calc(100% - 93px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+#frame .content .messages ul li.replies {
+    position: relative;
+}
+#frame .content .messages ul li {
+    display: inline-block;
+    clear: both;
+    float: left;
+    margin: 15px 15px 5px 15px;
+    width: calc(100% - 25px);
+    font-size: 0.9em;
+}
+.Chat_User #frame .content .messages ul li.replies img {
+    margin: 0 !important;
+    margin-left: 10px !important;
+    object-fit: cover;
+}
+#frame .content .messages ul li.replies img {
+    float: right;
+    margin: 6px 0 0 8px;
+}
+#frame .content .messages ul li img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    float: left;
+}
+.Chat_User #frame .content .messages ul li.replies p {
+    margin: 0 !important;
+    border-radius: 13px 13px 0 13px !important;
+}
+#frame .content .messages ul li.replies p {
+    color: #ffffff;
+    float: right;
+    background: #294CA6 !important;
+    font-size: 14px;
+    font-weight: 500;
+}
+#frame .content .messages ul li.replies div {
+    position: absolute;
+    right: 50px;
+    bottom: -15px;
+}
+#frame .content .messages ul li {
+    display: inline-block;
+    clear: both;
+    float: left;
+    margin: 15px 15px 5px 15px;
+    width: calc(100% - 25px);
+    font-size: 0.9em;
+}
+.Chat_User #frame .content .messages ul li.sent img {
+    margin: 0 !important;
+    margin-right: 10px !important;
+    object-fit: cover;
+}
+#frame .content .messages ul li.sent img {
+    margin: 6px 8px 0 0;
+}
+#frame .content .messages ul li img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    float: left;
+}
+.Chat_User #frame .content .messages ul li.sent p {
+    margin: 0 !important;
+    border-radius: 13px 13px 13px 0 !important;
+}
+#frame .content .messages ul li.sent p {
+    background: #dddddd;
+    color: #000000;
+    font-size: 14px;
+    font-weight: 500;
+}
+#frame .content .message-input {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 99;
+}
+#frame .content .message-input .wrap {
+    position: relative;
+}
+#frame .content .message-input .wrap input {
+    font-family: "proxima-nova", "Source Sans Pro", sans-serif;
+    float: left;
+    border: none;
+    width: calc(100% - 90px);
+    padding: 15px 25px;
+    font-size: 0.8em;
+    color: #000000;
+    background: #f3f3f3;
+    box-shadow: inset 3px 3px 5px #cbcbcb, inset -3px -3px 5px #ffffff;
+    border-radius: 35px;
+    margin-left: 10px;
+    margin-bottom: 25px !important;
+}
+#frame .content .message-input .wrap button {
+    float: right;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    margin-right: 15px;
+    padding: 12px 0;
+    cursor: pointer;
+    color: #ffffff;
+    background: #294CA6 !important;
+}
+.Chat_User #frame.chat_frame .content {
+    display: unset;
+    border: 0;
+}
+.Chat_User #frame.chat_frame .content img.chat-start-img, .Chat_User #frame.chat_frame .content #message_list .contact-profile .social-media a:nth-last-child(1) {
+    display: none;
+}
+#frame .content .messages ul li p {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 205px;
+    line-height: 130%;
+}
