@@ -12,7 +12,7 @@ class Chat extends MY_Controller {
 	function index() {
 		$header = array('title' => 'Messages');
 		$data = array('heading' => 'Messages');
-		$data['chat_list'] = $this->db->query('SELECT `chat`.*, `users`.`username`, CONCAT(users.firstname, " ", users.lastname) as full_name, `users`.`profilePic`, `to_user`.`username` as `to_username`, CONCAT(to_user.firstname, " ", to_user.lastname) as to_fullname FROM `chat` JOIN `users` ON `users`.`userId`=`chat`.`userfrom_id` JOIN `users` `to_user` ON `to_user`.`userId`=`chat`.`userto_id` group by userfrom_id order by id DESC')->result_array();
+		$data['chat_list'] = $this->db->query('SELECT `chat`.*, CONCAT(users.firstname, " ", users.lastname) as full_name, `users`.`profilePic`, CONCAT(to_user.firstname, " ", to_user.lastname) as to_fullname FROM `chat` JOIN `users` ON `users`.`userId`=`chat`.`userfrom_id` JOIN `users` `to_user` ON `to_user`.`userId`=`chat`.`userto_id` group by userfrom_id order by id DESC')->result_array();
         $this->load->view('admin/header', $header);
         $this->load->view('admin/sidebar');
         $this->load->view('admin/chat/list',$data);
@@ -20,18 +20,18 @@ class Chat extends MY_Controller {
 	}
 
 	function count_all($cond) {
-        $query = $this->db->query('SELECT `chat`.*, `users`.`username`, CONCAT(users.firstname, " ", users.lastname) as full_name, `users`.`profilePic`, `to_user`.`username` as `to_username`, CONCAT(to_user.firstname, " ", to_user.lastname) as to_fullname FROM `chat` JOIN `users` ON `users`.`userId`=`chat`.`userfrom_id` JOIN `users` `to_user` ON `to_user`.`userId`=`chat`.`userto_id` group by userfrom_id order by id DESC');
+        $query = $this->db->query('SELECT `chat`.*, CONCAT(users.firstname, " ", users.lastname) as full_name, `users`.`profilePic`, CONCAT(to_user.firstname, " ", to_user.lastname) as to_fullname FROM `chat` JOIN `users` ON `users`.`userId`=`chat`.`userfrom_id` JOIN `users` `to_user` ON `to_user`.`userId`=`chat`.`userto_id` group by userfrom_id order by id DESC');
         return $this->db->count_all_results();
     }
 
     function count_filtered($cond) {
-        $query = $this->db->query('SELECT `chat`.*, `users`.`username`, CONCAT(users.firstname, " ", users.lastname) as full_name, `users`.`profilePic`, `to_user`.`username` as `to_username`, CONCAT(to_user.firstname, " ", to_user.lastname) as to_fullname FROM `chat` JOIN `users` ON `users`.`userId`=`chat`.`userfrom_id` JOIN `users` `to_user` ON `to_user`.`userId`=`chat`.`userto_id` group by userfrom_id order by id DESC');
+        $query = $this->db->query('SELECT `chat`.*, CONCAT(users.firstname, " ", users.lastname) as full_name, `users`.`profilePic`, CONCAT(to_user.firstname, " ", to_user.lastname) as to_fullname FROM `chat` JOIN `users` ON `users`.`userId`=`chat`.`userfrom_id` JOIN `users` `to_user` ON `to_user`.`userId`=`chat`.`userto_id` group by userfrom_id order by id DESC');
         return $query->num_rows();
     }
 
 	function ajax_manage_page() {
 		$cond = "1=1";
-		//$GetData = $this->db->query('SELECT `chat`.*, `users`.`username`, CONCAT(users.firstname, " ", users.lastname) as full_name, `users`.`profilePic`, `to_user`.`username` as `to_username`, CONCAT(to_user.firstname, " ", to_user.lastname) as to_fullname FROM `chat` JOIN `users` ON `users`.`userId`=`chat`.`userfrom_id` JOIN `users` `to_user` ON `to_user`.`userId`=`chat`.`userto_id` group by userfrom_id order by id DESC')->result_array();
+		//$GetData = $this->db->query('SELECT `chat`.*, CONCAT(users.firstname, " ", users.lastname) as full_name, `users`.`profilePic`, CONCAT(to_user.firstname, " ", to_user.lastname) as to_fullname FROM `chat` JOIN `users` ON `users`.`userId`=`chat`.`userfrom_id` JOIN `users` `to_user` ON `to_user`.`userId`=`chat`.`userto_id` group by userfrom_id order by id DESC')->result_array();
 		$GetData = $this->db->query('SELECT `chat`.* FROM `chat` JOIN `users` ON `users`.`userId`=`chat`.`userfrom_id` JOIN `users` `to_user` ON `to_user`.`userId`=`chat`.`userto_id` group by postjob_id order by id DESC')->result_array();
 		$no=0;
 		$data = array();

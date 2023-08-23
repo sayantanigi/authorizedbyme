@@ -142,8 +142,7 @@ if($user_detail->usersubType == '1') {
                                                 <textarea placeholder="Enter review" name="review"></textarea>
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 Form_Btn">
-                                                <!-- <button type="submit" class="submit btn btn-info" value="submit">Submit</button> -->
-                                                <input type="submit" class="btn-primary Submit_Btn" value="Submit">
+                                                <button class="submit btn btn-info">Submit</button>
                                             </div>
                                         </div>
                                     </form>

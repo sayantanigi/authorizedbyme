@@ -15,13 +15,13 @@ class Jobsbid_model extends My_Model
 
     private function _get_datatables_query()
     {
-        $this->db->select('job_bid.*,postjob.post_title,postjob.id as post_job_id,users.username,CONCAT(users.firstname,"",users.lastname) as fullname,CASE
+        $this->db->select('job_bid.*,postjob.post_title,postjob.id as post_job_id,CONCAT(users.firstname,"",users.lastname) as fullname,CASE
         WHEN users.userType=1 THEN concat(users.firstname," ",users.lastname)
-        WHEN users.userType=2 THEN users.companyname
+        WHEN users.userType=2 THEN concat(users.firstname," ",users.lastname)
         ELSE ""
     END as job_bid_name,postjob.user_id,u.userType,CASE
     WHEN u.userType=1 THEN concat(u.firstname," ",u.lastname)
-    WHEN u.userType=2 THEN u.companyname
+    WHEN u.userType=2 THEN concat(users.firstname," ",users.lastname)
     ELSE ""
 END as post_job_name');
         $this->db->from('job_bid');

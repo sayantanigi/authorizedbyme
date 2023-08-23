@@ -1101,7 +1101,7 @@ header .navbar .nav-link.btn {
 }
 
 .Employees_Search_List .emply-resume-info h3 a {
-    width: 62%;
+    width: 100%;
     display: block
 }
 
@@ -2439,54 +2439,30 @@ ul {
     text-align: center;
 }
 
-.text-success-msg {
-    color: #294ca6 !important;
-    font-size: 20px !important;
-    margin-bottom: 20px !important;
-}
-
 #cnclsubscription-messages {
     display: none;
     text-align: center;
 }
 
-.text-success-msg {
+./*text-success-msg {
     color: #294ca6 !important;
     font-size: 20px !important;
     margin-bottom: 20px !important;
-}
+}*/
 
 #subscription-messages {
     display: none;
     text-align: center;
 }
 
-.text-success-msg {
-    color: #294ca6 !important;
-    font-size: 20px !important;
-    margin-bottom: 20px !important;
-}
-
 #cnclsubscription-messages {
     display: none;
     text-align: center;
 }
 
-.text-success-msg {
-    color: #294ca6 !important;
-    font-size: 20px !important;
-    margin-bottom: 20px !important;
-}
-
 #cnclsubscription-messages {
     display: none;
     text-align: center;
-}
-
-.text-success-msg {
-    color: #294ca6 !important;
-    font-size: 20px !important;
-    margin-bottom: 20px !important;
 }
 
 .User_Sidemenu .display-table-cell .user-dashboard .row {
@@ -2517,12 +2493,6 @@ ul {
 .custom-cardak .text-success-msg {
     width: 100% !important;
     display: block !important;
-}
-
-.text-success-msg {
-    color: #294ca6 !important;
-    font-size: 20px !important;
-    margin-bottom: 20px !important;
 }
 
 .User_Sidemenu .display-table-cell .user-dashboard .row {
@@ -4685,12 +4655,6 @@ footer {
     color: #fff;
     border-radius: 30px;
     letter-spacing: 0px;
-}
-
-.text-success-msg {
-    color: #f67a49 !important;
-    font-size: 20px !important;
-    margin-bottom: 20px !important;
 }
 
 .Product-Details-Page {

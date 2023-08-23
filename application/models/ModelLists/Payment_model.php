@@ -11,7 +11,7 @@ class Payment_model extends My_Model {
     }
 
     private function _get_datatables_query($cond) {
-        $this->db->select('emp.*,subscription.subscription_name,users.companyname,users.firstname,users.lastname,users.userType');
+        $this->db->select('emp.*,subscription.subscription_name,users.firstname,users.lastname,users.userType');
         $this->db->from('employer_subscription as emp');
         $this->db->join('subscription',"subscription.id=emp.subscription_id",'left');
         $this->db->join('users',"users.userId=emp.employer_id");

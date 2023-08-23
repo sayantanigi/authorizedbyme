@@ -1,7 +1,7 @@
     <section class="py-2">
         <div class="container">
             <div class="topsearch position-relative">
-                <form>
+                <form method="post" action="<?= base_url('page/search-job')?>">
                     <input type="text" class="form-control" name="" placeholder="Search">
                     <button class="btn"><i class="fas fa-search"></i></button>
                 </form>

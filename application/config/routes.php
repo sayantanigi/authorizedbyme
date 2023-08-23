@@ -76,6 +76,7 @@ $route['page/postdetail/(:any)'] = "home/post_bidding/$1";
 $route['page/update-postjob/(:any)'] = "welcome/update_post_job/$1";
 $route['page/employerdetail/(:any)'] = "Welcome/employer_detail/$1";
 $route['page/productdetail/(:any)'] = "Welcome/product_detail/$1";
+$route['page/search-job'] = "welcome/searchjob";
 $route['save'] = "user/login/reg";
 $route['validate'] = "user/login/validate_user";
 $route['profile/dashboard'] = "user/dashboard/profile";

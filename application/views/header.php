@@ -10,6 +10,8 @@
 	<link rel="stylesheet" type="text/css" href="<?=base_url(); ?>assets/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?=base_url(); ?>assets/css/owl.carousel.min.css">
 	<link rel="stylesheet" type="text/css" href="<?=base_url(); ?>assets/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="<?=base_url(); ?>assets/css/chosen.css" />
+    <link rel="stylesheet" type="text/css" href="<?=base_url(); ?>assets/css/colors/colors.css" />
 	<link rel="stylesheet" type="text/css" href="<?=base_url(); ?>assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="<?=base_url(); ?>assets/css/responsive.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
