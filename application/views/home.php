@@ -1,10 +1,53 @@
     <section class="py-2">
         <div class="container">
             <div class="topsearch position-relative">
-                <form method="post" action="<?= base_url('page/search-job')?>">
-                    <input type="text" class="form-control" name="" placeholder="Search">
-                    <button class="btn"><i class="fas fa-search"></i></button>
-                </form>
+                <div class="job-search">
+                    <form method="post" action="<?= base_url('page/search-job')?>">
+                        <!-- <input type="text" class="form-control" name="" placeholder="Search">
+                        <button class="btn"><i class="fas fa-search"></i></button> -->
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="job-field">
+                                    <input type="text" name="search_title"  class="form-control" placeholder="Search Job title" value="" />
+                                    <!-- <i class="la la-search"></i> -->
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                <div class="job-field">
+                                    <div class="custom-select">
+                                        <select class="chosen_country" name="country" id="country" onchange="getState(this.value)">
+                                            <option value="0">Select Country</option>
+                                            <?php if(!empty($countries)){ foreach($countries as $item){?>
+                                            <option value="<?= $item->name ?>"><?= ucfirst($item->name)?></option>
+                                            <?php } }?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                <div class="job-field">
+                                    <div class="custom-select">
+                                        <select class="chosen_state" name="state" id="state" onchange="getCity(this.value);filter_job();">
+                                            <option value="">Select State</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                <div class="job-field">
+                                    <div class="custom-select">
+                                        <select class="chosen_city" name="city" id="city" onchange="filter_job();">
+                                            <option value="">Select City</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-btn">
+                                <button type="submit"><i class="la la-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -206,5 +249,47 @@
         #register-messages {text-align: center; margin-top: 25px; display: none;}
         #err-messages {text-align: center; margin-top: 10px; display: none;}
     </style>
+    <script>
+    function getState(val) {
+        var base_url = $("#base_url").val();
+        var id = val;
+        $.ajax({
+            type:"post",
+            cache:false,
+            url:base_url+"Welcome/states_by_country",
+            data:{
+                country_name:id
+            },
+            beforeSend:function(){},
+            success:function(returndata) {
+                //console.log(returndata); return false;
+                $('.state_field').show();
+                $('#state').html(returndata);
+                //$('#state_id_chosen .chosen-results').html(returndata);
+                $('#city').html('<option value="">Select State First</option>');
+            }
+        });
+    }
+
+    function getCity(val) {
+        var base_url = $("#base_url").val();
+        var id = val;
+        $.ajax({
+            type:"post",
+            cache:false,
+            url:base_url+"Welcome/cities_by_state",
+            data:{
+                state_name:id
+            },
+            beforeSend:function(){},
+            success:function(returndata) {
+                //console.log(returndata); return false;
+                $('.city_field').show();
+                $('#city').html(returndata);
+                //$('#city_id_chosen .chosen-results').html(returndata);
+            }
+        });
+    }
+</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type="text/javascript" src="<?= base_url('assets/custom_js/register.js')?>"></script>

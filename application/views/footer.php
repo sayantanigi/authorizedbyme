@@ -15,7 +15,7 @@ if(!empty($_SESSION['afrebay']['userId'])) {
                     <li><a href="<?= base_url()?>page/agent_list">Agents</a></li>
                     <li><a href="<?= base_url()?>page/attorney_lists">Attorneys</a></li>
                     <li><a href="<?= base_url()?>page/representative_lists">Representatives</li>
-                    <li><a href="<?= base_url()?>page/blogs">Blogs</a></li>
+                    <!-- <li><a href="<?= base_url()?>page/blogs">Blogs</a></li> -->
                     <li><a href="<?= base_url()?>page/faq">FAQ</a></li>
                     <li><a href="<?= base_url()?>page/feedback">Feedback</a></li>
                     <li><a href="<?= base_url()?>page/about-us">About</a></li>

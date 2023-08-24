@@ -4660,3 +4660,153 @@ footer {
 .Product-Details-Page {
     margin: 70px 0px 0px 53px;
 }
+
+.job-field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.job-field {
+    float: left;
+    width: 100%;
+    position: relative;
+}
+
+.chosen_country {
+    color: #888888;
+    height: 46px;
+    border-radius: 50px;
+}
+.chosen_country {
+    border-color: #294CA6;
+    padding: 10px !important;
+    position: relative;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 13px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    float: left;
+    width: 100% !important;
+    text-align: left;
+    border-radius: 8px;
+    box-shadow: none !important;
+    border: 2px solid #294CA6
+}
+
+.job-search form .custom-select {
+    position: relative;
+    font-family: Arial;
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    height: 61px !important;
+}
+.custom-select {
+    display: inline-block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    line-height: 1.5;
+    color: #495057;
+    vertical-align: middle;
+    background-size: 8px 10px;
+    border-radius: 0.25rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin-top: 10px;
+}
+
+#state {
+    display: block;
+    color: #888888;
+    height: 46px;
+    border-radius: .375rem;
+}
+
+.chosen_state {
+    border-color: #294CA6;
+    padding: 10px !important;
+    position: relative;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 13px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    float: left;
+    width: 100% !important;
+    text-align: left;
+    border-radius: 8px;
+    box-shadow: none !important;
+    border: 2px solid #294CA6
+}
+
+#city {
+    display: block;
+    color: #888888;
+    height: 46px;
+    border-radius: .375rem;
+}
+
+.chosen_city {
+    border-color: #294CA6;
+    padding: 10px !important;
+    position: relative;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 13px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    float: left;
+    width: 100% !important;
+    text-align: left;
+    border-radius: 8px;
+    box-shadow: none !important;
+    border: 2px solid #294CA6
+}
+
+.job-search form .search-btn button {
+    width: auto !important;
+    padding: 10px 70px !important;
+    height: auto !important;
+    margin: 0;
+    border-radius: 5px !important;
+    color: #fff;
+}
+.job-search form button:hover {
+    background: #294ca6 !important;
+}
+.job-search form button:hover {
+    background: #fb236a;
+}
+.job-search form button:hover {
+    background: #fb236a;
+}
+.job-search form button {
+    background: #294ca6 !important;
+    border: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.job-search form .search-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.job-search form .row > div {
+    padding: 0 12px;
+}

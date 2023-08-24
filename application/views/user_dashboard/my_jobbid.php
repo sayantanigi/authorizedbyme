@@ -50,7 +50,7 @@
                                                     } ?> -->
                                                     <?php
                                                     if($_SESSION['authorized']['userType'] == '2') {
-                                                        if(@$key->bidding_status == 'Under Review' || @$key->bidding_status == 'Short Listed'|| @$key->bidding_status == 'Pending' || empty(@$key->bidding_status)) {?>
+                                                        if(@$key->bidding_status == 'Under Review' || @$key->bidding_status == 'Short Listed'|| @$key->bidding_status == 'Pending' || empty(@$key->bidding_status)) { ?>
                                                             <select class="jobbid_select form-control" name="change_biddingstatus" id="change_biddingstatus_<?php echo @$key->id?>" style="width: 80% !important; display: inline-block;">
                                                                 <option value="">Select Option</option>
                                                                 <option value="Under Review" <?php if(@$key->bidding_status == 'Under Review'){echo "Selected"; }?>>Under Review</option>
@@ -63,12 +63,16 @@
                                                             <input type="hidden" name="jobbiduserid" id="jobbiduserid_<?php echo @$key->id?>" value="<?php echo @$key->userid?>"/>
                                                             <input type="hidden" name="jobpostuserid" id="jobpostuserid_<?php echo @$key->id?>" value="<?php echo @$key->user_id?>"/>
                                                         <?php } else {
-                                                            echo @$key->bidding_status;
-                                                        }
+                                                            echo @$key->bidding_status; ?>
+                                                            <a href="javascript:void(0)" id="view_<?php echo $key->id?>" data-toggle="tooltip" title="View"><i class="fa fa-eye" aria-hidden="true">
+                                                        <?php }
                                                     } else {
                                                         echo @$key->bidding_status;
+                                                        if(@$key->bidding_status == 'Short Listed' || @$key->bidding_status == 'Selected') { ?>
+                                                            <a href="<?php echo base_url()?>page/employerdetail/<?= base64_encode(@$key->user_id)?>" target="_blank" class="post-job-btn" style='float: unset;background: #294ca6;border: 1px solid;color: #fff;padding: 10px;border-radius: 6px;'>Client Details</a>
+                                                        <?php }
                                                     } ?>
-                                                    <a href="javascript:void(0)" id="view_<?php echo $key->id?>" data-toggle="tooltip" title="View"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                    <!-- <a href="javascript:void(0)" id="view_<?php echo $key->id?>" data-toggle="tooltip" title="View"><i class="fa fa-eye" aria-hidden="true"></i></a> -->
                                                     <div class="modal fade" id="exampleModal_<?php echo $key->id?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog list-job-modal">
                                                             <div class="modal-content">

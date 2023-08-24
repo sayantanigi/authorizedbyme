@@ -39,7 +39,7 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
                                     </div> -->
                                 </div>
                             </div>
-                            <!-- <div class="widget">
+                            <div class="widget">
                                 <h3 class="sb-title closed">Category</h3>
                                 <div class="specialism_widget">
                                     <select class="chosen" name="category_id" id="category_id"
@@ -49,14 +49,6 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
                                         <option value="<?= $item->id ?>"><?= ucfirst($item->category_name)?></option>
                                         <?php } }?>
                                     </select>
-                                </div>
-                            </div>
-                            <div class="widget Last_widget sub_cat">
-                                <h3 class="sb-title open">Subcategory</h3>
-                                <div class="specialism_widget">
-                                    <div class="simple-checkbox scrollbar">
-                                        <div id="subcategory_list"></div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="widget sub_cat">
@@ -112,7 +104,7 @@ if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->imag
                                         </p>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                             <?php if(!empty($postid)){?>
                             <input type="hidden" name="post_id" id="post_id" value="<?= @$postid?>">
                             <?php } else{?>

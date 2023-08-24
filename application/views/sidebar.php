@@ -236,33 +236,6 @@ $seg2=$this->uri->segment(2);
                             </a>
                         </li>
                         <?php } } ?>
-
-                        <?php if(@$_SESSION['authorized']['userType']=='2') {
-                        $get_sub_data = $this->db->query("SELECT * FROM employer_subscription WHERE employer_id='".$_SESSION['authorized']['userId']."' AND (status = '1' OR status = '2')")->result_array();
-                        if(!empty($get_sub_data)) {
-                        $profile_check = $this->db->query("SELECT * FROM `users` WHERE userId = '".@$_SESSION['authorized']['userId']."'")->result_array();
-                        if(empty($profile_check[0]['firstname']) || empty($profile_check[0]['lastname']) || empty($profile_check[0]['email']) || empty($profile_check[0]['address']) || empty($profile_check[0]['short_bio'])) { ?>
-                        <li <?php if($seg2=='product'){?>class="active" <?php } ?>>
-                            <span class="cover"></span>
-                            <a href="javascript:void(0)" onclick="completeSub()"><i class="fa fa-tags" aria-hidden="true"></i>
-                                <span class="hidden-xs hidden-sm">Products</span>
-                            </a>
-                        </li>
-                        <?php } else { ?>
-                        <li <?php if($seg2=='product') { ?>class="active" <?php } ?>>
-                            <span class="cover"></span>
-                            <a href="<?= base_url('profile/product')?>"><i class="fa fa-tags" aria-hidden="true"></i>
-                                <span class="hidden-xs hidden-sm">Products</span>
-                            </a>
-                        </li>
-                        <?php } } else { ?>
-                        <li <?php if($seg2=='product') { ?>class="active" <?php } ?>>
-                            <span class="cover"></span>
-                            <a href="javascript:void(0)" onclick="completeSub()"><i class="fa fa-tags" aria-hidden="true"></i>
-                                <span class="hidden-xs hidden-sm">Products</span>
-                            </a>
-                        </li>
-                        <?php } }?>
                     </ul>
                     <input type="hidden" name="userto_id" id="userto_id" value="<?php echo @$_SESSION['authorized']['userId']?>">
                 </div>

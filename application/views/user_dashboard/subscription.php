@@ -69,13 +69,15 @@
                                                         </tr>
                                                         <tr class="plan-active">
                                                             <td class="heading">Subscription Plan Name: <?php echo $row->name_of_card;?></td>
+                                                            <?php if($row->amount != '0') { ?>
                                                             <td class="btn-option">
-                                                            <table class="plan-active-table">
-                                                                <tr>
-                                                                    <td class="active-plan"><a href="<?php echo $row->invoice_pdf?>"><span style="width: 70%;color: #fb6e20;">Download invoice</span></a></td>
-                                                                </tr>
-                                                            </table>
+                                                                <table class="plan-active-table">
+                                                                    <tr>
+                                                                        <td class="active-plan"><a href="<?php echo $row->invoice_pdf?>"><span style="width: 70%;color: #fb6e20;">Download invoice</span></a></td>
+                                                                    </tr>
+                                                                </table>
                                                             </td>
+                                                            <?php } ?>
                                                         </tr>
                                                         <tr>
                                                             <td colspan="2" class="bid-amount">
