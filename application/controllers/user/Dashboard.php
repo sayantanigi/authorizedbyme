@@ -493,7 +493,21 @@ class Dashboard extends CI_Controller {
 		} else {
 			$userpic = '<img src="' . base_url('uploads/users/user.png') . '" alt="" />';
 		}
-		$html_data = '<div class="contact-profile">' . $userpic . '<p>' . ucfirst($name) . '</p><div class="social-media"><a href="#"><i class="fa fa-phone" aria-hidden="true"></i></a><a href="javascript:void(0);" onclick="openVideoCallWindow('.$user_id.');"><i class="fa fa-video-camera" aria-hidden="true"></i></a><a href="#"><i class="fa fa-cog" aria-hidden="true"></i></a></div></div><div class="messages"><ul>';
+		$html_data = '
+		<div class="contact-profile">
+			<div>'.$userpic.
+			'<p>'.ucfirst($name).'</p></div>
+			<div class="social-media">
+			<a href="#"><i class="fa fa-phone" aria-hidden="true"></i></a>
+			<a href="javascript:void(0);" onclick="openVideoCallWindow('.$user_id.');"><i class="fa fa-video-camera" aria-hidden="true"></i></a>
+			<a href="#"><i class="fa fa-cog" aria-hidden="true"></i></a>
+			</div>
+			<div class="search-chat" onclick="searchChat();">
+			<i class="fa fa-search search-chatfa" aria-hidden="true"></i>
+			</div>
+		</div>
+		<div class="extend_search_chat"><input type="text" name="search_chat" id="search_chat"></div>
+		<div class="messages"><ul>';
 		if (!empty($get_data)) {
 			foreach ($get_data as $key) {
 				if (@$key->profilePic && file_exists('uploads/users/' . @$key->profilePic) && $key->postjob_id == $_POST['post_id']) {
@@ -542,7 +556,21 @@ class Dashboard extends CI_Controller {
 		} else {
 			$userpic = '<img src="' . base_url('uploads/users/user.png') . '" alt="" />';
 		}
-		$html_data = '<div class="contact-profile">' . $userpic . '<p>' . ucfirst($name) . '</p><div class="social-media"><a href="#"><i class="fa fa-phone" aria-hidden="true"></i></a><a href="javascript:void(0);" onclick="openVideoCallWindow('.$user_id.');"><i class="fa fa-video-camera" aria-hidden="true"></i></a><a href="#"><i class="fa fa-cog" aria-hidden="true"></i></a></div></div><div class="messages"><ul>';
+		$html_data = '
+		<div class="contact-profile">
+			<div>'.$userpic.
+			'<p>'.ucfirst($name).'</p></div>
+			<div class="social-media">
+			<a href="#"><i class="fa fa-phone" aria-hidden="true"></i></a>
+			<a href="javascript:void(0);" onclick="openVideoCallWindow('.$user_id.');"><i class="fa fa-video-camera" aria-hidden="true"></i></a>
+			<a href="#"><i class="fa fa-cog" aria-hidden="true"></i></a>
+			</div>
+			<div class="search-chat" onclick="searchChat();">
+			<i class="fa fa-search search-chatfa" aria-hidden="true"></i>
+			</div>
+		</div>
+		<div class="extend_search_chat"><input type="text" name="search_chat" id="search_chat"></div>
+		<div class="messages"><ul>';
 		if (!empty($get_data)) {
 			foreach ($get_data as $key) {
 				if (@$key->profilePic && file_exists('uploads/users/' . @$key->profilePic) && $key->postjob_id == $post_id) {

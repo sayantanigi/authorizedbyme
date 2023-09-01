@@ -92,7 +92,6 @@ $route['profile/team-details'] = "user/dashboard/team_details";
 $route['profile/matches'] = "user/dashboard/matches";
 $route['logout'] = "user/login/logout";
 
-
 //Admin Route
 $route['admin'] = 'admin/login/index';
 $route['admin/logout'] = 'admin/login/logout';
@@ -107,7 +106,6 @@ $route['admin/email-template'] = 'admin/Email_template/index';
 $route['admin/chat_details/(:any)/(:any)'] = "admin/chat/adminShowMessage_list/$1/$2";
 $route['admin/deletepostdetail'] = "admin/Post_job/deletepostdetail";
 $route['admin/update-postjob/(:any)'] = "admin/Post_job/update_post_job/$1";
-
 
 //API URLS
 $route['api/registration'] = 'api/Authentication/registration';

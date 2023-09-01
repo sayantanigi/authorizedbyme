@@ -160,6 +160,10 @@
     .notificationf1 {left: 270px !important; top: 6px; font-size: 15px !important; width: 20px !important; height: 20px !important;}
     .EachvChat{display: none;}
     .EachfChat{display: none;}
+    .search-chat {display: inline-block; float: right; margin-right: 30px;}
+    .extend_search_chat {display: none; margin: 0 10px 0;}
+    #search_chat {width: 100%; height: 30px; margin: 0; position: relative; z-index: 11111111; bottom: 0;
+}
 </style>
 <!-- <link rel="stylesheet" href="https://unpkg.com/placeholder-loading/dist/css/placeholder-loading.min.css"> -->
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -174,6 +178,26 @@ try {
 <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
 <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
 <script>
+$(".content #message_list .contact-profile #chat123").click(function(){
+  alert("The paragraph was clicked.");
+});
+
+$(document).ready(function(){
+    $('.EachvChat').hide();
+    $('.EachfChat').hide();
+    $('#search_chat').on('input', function(){
+        console.log('test');
+        var lists = document.querySelectorAll('.messages ul .sent');
+        lists.foreach((list) => {
+            if(!list.innerHtml.toLowerCase().includes(e.target.value.toLowerCase())) {
+                list.classList.add('d-none');
+            } else {
+                list.classList.remove('d-none');
+            }
+        })
+    })
+});
+
 $(".messages").animate({
     scrollTop: $(document).height()
 }, "fast");
@@ -246,12 +270,6 @@ $("#message").mouseover(function(){
         getMessageCount();
     }, 5000);
 });
-
-$(document).ready(function(){
-    $('.EachvChat').hide();
-    $('.EachfChat').hide();
-});
-
 
 function getMessage(){
     var userfromid = $('#userfromid').val();
@@ -359,6 +377,10 @@ function getuser(usert_id,post_id) {
             $('#frame').addClass('chat_frame');
         }
     });
+}
+
+function searchChat() {
+    $('.extend_search_chat').toggle();
 }
 
 function openVideoCallWindow(fid) {
