@@ -2,20 +2,18 @@
 $seg2= $this->uri->segment(2);
 $email=base64_decode($seg2);
 ?>
-<section class="overlape">
-    <div class="block no-padding">
-        <div data-velocity="-.1" style="background: url('<?= base_url("assets/images/resource/mslider1.jpg")?>') repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div>
-        <!-- PARALLAX BACKGROUND IMAGE -->
-        <div class="container fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="inner-header">
-                        <h3>Reset Password</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<section class="breadcrumbpnl" style="background-image:url('<?= base_url("assets/images/resource/mslider1.jpg")?>');">  
+	<div class="container">
+		<div class="">
+			<h3 class="fw-semibold"><?= $title?></h3>
+			<div >
+				<ol class="breadcrumb mb-2">
+					<li class="breadcrumb-item"><a href="<?= base_url()?>">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Reset Password</li>
+				</ol>
+			</div>
+		</div>
+	</div>
 </section>
 <section>
     <div class="block remove-bottom">
@@ -33,14 +31,14 @@ $email=base64_decode($seg2);
                             </span>
                             <form action="#" method="post">
                                 <input type="hidden" id="email" name="email" value="<?= $email?>">
-                                <div class="error text-left">New Password</div>
+                                <div class="error text-left" style=" text-align: left !important;">New Password</div>
                                 <div class="cfield">
 
                                     <input type="password" placeholder="********" name="password" id="new_password"/>
                                     <i class="la la-key" onclick="checkPass()"></i>
                                 </div>
                                 <div class="error text-left" id="err_password"></div>
-                                <div class="error text-left">Confirm Password</div>
+                                <div class="error text-left" style=" text-align: left !important;">Confirm Password</div>
                                 <div class="cfield">
 
                                     <input type="password" placeholder="********" name="confirm_password" id="confirm_password" />

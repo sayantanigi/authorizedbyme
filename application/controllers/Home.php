@@ -751,4 +751,53 @@ class Home extends MY_Controller {
 			header("Location: ".$initialization_url);
 		}
 	}
+
+	function send_forget_password() {
+    	if(!empty($this->input->post('forgot_email',TRUE))) {
+     		$get_email = $this->Crud_model->get_single('users',"email='".$_POST['forgot_email']."'");
+         	if(!empty($get_email)) {
+             	$data=array(
+					'email'=>$get_email->email
+				);
+				$fullname = $get_email->firstname.' '.$get_email->lastname;
+				$get_setting=$this->Crud_model->get_single('setting');
+				//$htmlContent = $this->load->view('email_template/forgot_password',$data,TRUE);
+				$htmlContent = "<div style='width: 600px; margin: 0 auto; background: #fff; border: 1px solid #e6e6e6'><div style='padding: 30px 30px 15px 30px; box-sizing: border-box'><img src='cid:Logo' style='width: 100px; float: right; margin-top: 0 auto'><h3 style='padding-top: 40px; line-height: 30px'>Greetings from<span style='font-weight: 900;font-size: 20px;color: #1B3EA7;display: block'>Authorized By Me</span></h3><p style='font-size:15px;'>Hello $fullname,</p><p style='font-size:15px;'>Trouble signing in? Resetting your password is easy.</p><p style='font-size:15px;'>Just press the button below and follow the instructions.</p><p style='text-align: center;'><a href='".base_url('new-password/'.base64_encode($get_email->email))."' style='height: 40px;width: 170px;background: rgb(253,179,2);background: #1B3EA7;text-align: center;font-size: 15px;color: #fff;border-radius: 12px;display: inline-block;line-height: 40px;text-decoration: none;text-transform: uppercase;font-weight: 600'>CLICK HERE TO RESET</a></p><p style='font-size: 15px;margin: 10px 0 0 0;'>Thank you!</p><p style='font-size: 15px;list-style: none;margin: 0;padding: 0;'>Sincerly</p><p style='list-style: none;margin: 0;padding: 0;'><b>Authorized By Me</b></p><p style='list-style: none;margin: 20px 0 0 0;list-style: none;'><b>Visit us:</b> <span>$get_setting->address</span></p><p style='list-style: none;margin: 0;padding: 0'><b>Email us:</b> <span>$get_setting->email</span></p></div><table style='width: 100%;'><tr><td style='height: 30px;width: 100%;background: #1B3EA7;padding: 10px 0px;font-size: 13px;color: #fff;text-align: center'>Copyright &copy; <?=date('Y')?> Authorized By Me. All rights reserved.</td></tr></table></div>";
+				require 'vendor/autoload.php';
+				$mail = new PHPMailer(true);
+				try {
+					//Server settings
+					$mail->CharSet = 'UTF-8';
+					$mail->SetFrom('no-reply@goigi.com', 'Afrebay');
+					$mail->AddAddress($_POST['forgot_email']);
+					$mail->IsHTML(true);
+					$mail->Subject = "Forgot Password Confirmation message from Authorized By Me";
+					$mail->AddEmbeddedImage('uploads/logo/'.$get_setting->flogo, 'Logo');
+					$mail->Body = $htmlContent;
+					//Send email via SMTP
+					$mail->IsSMTP();
+					$mail->SMTPAuth   = true;
+					$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+					$mail->Host       = "smtp.gmail.com";
+					$mail->Port       = 587; //587 465
+					$mail->Username   = "no-reply@goigi.com";
+					$mail->Password   = "wj8jeml3eu0z";
+					$mail->send();
+					$msg = 'Please check your inbox. We have sent you an email to reset your password.';
+					$responce = array('code'=>'1', 'result'=> $msg);
+					//$this->session->set_flashdata('message', 'Please check your inbox. We have sent you an email to reset your password.');
+				} catch (Exception $e) {
+					$msg = 'Something went wrong. Please try again later!';
+					$responce = array('code'=>'2', 'result'=> $msg);
+					//$this->session->set_flashdata('message', 'Something went wrong. Please try again later!');
+				}
+         	} else {
+				$msg = 'Invalid Email Id!';
+				$responce = array('code'=>'3', 'result'=> $msg);
+				//$this->session->set_flashdata('error', 'invalid Email Id!');
+   			}
+			//redirect(base_url('forgot-password'));
+			echo json_encode($responce);
+		}
+	}
 }

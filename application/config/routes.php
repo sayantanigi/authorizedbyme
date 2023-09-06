@@ -56,7 +56,6 @@ $route['translate_uri_dashes'] = FALSE;
 $route['register'] = "home/signup";
 $route['email-verification/(:any)'] = "user/login/emailVerification/$1";
 $route['login'] = "home/login_page";
-$route['forgot-password'] = "user/login/forgot_password";
 $route['new-password/(:any)'] = "user/login/new_password/$1";
 $route['page/client_list'] = "home/client_list";
 $route['page/agent_list'] = "home/agent_list";

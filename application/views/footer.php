@@ -49,13 +49,17 @@ if(!empty($_SESSION['afrebay']['userId'])) {
     <div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog loginmodal">
             <div class="modal-content banner-form">
-                <div class="modal-header border-0">
+                <div class="modal-header border-0 userLogin">
                     <h2 class="text-uppercase text-primary fw-bold h2 mb-0">Login Here</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-header border-0 userPass">
+                    <h2 class="text-uppercase text-primary fw-bold h2 mb-0">Forgot Password</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div>
-                        <form action="<?=base_url(); ?>validate" method="post">
+                        <form id="login" action="<?=base_url(); ?>validate" method="post">
                             <div class="input-group mb-3">
                                 <span class="input-group-text border-0 bg-white"><img src="<?= base_url()?>assets/images/envelope.png"></span>
                                 <input type="email" class="form-control" placeholder="Email" name="login_email" id="login_email">
@@ -73,15 +77,34 @@ if(!empty($_SESSION['afrebay']['userId'])) {
                                 <button type="submit" class="btn btn-primary w-100 text-uppercase py-2 fw-semibold" id="rLogin" onclick="return onuserLogin();">Login</button>
                             </div>
                             <div class="mb-3 text-center">
-                                <a href="#">Forgot Password?</a>
+                                <a href="javascript:void(0)" id="forgot_pass">Forgot Password?</a>
                             </div>
+                        </form>
+
+                        <form id="forgotPass" method="post">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text border-0 bg-white"><img src="<?= base_url()?>assets/images/envelope.png"></span>
+                                <input type="email" class="form-control" placeholder="Registered Email Address" name="forgot_email" id="forgot_email">
+                            </div>
+                            <div class="error text-left" id="err_login_email" style="color: red;text-align: center;"></div>
+                            <div class="mb-3">
+                                <button type="button" class="btn btn-primary w-100 text-uppercase py-2 fw-semibold" id="rfPass" onclick="return onforgotPass();">Submit</button>
+                            </div>
+                            <div class="mb-3 text-center">
+                                <a href="javascript:void(0)" id="user_login">Go To Login</a>
+                            </div>
+                            <div class="mb-3 text-center successMsg" style="color: green"></div>
+                            <div class="mb-3 text-center errorMsg" style="color: red"></div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <style>
+        #forgotPass {display: none;}
+        .userPass {display: none;}
+    </style>
 	<script src="<?=base_url(); ?>assets/js/jquery-3.6.3.min.js"></script>
 	<script src="<?=base_url(); ?>assets/js/bootstrap.bundle.min.js"></script>    
 	<script src="<?=base_url(); ?>assets/js/owl.carousel.min.js"></script>       
@@ -96,7 +119,7 @@ if(!empty($_SESSION['afrebay']['userId'])) {
     <link rel="stylesheet" href="<?php echo base_url()?>assets/multi_select/css/modern/tail.select-light.min.css" />
 
     <script src="<?php echo base_url()?>assets/multi_select/js/tail.select.min.js"></script>
-<!-- Languages -->
+    <!-- Languages -->
     <script src="<?php echo base_url()?>assets/multi_select/langs/tail.select-de.js"></script>
     <script src="<?php echo base_url()?>assets/multi_select/langs/tail.select-es.js"></script>
     <script src="<?php echo base_url()?>assets/multi_select/langs/tail.select-fi.js"></script>
@@ -137,6 +160,20 @@ if(!empty($_SESSION['afrebay']['userId'])) {
             $(this).toggleClass('active');
             $(this).toggleClass('closed');
         });
+
+        $('#forgot_pass').click(function (){
+            $('#forgotPass').show();
+            $('#login').hide();
+            $('.userLogin').hide();
+            $('.userPass').css('display','flex');
+        })
+
+        $('#user_login').click(function (){
+            $('#forgotPass').hide();
+            $('#login').show();
+            $('.userLogin').show();
+            $('.userPass').hide();
+        })
     })
     </script>
 </body>

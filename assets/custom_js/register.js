@@ -169,23 +169,38 @@ function onuserLogin() {
 		$("#login_password").focus();
 		return false;
 	}
+}
 
-	/*$.ajax({
-		url: base_url+'validate',
+function onforgotPass() {
+	var base_url=$('#base_url').val();
+	var forgot_email = $('#forgot_email').val();
+	//console.log(forgot_email);
+	$.ajax({
+		url: base_url+'Home/send_forget_password',
 		type: 'POST',
-		data: {login_email:login_email, login_pass:login_pass},
+		data: {forgot_email: forgot_email},
 		dataType:'json',
 		beforeSend : function(){
-			$("#rLogin").text("Please Wait...");
-			$("#rLogin").prop("disable", "true");
+			$("#rfPass").text("Please Wait...");
+			$("#rfPass").prop("disable", "true");
 		},
 		success:function(returndata) {
 			console.log(returndata);
-			if(returndata != 1) {
-				window.location.reload();
+			if(returndata.code == 1){
+				$('.successMsg').text(returndata.result);
+				$("#rfPass").text("Submit");
+				$("#forgotPass")[0].reset();
+				setTimeout(function(){
+					$('.successMsg').text('');
+				}, 5000);
 			} else {
-				window.location.href = base_url+"profile/dashboard";
+				$('.errorMsg').text(returndata.result);
+				$("#rfPass").text("Submit");
+				$('#forgotPass')[0].reset();
+				setTimeout(function(){
+					$('.errorMsg').text('');
+				}, 5000);
 			}
 		}
-	});*/
+	});
 }

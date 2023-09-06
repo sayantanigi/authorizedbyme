@@ -169,9 +169,9 @@ class Login extends CI_Controller {
 	}
 
 	public function new_password() {
-		$data['title']='Forget Password';
-		$this->load->view('header',$data);
-		$this->load->view('new_password');
+		$data['title']='Reset Password';
+		$this->load->view('header');
+		$this->load->view('new_password',$data);
 		$this->load->view('footer');
 	}
 
