@@ -506,7 +506,7 @@ class Dashboard extends CI_Controller {
 			<i class="fa fa-search search-chatfa" aria-hidden="true"></i>
 			</div>
 		</div>
-		<div class="extend_search_chat"><input type="text" name="search_chat" id="search_chat"></div>
+		<div class="extend_search_chat"><input type="text" name="search_chat" id="search_chat" placeholder="Search in chat"></div>
 		<div class="messages"><ul>';
 		if (!empty($get_data)) {
 			foreach ($get_data as $key) {

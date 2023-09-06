@@ -185,17 +185,6 @@ $(".content #message_list .contact-profile #chat123").click(function(){
 $(document).ready(function(){
     $('.EachvChat').hide();
     $('.EachfChat').hide();
-    $('#search_chat').on('input', function(){
-        console.log('test');
-        var lists = document.querySelectorAll('.messages ul .sent');
-        lists.foreach((list) => {
-            if(!list.innerHtml.toLowerCase().includes(e.target.value.toLowerCase())) {
-                list.classList.add('d-none');
-            } else {
-                list.classList.remove('d-none');
-            }
-        })
-    })
 });
 
 $(".messages").animate({
@@ -337,6 +326,7 @@ $(window).on('keydown', function(e) {
 //# sourceURL=pen.js
 
 function getuser(usert_id,post_id) {
+    searchChat();
     var displayProduct = 3;
     $('#message_list').html(createSkeleton(displayProduct));
     function createSkeleton(limit) {
@@ -381,6 +371,16 @@ function getuser(usert_id,post_id) {
 
 function searchChat() {
     $('.extend_search_chat').toggle();
+    $('#search_chat').on('input', function(e){
+        var lists = document.querySelectorAll('.messages ul li');
+        lists.forEach((list) => {
+            if(!list.innerHTML.toLowerCase().includes(e.target.value.toLowerCase())) {
+                list.classList.add('d-none');
+            } else {
+                list.classList.remove('d-none');
+            }
+        })
+    })
 }
 
 function openVideoCallWindow(fid) {
