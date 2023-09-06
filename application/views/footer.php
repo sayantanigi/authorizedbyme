@@ -86,7 +86,7 @@ if(!empty($_SESSION['afrebay']['userId'])) {
                                 <span class="input-group-text border-0 bg-white"><img src="<?= base_url()?>assets/images/envelope.png"></span>
                                 <input type="email" class="form-control" placeholder="Registered Email Address" name="forgot_email" id="forgot_email">
                             </div>
-                            <div class="error text-left" id="err_login_email" style="color: red;text-align: center;"></div>
+                            <div class="error text-left" id="err_forgot_email" style="color: red;text-align: center;margin-bottom: 15px;"></div>
                             <div class="mb-3">
                                 <button type="button" class="btn btn-primary w-100 text-uppercase py-2 fw-semibold" id="rfPass" onclick="return onforgotPass();">Submit</button>
                             </div>

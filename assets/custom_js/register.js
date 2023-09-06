@@ -26,7 +26,7 @@ function onuserRegistration() {
     var pattern_email = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 	if(userType=='') {
 		$('#err_select-user-type').fadeIn().html('Please select your type').css('color','red');
-		setTimeout(function(){$("#err_select-user-type").html("&nbsp;");},3000);
+		setTimeout(function(){$("#err_select-user-type").html("");},3000);
 		$(".select-user-type").focus();
 		return false;
 	}
@@ -34,7 +34,7 @@ function onuserRegistration() {
 	if(userType == '1'){
 		if(userSubtype == undefined) {
 			$('#err_select-user-subtype').fadeIn().html('Please select your sub type').css('color','red');
-			setTimeout(function(){$("#err_select-user-subtype").html("&nbsp;");},3000);
+			setTimeout(function(){$("#err_select-user-subtype").html("");},3000);
 			$(".select-user-subtype").focus();
 			return false;
 		}
@@ -42,62 +42,62 @@ function onuserRegistration() {
 
 	if(firstname=='') {
 		$('#err_firstname').fadeIn().html('Please enter your first name').css('color','red');
-		setTimeout(function(){$("#err_firstname").html("&nbsp;");},3000);
+		setTimeout(function(){$("#err_firstname").html("");},3000);
 		$("#firstname").focus();
 		return false;
 	}
 
 	if(lastname=='') {
 		$('#err_lastname').fadeIn().html('Please enter your last name').css('color','red');
-		setTimeout(function(){$("#err_lastname").html("&nbsp;");},3000);
+		setTimeout(function(){$("#err_lastname").html("");},3000);
 		$("#lastname").focus();
 		return false;
 	}
 
 	if(email=='') {
 		$('#err_email').fadeIn().html('Please enter your email').css('color','red');
-		setTimeout(function(){$("#err_email").html("&nbsp;");},3000);
+		setTimeout(function(){$("#err_email").html("");},3000);
 		$("#email").focus();
 		return false;
 
 	} else if(!pattern_email.test(email)) {
 		$("#err_email").fadeIn().html("Please enter a valid email address");
-		setTimeout(function(){$("#err_email").html("&nbsp;");},5000)
+		setTimeout(function(){$("#err_email").html("");},5000)
 		$("#email").focus();
 		return false;
 	}
 
 	if(password=='') {
 		$('#err_password').fadeIn().html('Please enter password').css('color','red');
-		setTimeout(function(){$("#err_password").html("&nbsp;");},3000);
+		setTimeout(function(){$("#err_password").html("");},3000);
 		$("#password").focus();
 		return false;
 	}
 
    	if(password.length<6) {
 		$('#err_password').fadeIn().html('please enter at least 6 character').css('color','red');
-		setTimeout(function(){$("#err_password").html("&nbsp;");},3000);
+		setTimeout(function(){$("#err_password").html("");},3000);
 		$("#password").focus();
 		return false;
 	}
 
 	if(conf_password=='') {
 		$('#err_showconfirmpass').fadeIn().html('Please enter confirm password').css('color','red');
-		setTimeout(function(){$("#err_showconfirmpass").html("&nbsp;");},3000);
+		setTimeout(function(){$("#err_showconfirmpass").html("");},3000);
 		$("#showconfirmpass").focus();
 		return false;
 	}
 
    	if(conf_password.length<6) {
 		$('#err_showconfirmpass').fadeIn().html('please enter at least 6 character').css('color','red');
-		setTimeout(function(){$("#err_showconfirmpass").html("&nbsp;");},3000);
+		setTimeout(function(){$("#err_showconfirmpass").html("");},3000);
 		$("#showconfirmpass").focus();
 		return false;
 	}
 
 	if (password != conf_password) {
 		$('#err_showconfirmpass').fadeIn().html('Password Mismatch').css('color','red');
-		setTimeout(function(){$("#err_showconfirmpass").html("&nbsp;");},3000);
+		setTimeout(function(){$("#err_showconfirmpass").html("");},3000);
 		return false;
 	}
 	
@@ -120,7 +120,7 @@ function onuserRegistration() {
 			if(returndata.result=='0') {
 				if(returndata.data == 'email') {
 					$('#err_email').fadeIn().html('This email already exists').css('color','red');
-					setTimeout(function(){$("#err_email").html("&nbsp;");},3000);
+					setTimeout(function(){$("#err_email").html("");},3000);
 					$("#email").focus();
 					$("#rSignUp").text("Sign Up");
 					return false;
@@ -145,27 +145,27 @@ function onuserLogin() {
 	
 	if(login_email=='') {
 		$('#err_login_email').fadeIn().html('Please enter your email').css('color','red');
-		setTimeout(function(){$("#err_login_email").html("&nbsp;");},3000);
+		setTimeout(function(){$("#err_login_email").html("");},3000);
 		$("#login_email").focus();
 		return false;
 
 	} else if(!pattern_email.test(login_email)) {
 		$("#err_login_email").fadeIn().html("Please enter a valid email address");
-		setTimeout(function(){$("#err_login_email").html("&nbsp;");},5000)
+		setTimeout(function(){$("#err_login_email").html("");},5000)
 		$("#login_email").focus();
 		return false;
 	}
 
 	if(login_pass=='') {
 		$('#err_login_password').fadeIn().html('Please enter password').css('color','red');
-		setTimeout(function(){$("#err_login_password").html("&nbsp;");},3000);
+		setTimeout(function(){$("#err_login_password").html("");},3000);
 		$("#login_password").focus();
 		return false;
 	}
 
    	if(login_pass.length<6) {
 		$('#err_login_password').fadeIn().html('please enter at least 6 character').css('color','red');
-		setTimeout(function(){$("#err_login_password").html("&nbsp;");},3000);
+		setTimeout(function(){$("#err_login_password").html("");},3000);
 		$("#login_password").focus();
 		return false;
 	}
@@ -174,6 +174,19 @@ function onuserLogin() {
 function onforgotPass() {
 	var base_url=$('#base_url').val();
 	var forgot_email = $('#forgot_email').val();
+	var pattern_email = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+	if(forgot_email=='') {
+		$('#err_forgot_email').fadeIn().html('Please enter your email').css('color','red');
+		setTimeout(function(){$("#err_forgot_email").html("");},3000);
+		$("#forgot_email").focus();
+		return false;
+
+	} else if(!pattern_email.test(forgot_email)) {
+		$("#err_forgot_email").fadeIn().html("Please enter a valid email address");
+		setTimeout(function(){$("#err_forgot_email").html("");},5000)
+		$("#forgot_email").focus();
+		return false;
+	}
 	//console.log(forgot_email);
 	$.ajax({
 		url: base_url+'Home/send_forget_password',
