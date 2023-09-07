@@ -1,18 +1,22 @@
-    <section class="py-2">
+<?php if(!empty($get_banner->image) && file_exists('uploads/banner/'.$get_banner->image)) { 
+    $bannerImg = "uploads/banner/$get_banner->image";
+} else {
+    $bannerImg = "assets/images/2546_7.png";
+} ?>   
+    <section class="py-2" style="background: url(<?=base_url($bannerImg)?>);width: 100%;height: 400px;background-size: cover;background-repeat: no-repeat;">
         <div class="container">
             <div class="topsearch position-relative">
-                <div class="job-search">
+                <div class="job-search col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <form method="post" action="<?= base_url('page/search-job')?>">
-                        <!-- <input type="text" class="form-control" name="" placeholder="Search">
-                        <button class="btn"><i class="fas fa-search"></i></button> -->
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="job-field">
-                                    <input type="text" name="search_title"  class="form-control" placeholder="Search Job title" value="" />
-                                    <!-- <i class="la la-search"></i> -->
+                                    <div class="custom-select">
+                                        <input type="text" name="search_title"  class="form-control" placeholder="Search Job title" value="" />
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                 <div class="job-field">
                                     <div class="custom-select">
                                         <select class="chosen_country" name="country" id="country" onchange="getState(this.value)">
@@ -24,7 +28,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                 <div class="job-field">
                                     <div class="custom-select">
                                         <select class="chosen_state" name="state" id="state" onchange="getCity(this.value);filter_job();">
@@ -33,7 +37,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                 <div class="job-field">
                                     <div class="custom-select">
                                         <select class="chosen_city" name="city" id="city" onchange="filter_job();">
@@ -42,7 +46,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-btn">
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 search-btn">
                                 <button type="submit"><i class="la la-search"></i></button>
                             </div>
                         </div>
@@ -248,6 +252,7 @@
     <style>
         #register-messages {text-align: center; margin-top: 25px; display: none;}
         #err-messages {text-align: center; margin-top: 10px; display: none;}
+        .job-search {position: relative; top: 80px; float: right; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;}
     </style>
     <script>
     function getState(val) {
@@ -262,10 +267,8 @@
             },
             beforeSend:function(){},
             success:function(returndata) {
-                //console.log(returndata); return false;
                 $('.state_field').show();
                 $('#state').html(returndata);
-                //$('#state_id_chosen .chosen-results').html(returndata);
                 $('#city').html('<option value="">Select State First</option>');
             }
         });
@@ -283,10 +286,8 @@
             },
             beforeSend:function(){},
             success:function(returndata) {
-                //console.log(returndata); return false;
                 $('.city_field').show();
                 $('#city').html(returndata);
-                //$('#city_id_chosen .chosen-results').html(returndata);
             }
         });
     }

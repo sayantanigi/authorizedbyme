@@ -970,7 +970,7 @@ header .navbar .nav-link.btn {
 
 .Employees_Search_List .Employees_Search_Result .Employee-Details a {
     color: #000 !important;
-    border: 2px solid #f27854 !important;
+    border: 2px solid #294ca6 !important;
     margin-right: 0 !important;
     background: 0 0;
     border-radius: 35px;
@@ -1017,7 +1017,7 @@ header .navbar .nav-link.btn {
 .Employees_Search_List .Employees_Search_Result .emply-resume-list .shortlists a.Emp_Comp i {
     margin-right: 10px;
     font-size: 20px;
-    color: #f07759
+    color: #294ca6
 }
 
 .Employees_Search_List .Employees_Search_Result .emply-resume-list .shortlists a:last-child {
@@ -4777,12 +4777,15 @@ footer {
 }
 
 .job-search form .search-btn button {
-    width: auto !important;
-    padding: 10px 70px !important;
+    /* width: auto !important; */
+    width: 100%;
+    padding: 15px 70px !important;
     height: auto !important;
     margin: 0;
     border-radius: 5px !important;
     color: #fff;
+    top: -3px;
+    position: relative;
 }
 .job-search form button:hover {
     background: #294ca6 !important;
@@ -4959,4 +4962,15 @@ footer {
 
 .text-color, .menu-sec nav > ul > li > ul li:hover > a, .account-popup > form .cfield i, .account-popup > form > a, .chosen-container-single .chosen-single div::before, .job-field i, .chosen-container .chosen-results li.highlighted, .active-result.result-selected, .scroll-to a, .p-category > a p, .p-category:hover i, .job-title-sec span, .blog-metas a, .blog-details > a {
     color: #1B3EA7;
+}
+
+@media (max-width: 768px) {
+    .job-search{top: 12px !important;}
+    .job-search form .custom-select {height: 45px !important;}
+    .job-search form .search-btn button {top: 15px !important;}
+}
+
+@media (max-width: 425px) {
+    .job-search{top: 15px !important;}
+    .job-search form .custom-select {height: 45px !important;}
 }
